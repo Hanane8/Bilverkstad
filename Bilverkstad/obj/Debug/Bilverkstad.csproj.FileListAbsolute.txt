@@ -1,0 +1,17 @@
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\bin\Debug\Bilverkstad.exe.config
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\bin\Debug\Bilverkstad.exe
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\bin\Debug\Bilverkstad.pdb
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad.csproj.AssemblyReference.cache
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Login.g.cs
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\MainWindow.g.cs
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\App.g.cs
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad_MarkupCompile.cache
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad_MarkupCompile.lref
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Login.baml
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\MainWindow.baml
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad.g.resources
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad.Properties.Resources.resources
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad.csproj.GenerateResource.cache
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad.csproj.CoreCompileInputs.cache
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad.exe
+C:\Users\Hanan\Downloads\Bilverkstad\Bilverkstad\obj\Debug\Bilverkstad.pdb
