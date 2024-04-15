@@ -12,34 +12,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Bilverkstad
+namespace Bilverkstad.PresentationLager
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for KundVy.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class KundVy : Window
     {
-        public Login()
+        public KundVy()
         {
             InitializeComponent();
         }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
 
         }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            WindowState= WindowState.Minimized;
+            WindowState = WindowState.Minimized;
 
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
