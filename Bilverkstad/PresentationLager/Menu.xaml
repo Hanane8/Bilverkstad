@@ -14,7 +14,7 @@
         MouseDown="Window_MouseDown">
     <Border CornerRadius="50">
         <Border.Background>
-            <ImageBrush ImageSource="/Bilder/background_bilverkstad.jpg" 
+            <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
                 Stretch="None" Opacity="0.73"
                 />
             </Border.Background>
