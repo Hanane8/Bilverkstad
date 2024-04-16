@@ -15,7 +15,7 @@
 
     <Border CornerRadius="50">
         <Border.Background>
-            <ImageBrush ImageSource="/Bilder/background_bilverkstad.jpg" 
+            <ImageBrush ImageSource="C:\Users\Hanan\Desktop\background bilverkstad.jpg" 
                         Stretch="None" Opacity="0.73"
                         />
         </Border.Background>
@@ -105,7 +105,7 @@
                     Grid.Row="1" 
                     Orientation="Vertical"
                     Margin="70,10,0,0">
-                    <Image Source="/Bilder/121212-rem.png" Height="92"
+                    <Image Source="C:\Users\Hanan\Desktop\121212-rem.png" Height="92"
                            Width="200" Opacity="0.6"/>
 
                 </StackPanel>
@@ -134,7 +134,7 @@
                         >
 
                     <TextBox.Background>
-                        <ImageBrush ImageSource="/Bilder/icon_icon_user2.png"
+                        <ImageBrush ImageSource="C:\Users\Hanan\Desktop\icon_icon user2.png"
                                     Stretch="Uniform" 
                                     AlignmentX="Left"/>
                     </TextBox.Background>
@@ -166,7 +166,7 @@
                          Padding="20,0,0,0" >
 
                     <PasswordBox.Background>
-                        <ImageBrush ImageSource="/Bilder/key_icon.png"
+                        <ImageBrush ImageSource="C:\Users\Hanan\Desktop\key_icon.png"
                                     Stretch="Uniform" 
                                     AlignmentX="Left"/>
                     </PasswordBox.Background>

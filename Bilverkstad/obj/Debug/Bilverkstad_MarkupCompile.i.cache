@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\noelk\Source\Repos\BilverkstadV2\Bilverkstad\App.xaml
-6427015730
+6-1228557766
 
-11-824468679
+11-1101631191
 15-1581683159
-Presentationlager\BokningVy.xaml;Presentationlager\KundVy.xaml;Presentationlager\Login.xaml;Presentationlager\MainWindow.xaml;Presentationlager\Menu.xaml;Presentationlager\ReservDelVy.xaml;
+PresentationLager - Vyer\BokningVy.xaml;PresentationLager - Vyer\KundVy.xaml;PresentationLager - Vyer\Login.xaml;PresentationLager - Vyer\MainWindow.xaml;PresentationLager - Vyer\Menu.xaml;PresentationLager - Vyer\ReservDelVy.xaml;
 
-True
+False
 

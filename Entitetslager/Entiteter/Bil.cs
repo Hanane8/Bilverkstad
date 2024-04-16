@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entitetslager.Entiteter
+namespace Bilverkstad.EntitysLager
 {
-    public class Bil
+    internal class Bil
     {
-        public string RegNr { get; set; }
-        public string Märke { get; set; }
-        public int Årsmodell { get; set; }
     }
 }

@@ -59,19 +59,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Presentationlager\BokningVy.xaml">
+    <Page Include="PresentationLager - Vyer\BokningVy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentationlager\KundVy.xaml">
+    <Page Include="PresentationLager - Vyer\KundVy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentationlager\Login.xaml">
+    <Page Include="PresentationLager - Vyer\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentationlager\MainWindow.xaml">
+    <Page Include="PresentationLager - Vyer\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -79,33 +79,33 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Presentationlager\BokningVy.xaml.cs">
+    <Compile Include="PresentationLager - Vyer\BokningVy.xaml.cs">
       <DependentUpon>BokningVy.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentationlager\KundVy.xaml.cs">
+    <Compile Include="PresentationLager - Vyer\KundVy.xaml.cs">
       <DependentUpon>KundVy.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentationlager\Login.xaml.cs">
+    <Compile Include="PresentationLager - Vyer\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentationlager\MainWindow.xaml.cs">
+    <Compile Include="PresentationLager - Vyer\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Presentationlager\Menu.xaml">
+    <Page Include="PresentationLager - Vyer\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentationlager\ReservDelVy.xaml">
+    <Page Include="PresentationLager - Vyer\ReservDelVy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presentationlager\Menu.xaml.cs">
+    <Compile Include="PresentationLager - Vyer\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentationlager\ReservDelVy.xaml.cs">
+    <Compile Include="PresentationLager - Vyer\ReservDelVy.xaml.cs">
       <DependentUpon>ReservDelVy.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -134,22 +134,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\logo logo.png" />
+    <Resource Include="logo logo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Bilder\background_bilverkstad.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Bilder\bild_back_1.png" />
-    <Resource Include="Bilder\bokning_icon1.png" />
-    <Resource Include="Bilder\car_car-1.png" />
-    <Resource Include="Bilder\kund_icon11.png" />
-    <Resource Include="Bilder\reservdel_icon1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Bilder\121212-rem.png" />
-    <Resource Include="Bilder\icon_icon_user2.png" />
-    <Resource Include="Bilder\key_icon.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

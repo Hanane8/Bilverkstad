@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entitetslager.Entiteter
+namespace Bilverkstad.EntitysLager
 {
-    public class ReservDelar
+    internal class ReservDelar
     {
-        public int ReservdelNr { get; set; }
-        public string Namn { get; set; }
-        public double Pris { get; set; }
-        public bool Lagerstatus { get; set; }
-
     }
 }

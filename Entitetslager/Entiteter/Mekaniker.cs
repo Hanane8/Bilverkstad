@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entitetslager.Entiteter
+namespace Bilverkstad.EntitysLager
 {
-    public class Mekaniker
+    internal class Mekaniker
     {
-        public int AnställningsNr { get; set; }
-        public string Yrkesroll { get; set; }
-        public string Lösenord { get; set; }
-        public string Specialisering { get; set; }
     }
 }
