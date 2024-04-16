@@ -14,7 +14,7 @@
         MouseDown="Window_MouseDown">
     <Border CornerRadius="50">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\Hanan\Desktop\background bilverkstad.jpg" 
+            <ImageBrush ImageSource="/Bilder/background_bilverkstad.jpg" 
                 Stretch="None" Opacity="0.73"
                 />
             </Border.Background>
@@ -106,7 +106,7 @@
                  Margin="70,10,0,0"/>
 
                 <Image 
-                    Source="C:\Users\Hanan\Desktop\bild_back 1.png"
+                    Source="/Bilder/bild_back 1.png"
                     HorizontalAlignment="Left" Height="296" Margin="0,84,0,0" Grid.Row="2" Width="631" Stretch="UniformToFill" IsManipulationEnabled="True" InputScope="Default" VerticalAlignment="Top" Opacity="0.4"/>
                 <Button BorderThickness="0" 
                         Margin="189,90,0,220" 
@@ -140,7 +140,7 @@
                                     </Border.BorderBrush>
                                     <Ellipse Width="60" Height="60">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="C:\Users\Hanan\Desktop\kund icon11.png" Opacity="0.4" Stretch="UniformToFill" TileMode="None"/>
+                                            <ImageBrush ImageSource="/Bilder/kund icon11.png" Opacity="0.4" Stretch="UniformToFill" TileMode="None"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                 </Border>
@@ -181,7 +181,7 @@
                                     </Border.BorderBrush>
                                     <Ellipse Width="60" Height="60">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="C:\Users\Hanan\Desktop\reservdel_icon1.png" 
+                                            <ImageBrush ImageSource="/Bilder/reservdel_icon1.png" 
                                                         Opacity="0.4" 
                                                         Stretch="Uniform" 
                                                         TileMode="None"/>
@@ -227,7 +227,7 @@
                                     </Border.BorderBrush>
                                     <Ellipse Width="60" Height="60">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="C:\Users\Hanan\Desktop\bokning_icon1.png" 
+                                            <ImageBrush ImageSource="/Bilder/bokning_icon1.png" 
                                         Opacity="0.4" 
                                         Stretch="Uniform" 
                                         TileMode="None"/>
@@ -249,11 +249,11 @@
                     Width="182">
                     <Ellipse.Fill>
 
-                        <ImageBrush ImageSource="C:\Users\Hanan\Desktop\car_car-1.png"/>
+                        <ImageBrush ImageSource="/Bilder/car_car-1.png"/>
                     </Ellipse.Fill>
 
                 </Ellipse>
-                <Image Source="C:\Users\Hanan\Desktop\121212-rem.png" 
+                <Image Source="/Bilder/121212-rem.png" 
                        Margin="247,0,194,8" 
                        
 Grid.Row="1" Opacity="0.7"/>

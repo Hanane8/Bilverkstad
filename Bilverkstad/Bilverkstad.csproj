@@ -79,10 +79,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EntitysLager\Bil.cs" />
-    <Compile Include="EntitysLager\Mekaniker.cs" />
-    <Compile Include="EntitysLager\Person.cs" />
-    <Compile Include="EntitysLager\ReservDelar.cs" />
     <Compile Include="PresentationLager\BokningVy.xaml.cs">
       <DependentUpon>BokningVy.xaml</DependentUpon>
     </Compile>
@@ -138,11 +134,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo logo.png" />
+    <Resource Include="Images\background_bilverkstad.jpg" />
+    <Resource Include="Images\bild_back_1.png" />
+    <Resource Include="Images\bokning_icon1.png" />
+    <Resource Include="Images\car_car-1.png" />
+    <Resource Include="Images\icon_icon_user2.png" />
+    <Resource Include="Images\key_icon.png" />
+    <Resource Include="Images\kund_icon11.png" />
+    <Resource Include="Images\reservdel_icon1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AffärsLager\" />
-    <Folder Include="DataLager\" />
+    <Resource Include="Images\121212-rem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
