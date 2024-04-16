@@ -15,78 +15,151 @@
         >
     <Border CornerRadius="20" Background="Beige">
         <Grid>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="13*"/>
-                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="80*"/>
-                    <RowDefinition Height="333*"/>
+                    <RowDefinition Height="31"/>
+                    <RowDefinition Height="119"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="1" Background="#FF3E44C8" CornerRadius="0 50 0 30">
-
-                </Border>
-            </Grid>
-            <Grid HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="790" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
                 <TextBlock Text="Kund Manager"
-                           Foreground="#FF094069"
+                           Foreground="DarkGray"
                            FontSize="12"
-                           FontFamily="Times New Roman"
+                           FontFamily="Montserrat"
                            Grid.Column="0"
                            VerticalAlignment="Center"
-                           Margin="10,0,0,0" FontWeight="Bold"/>
+                           Margin="10,0,0,0" Height="14"/>
                 <Button x:Name="BtnMinimize"
                         BorderThickness="0"
                         Content="-"
                         Foreground="White"
                         FontSize="12"
-                        Cursor="Hand"
-                        Grid.Column="1" 
+                        Cursor="Hand" 
                         Click="BtnMinimize_Click" 
-                        Background="#FF13A4B8">
+                        Background="#FF13A4B8" Margin="729,2,-580,3"  
+                        
+                        >
+
+
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="18" Height="18"
                                     CornerRadius="9"
-                                    Background="#FF13A4B8">
+                                    Background= "#FF13A4B8">
                                 <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
+                                  HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="BtnClose"
+                <Button  x:Name="BtnClose"
                         BorderThickness="0"
                         Content="X"
                         Foreground="White"
                         FontSize="12"
                         Cursor="Hand"
-                        Grid.Column="2"
                         Click="BtnClose_Click" 
-                        Background="#FF953707">
+                        Background="#FF953707" Margin="750,2,-600,3" >
+
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="18" Height="18"
                                     CornerRadius="9"
                                     Background="#FF953707">
                                 <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
+                                HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
+
                 </Button>
+
+
+                <Border Grid.Row="2" Background="#FF3E44C8" CornerRadius="0 50 0 30">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top">
+                            <Button Style="{StaticResource ButtonMenu}" Margin="40,70,40,0"
+                                    Content="Kunder" />
+                            <Button Style="{StaticResource ButtonMenu}"
+                                     Content="Uppdatera Kund" />
+                            <Button Style="{StaticResource ButtonMenu}"
+                                    Content="Kunder" />
+
+
+                        </StackPanel>
+                    </DockPanel>
+
+                </Border>
             </Grid>
-            <Label Grid.Column="1" Content="Label" HorizontalAlignment="Left" Height="26" Margin="35,31,0,0" VerticalAlignment="Top" Width="157"/>
-            <Button Content="Kunder" HorizontalAlignment="Center" Height="40" Margin="0,185,0,0" VerticalAlignment="Top" Width="140"/>
-            <Button Content="Add Kund" HorizontalAlignment="Left" Height="35" Margin="34,317,0,0" VerticalAlignment="Top" Width="136"/>
-            <Button Content="Uppdatera Kund" HorizontalAlignment="Center" Height="42" Margin="0,247,0,0" VerticalAlignment="Top" Width="140"/>
-            <DataGrid Grid.Column="1" HorizontalAlignment="Center" Height="287" Margin="0,153,0,0" VerticalAlignment="Top" Width="582"  SelectionChanged="DataGrid_SelectionChanged" BorderThickness="0,1,1,1"/>
+            <!--Main Section-->
+            <Grid Grid.Column="1" Margin="0,0,-5,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="29*"/>
+                    <RowDefinition Height="auto" MinHeight="150"/>
+                    <RowDefinition Height="196*"/>
+                </Grid.RowDefinitions>
+                <!--text Search-->
+                <Grid Grid.Row="1" Grid.Column="1">
+
+                    <TextBlock 
+                               VerticalAlignment="Top" 
+                               Foreground="Gray"
+                               IsHitTestVisible="False" 
+                                Visibility="Visible" Margin="476,11,0,0"><Run Text="Search here"/><Run Language="sv-se" Text=" "/><Run Text="..."/>
+                    </TextBlock>
+                    <TextBox Style="{StaticResource TextBoxSearch}" 
+                             x:Name="txtSearch" Height="18" 
+                             Margin="464,10,10,0" VerticalAlignment="Top" />
+                    <TextBox HorizontalAlignment="Left" Height="18" Margin="98,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="119"/>
+                    <Label Content="Namn" HorizontalAlignment="Left" Height="29" Margin="10,38,0,0" VerticalAlignment="Top" Width="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+                </Grid>
+                <DataGrid x:Name="KunderDataGrid"
+                          Style="{DynamicResource DataGridStyle1}" 
+                          CellStyle="{DynamicResource DataGridCellStyle1}" 
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                          RowStyle="{DynamicResource DataGridRowStyle1}" 
+                          Grid.Row="3">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" >
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox/>
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
+
+                        <DataGridTextColumn Header="KundNr" IsReadOnly="True" Width="auto" CanUserReorder="False"/>
+                        <DataGridTextColumn Header="Namn" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Personnummer" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Adress" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="TelefoneNr" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="E-post" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="A" IsReadOnly="True" Width="*"/>
+
+
+
+                    </DataGrid.Columns>
+
+
+                </DataGrid>
+
+
+            </Grid>
+
+
+
+
+
+
+
+
+
         </Grid>
     </Border>
 

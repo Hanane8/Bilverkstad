@@ -44,5 +44,15 @@ namespace Bilverkstad.PresentationLager
         {
 
         }
+
+        private void BtnKunder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void KunderDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
