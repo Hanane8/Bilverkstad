@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entitetslager.Entiteter
 {
-    public class Kund
+    public class Kund : Person
     {
-        public string Namn { get; set; }
-        public string Personnummer { get; set; }
+        public int KundNr { get; set; }
+        public List<Bokning> Bokningar { get; set; }
     }
 }

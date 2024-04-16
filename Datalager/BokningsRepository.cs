@@ -16,9 +16,9 @@ namespace DataLager
             this._dbContext = dbContext;
         }
 
-        public List<Bokning> HämtaBokning(string personnummer)
+        public List<Bokning> HämtaBokning(Kund kund)
         {
-           return _dbContext.Bokning.Find(personnummer);
+           return _dbContext.Bokningar.Where(c => c.KundNr == kund.KundNr).ToList();
         }
     }
 }
