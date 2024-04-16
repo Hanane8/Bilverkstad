@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+      "projectUniqueName": "C:\\Users\\noelk\\Source\\Repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
       "projectName": "Entitetslager",
-      "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+      "projectPath": "C:\\Users\\noelk\\Source\\Repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
       "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Entitetslager\\obj\\",
+      "outputPath": "C:\\Users\\noelk\\Source\\Repos\\Bilverkstad\\Entitetslager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",

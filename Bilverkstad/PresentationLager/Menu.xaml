@@ -106,7 +106,7 @@
                  Margin="70,10,0,0"/>
 
                 <Image 
-                    Source="/Bilder/bild_back 1.png"
+                    Source="/Images/bild_back_1.png"
                     HorizontalAlignment="Left" Height="296" Margin="0,84,0,0" Grid.Row="2" Width="631" Stretch="UniformToFill" IsManipulationEnabled="True" InputScope="Default" VerticalAlignment="Top" Opacity="0.4"/>
                 <Button BorderThickness="0" 
                         Margin="189,90,0,220" 
@@ -140,7 +140,7 @@
                                     </Border.BorderBrush>
                                     <Ellipse Width="60" Height="60">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="/Bilder/kund icon11.png" Opacity="0.4" Stretch="UniformToFill" TileMode="None"/>
+                                            <ImageBrush ImageSource="/Images/kund_icon11.png" Opacity="0.4" Stretch="UniformToFill" TileMode="None"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                 </Border>
@@ -181,7 +181,7 @@
                                     </Border.BorderBrush>
                                     <Ellipse Width="60" Height="60">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="/Bilder/reservdel_icon1.png" 
+                                            <ImageBrush ImageSource="/Images/reservdel_icon1.png" 
                                                         Opacity="0.4" 
                                                         Stretch="Uniform" 
                                                         TileMode="None"/>
@@ -227,7 +227,7 @@
                                     </Border.BorderBrush>
                                     <Ellipse Width="60" Height="60">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="/Bilder/bokning_icon1.png" 
+                                            <ImageBrush ImageSource="/Images/bokning_icon1.png" 
                                         Opacity="0.4" 
                                         Stretch="Uniform" 
                                         TileMode="None"/>
@@ -249,11 +249,11 @@
                     Width="182">
                     <Ellipse.Fill>
 
-                        <ImageBrush ImageSource="/Bilder/car_car-1.png"/>
+                        <ImageBrush ImageSource="/Images/car_car-1.png"/>
                     </Ellipse.Fill>
 
                 </Ellipse>
-                <Image Source="/Bilder/121212-rem.png" 
+                <Image Source="/Images/121212-rem.png" 
                        Margin="247,0,194,8" 
                        
 Grid.Row="1" Opacity="0.7"/>

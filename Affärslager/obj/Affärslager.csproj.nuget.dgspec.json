@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Affärslager\\Affärslager.csproj": {}
+    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Affärslager\\Affärslager.csproj": {
+    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+        "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
         "projectName": "Affärslager",
-        "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+        "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
         "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Bilverkstad\\Affärslager\\obj\\",
+        "outputPath": "C:\\Users\\noelk\\Source\\Repos\\Bilverkstad\\Affärslager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",
