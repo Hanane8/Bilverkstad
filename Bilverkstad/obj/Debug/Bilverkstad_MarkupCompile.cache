@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\noelk\Source\Repos\BilverkstadV2\Bilverkstad\obj\Debug\
+C:\Users\Hanan\Desktop\Bilverkstad\Bilverkstad\obj\Debug\
 Bilverkstad
 none
 false
 DEBUG;TRACE
-C:\Users\noelk\Source\Repos\BilverkstadV2\Bilverkstad\App.xaml
-6-1811972689
+C:\Users\Hanan\Desktop\Bilverkstad\Bilverkstad\App.xaml
+62069037170
 
-102076636847
-151185353988
-PresentationLager - Vyer\BokningVy.xaml;PresentationLager - Vyer\KundVy.xaml;PresentationLager - Vyer\Login.xaml;PresentationLager - Vyer\MainWindow.xaml;PresentationLager - Vyer\Menu.xaml;PresentationLager - Vyer\ReservDelVy.xaml;
+15550631271
+151527540672
+PresentationLager\BokningVy.xaml;PresentationLager\KundVy.xaml;PresentationLager\Login.xaml;PresentationLager\MainWindow.xaml;PresentationLager\Menu.xaml;PresentationLager\ReservDelVy.xaml;
 
 True
 
