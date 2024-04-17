@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entitetslager.Entiteter;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLager
 {
@@ -24,12 +25,17 @@ namespace DataLager
 
         public void SparaKund(Kund kund)
         {
-
+            _dbContext.Kunder.Add(kund);
         }
 
         public void UppdateraKund(Kund kund)
         {
+            _dbContext.Entry(kund).State = EntityState.Modified;
+        }
 
+        public IEnumerable<Kund> HämtaAllaKunder()
+        {
+            return _dbContext.Kunder.ToList();
         }
     }
 }

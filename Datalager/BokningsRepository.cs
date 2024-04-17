@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entitetslager.Entiteter;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLager
 {
@@ -19,6 +20,22 @@ namespace DataLager
         public List<Bokning> HämtaBokning(Kund kund)
         {
            return _dbContext.Bokningar.Where(c => c.KundNr == kund.KundNr).ToList();
+        }
+
+        public void UppdateraBokning(Bokning bokning)
+        {
+            _dbContext.Entry(bokning).State = EntityState.Modified;
+        }
+
+        public void SparaBokning(Bokning bokning)
+        {
+            _dbContext.Bokningar.Add(bokning);
+            
+        }
+
+        public IEnumerable<Bokning> HämtaAllaBokningar()
+        {
+            return _dbContext.Bokningar.ToList();
         }
     }
 }
