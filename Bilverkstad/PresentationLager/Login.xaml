@@ -119,7 +119,7 @@
                        Grid.Row="2"
                        VerticalAlignment="Top" 
                        Width="200"/>
-                <TextBox x:Name="TextUser"
+                <TextBox x:Name="textUser"
                          FontSize="13"
                          Foreground="White"
                          CaretBrush="LightGray"
@@ -205,7 +205,7 @@
                     Grid.Row="2"
                     VerticalAlignment="Top" 
                     Width="200"/>
-                <Label  Content="Återställa" 
+                <Label  Content="Återställ" 
                     Foreground="LightGray"
                     FontSize="12"
                     FontWeight="Medium"

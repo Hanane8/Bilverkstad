@@ -10,6 +10,10 @@
             this._dbContext = dbContext;
         }
 
+        public void EnsureCreated()
+        {
+            _dbContext.Database.EnsureCreated();
+        }
         public KundRepository KundRepo
         {
             get

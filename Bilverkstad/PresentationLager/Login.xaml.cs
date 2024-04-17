@@ -51,7 +51,8 @@ namespace Bilverkstad.PresentationLager
 
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {                      
-            PresentationLager.Menu menuWindow = new PresentationLager.Menu();           
+            PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass);
+            
             menuWindow.ShowDialog();
 
         }

@@ -18,10 +18,14 @@ namespace Affärslager
             _unitOfWork.SaveChanges();
         }
 
-        public Kund HämtaKund(string personnummer)
+        public void EnsureCreated()
         {
-            return _unitOfWork.KundRepo.HämtaKund(personnummer);
+            _unitOfWork.EnsureCreated();
         }
+        //public Kund HämtaKund(string personnummer)
+        //{
+        //    return _unitOfWork.KundRepo.HämtaKund(personnummer);
+        //}
 
         public void UppdateraKund(Kund kund)
         {

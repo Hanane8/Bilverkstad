@@ -18,9 +18,9 @@ namespace DataLager
             this._dbContext = dbContext;
         }
 
-        public Kund HämtaKund(string personnummer)
+        public IQueryable HämtaKund(string personnummer)
         {
-            return _dbContext.Kunder.Find(personnummer);
+            return _dbContext.Kunder.Where(c => c.Personnummer == personnummer);
         }
 
         public void SparaKund(Kund kund)
