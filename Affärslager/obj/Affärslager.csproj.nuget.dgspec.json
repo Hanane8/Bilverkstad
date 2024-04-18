@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj": {}
+    "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\Affärslager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj": {
+    "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\Affärslager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+        "projectUniqueName": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\Affärslager.csproj",
         "projectName": "Affärslager",
-        "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
-        "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\obj\\",
+        "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+        "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj": {
-                "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj"
+              "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\Datalager.csproj": {
+                "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\Datalager.csproj"
               }
             }
           }
@@ -59,21 +59,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj": {
+    "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\Datalager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj",
+        "projectUniqueName": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\Datalager.csproj",
         "projectName": "Datalager",
-        "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj",
-        "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\obj\\",
+        "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\Datalager.csproj",
+        "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,8 +87,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {
-                "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj"
+              "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {
+                "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj"
               }
             }
           }
@@ -128,21 +128,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {
+    "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+        "projectUniqueName": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
         "projectName": "Entitetslager",
-        "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
-        "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\noelk\\Source\\Repos\\Bilverkstad\\Entitetslager\\obj\\",
+        "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+        "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -183,7 +183,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

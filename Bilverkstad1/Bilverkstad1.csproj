@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\121212-rem.png" />
+    <None Remove="images\background_bilverkstad.jpg" />
+    <None Remove="images\bild_back_1.png" />
+    <None Remove="images\bokning_icon1.png" />
+    <None Remove="images\car_car-1.png" />
+    <None Remove="images\icon_icon_user2.png" />
+    <None Remove="images\key_icon.png" />
+    <None Remove="images\kund_icon11.png" />
+    <None Remove="images\reservdel_icon1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="images\App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\121212-rem.png" />
+    <Resource Include="images\background_bilverkstad.jpg" />
+    <Resource Include="images\bild_back_1.png" />
+    <Resource Include="images\bokning_icon1.png" />
+    <Resource Include="images\car_car-1.png" />
+    <Resource Include="images\icon_icon_user2.png" />
+    <Resource Include="images\key_icon.png" />
+    <Resource Include="images\kund_icon11.png" />
+    <Resource Include="images\reservdel_icon1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="App.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PresentationLager\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
