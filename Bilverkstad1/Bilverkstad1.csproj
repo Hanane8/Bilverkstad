@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Affärslager\Affärslager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="images\121212-rem.png" />
     <Resource Include="images\background_bilverkstad.jpg" />
     <Resource Include="images\bild_back_1.png" />

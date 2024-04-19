@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Affärslager;
+using DataLager;
+using Entitetslager.Entiteter;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace Bilverkstad.PresentationLager
@@ -21,8 +25,15 @@ namespace Bilverkstad.PresentationLager
     public partial class Login : Window
 
     {
+        
+        private readonly KundService _KundService;
+        public ServiceProvider serviceProvider; 
         public Login()
         {
+            serviceProvider = new ServiceCollection().AddScoped<UnitOfWork>().AddScoped<KundService>().AddScoped<EntityFramework>().BuildServiceProvider();
+            _KundService = serviceProvider.GetRequiredService<KundService>();
+            var ensureCreated = serviceProvider.GetRequiredService<EntityFramework>();
+            ensureCreated.Database.EnsureCreated();
             InitializeComponent();
         }
 
@@ -48,11 +59,19 @@ namespace Bilverkstad.PresentationLager
         {
 
         }
-
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
-        {                      
-            PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass);
+        {
             
+            PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass);
+            Kund kund = new Kund()
+            {
+                Namn = "Noel",
+                Adress = "Gatan 1",
+                Epost = "noel@test.com",
+                Personnummer = "0303030303",
+                TelefonNr = 0701234567
+            };
+            _KundService.SkapaKund(kund);
             menuWindow.ShowDialog();
 
         }

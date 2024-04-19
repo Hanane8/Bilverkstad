@@ -9,6 +9,6 @@ namespace Entitetslager.Entiteter
     public class Kund : Person
     {
         public int KundNr { get; set; }
-        public List<Bokning> Bokningar { get; set; }
+        public List<Bokning>? Bokningar { get; set; }
     }
 }

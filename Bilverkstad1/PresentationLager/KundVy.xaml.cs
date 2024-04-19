@@ -50,16 +50,16 @@ namespace Bilverkstad.PresentationLager
 
         }
 
-        private void KunderDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        
+        private void KunderDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

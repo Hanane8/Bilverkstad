@@ -23,13 +23,15 @@ namespace DataLager
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Kund>().HasKey(k => k.KundNr);
-
             modelBuilder.Entity<Kund>().Property(k => k.Namn).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Personnummer).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Epost).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.TelefonNr).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Adress).IsRequired();
 
+
+            modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
+            modelBuilder.Entity<Mekaniker>().HasKey(m => m.AnställningsNr);
 
             base.OnModelCreating(modelBuilder);
         }
