@@ -23,5 +23,37 @@ namespace Bilverkstad.PresentationLager
         {
             InitializeComponent();
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+
+        }
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void BtnNyReservdel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnUppdatera_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnSpara_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

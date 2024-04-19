@@ -4,9 +4,221 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bilverkstad.PresentationLager"
-        mc:Ignorable="d"
-        Title="ReservDelVy" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+       
+        Title="KundVy" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown" 
+        >
+    <Border CornerRadius="20" Background="Beige">
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31"/>
+                    <RowDefinition Height="119"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="ReservDel Manager"
+                           Foreground="DarkGray"
+                           FontSize="12"
+                           FontFamily="Montserrat"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0" Height="14"/>
+                <Button x:Name="BtnMinimize"
+                        BorderThickness="0"
+                        Content="-"
+                        Foreground="White"
+                        FontSize="12"
+                        Cursor="Hand" 
+                        Click="BtnMinimize_Click" 
+                        Background="#FF13A4B8" Margin="729,2,-580,3"  
+                        
+                        >
+
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+                                    CornerRadius="9"
+                                    Background= "#FF13A4B8">
+                                <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button  x:Name="BtnClose"
+                        BorderThickness="0"
+                        Content="X"
+                        Foreground="White"
+                        FontSize="12"
+                        Cursor="Hand"
+                        Click="BtnClose_Click" 
+                        Background="#FF953707" Margin="750,2,-600,3" >
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+                                    CornerRadius="9"
+                                    Background="#FF953707">
+                                <ContentPresenter VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+
+                <Border Grid.Row="2" Background="#FF3E44C8" CornerRadius="0 50 0 0">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top">
+                            <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0"
+                                     Content="Ny Reservdel" Click="BtnNyReservdel_Click" Background="#FF6067F1" FontSize="12" >
+                                <Button.Effect>
+                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                </Button.Effect>
+                            </Button>
+                            <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0"
+                                    Content="Uppdatera" Click="BtnUppdatera_Click" Background="#FF6067F1" FontSize="12" >
+                                <Button.Effect>
+                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                </Button.Effect>
+                            </Button>
+                            <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0"
+                                    Content="Spara" Click="BtnSpara_Click" Background="#FF6067F1" FontSize="12" >
+                                <Button.Effect>
+                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                </Button.Effect>
+                            </Button>
+
+
+                        </StackPanel>
+                    </DockPanel>
+
+                </Border>
+                <Image Source="/Images/121212-rem.png" Height="92"
+                           Width="200" Opacity="0.6"
+                        HorizontalAlignment="Left" 
+                                        Margin="10,10,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" 
+                   />
+            </Grid>
+            <!--Main Section-->
+            <Grid Grid.Column="1" Margin="0,0,-5,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="29*"/>
+                    <RowDefinition Height="auto" MinHeight="150"/>
+                    <RowDefinition Height="196*"/>
+                </Grid.RowDefinitions>
+                <!--text Search-->
+                <Grid Grid.Row="1" Grid.Column="1">
+
+                    <TextBlock 
+                               VerticalAlignment="Top" 
+                               Foreground="Gray"
+                               IsHitTestVisible="False" 
+                                Visibility="Visible" Margin="476,11,0,0">
+                                <Run Text="Search here"/><Run Language="sv-se" Text=" "/><Run Text="..."/>
+                    </TextBlock>
+                    <TextBox Style="{StaticResource TextBoxSearch}" 
+                             x:Name="txtSearch" Height="18" 
+                             Margin="464,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged" />
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="Namn"
+                             HorizontalAlignment="Left" 
+                             Margin="150,55,0,0" 
+                             VerticalAlignment="Top"
+                            />
+                    <Label Content="Reserv Del" 
+                           Foreground="Black"
+                           FontSize="12"
+                           Margin="19,57,0,0"
+                           HorizontalAlignment="Left" 
+                           Height="24"
+                           VerticalAlignment="Top" 
+                           Width="83"/>
+                    <Label Content="Namn" 
+                           HorizontalAlignment="Left" 
+                           Height="24" Margin="19,108,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="101"/>
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="Personnummer"
+                             HorizontalAlignment="Left" 
+                             Margin="150,110,0,0" 
+                             VerticalAlignment="Top" 
+                            />
+                    <Label Content="Pris" HorizontalAlignment="Left" Height="24" Margin="333,54,0,0" VerticalAlignment="Top" Width="61"/>
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="Epost"
+                             HorizontalAlignment="Left" 
+                             Margin="424,100,0,0" 
+                             VerticalAlignment="Top"/>
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="TelefonNr"
+                             HorizontalAlignment="Left" 
+                             Height="16" 
+                             Margin="424,52,0,0" 
+                             VerticalAlignment="Top"/>
+                    <Label Content="Lager Status" HorizontalAlignment="Left" Height="35" Margin="302,102,0,0" VerticalAlignment="Top" Width="92"/>
+
+                </Grid>
+                <DataGrid x:Name="KunderDataGrid"
+                          Style="{DynamicResource DataGridStyle1}" 
+                          CellStyle="{DynamicResource DataGridCellStyle1}" 
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                          RowStyle="{DynamicResource DataGridRowStyle1}" 
+                          Grid.Row="2" Margin="0,0,10,0" SelectionChanged="KunderDataGrid_SelectionChanged_1">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" >
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox/>
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
+
+                        <DataGridTextColumn Header="ReservdelNr" IsReadOnly="True" Width="auto" CanUserReorder="False"/>
+                        <DataGridTextColumn Header="Namn" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Pris" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Lager Status" IsReadOnly="True" Width="*"/>
+
+
+
+                    </DataGrid.Columns>
+
+
+                </DataGrid>
+
+
+            </Grid>
+
+
+
+
+
+
+
+
+
+        </Grid>
+    </Border>
+
+
 </Window>
