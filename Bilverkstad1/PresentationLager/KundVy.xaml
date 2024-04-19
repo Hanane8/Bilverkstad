@@ -83,17 +83,26 @@
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top">
                             <Button Style="{StaticResource ButtonMenu}" Margin="40,70,40,0"
-                                    Content="Kunder" />
+                                    Content="Kunder" Click="Button_Click" />
                             <Button Style="{StaticResource ButtonMenu}"
-                                     Content="Uppdatera Kund" />
+                                     Content="Ny Kund" Click="BtnNykund_Click" />
                             <Button Style="{StaticResource ButtonMenu}"
-                                    Content="Kunder" />
+                                    Content="Uppdatera" Click="BtnUppdatera_Click" />
+                            <Button Style="{StaticResource ButtonMenu}"
+                                    Content="Spara" Click="BtnSpara_Click" />
 
 
                         </StackPanel>
                     </DockPanel>
 
                 </Border>
+                <Image Source="/Images/121212-rem.png" Height="92"
+                           Width="200" Opacity="0.6"
+                        HorizontalAlignment="Left" 
+                                        Margin="10,10,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" 
+                   />
             </Grid>
             <!--Main Section-->
             <Grid Grid.Column="1" Margin="0,0,-5,0">
@@ -110,13 +119,61 @@
                                VerticalAlignment="Top" 
                                Foreground="Gray"
                                IsHitTestVisible="False" 
-                                Visibility="Visible" Margin="476,11,0,0"><Run Text="Search here"/><Run Language="sv-se" Text=" "/><Run Text="..."/>
+                                Visibility="Visible" Margin="476,11,0,0">
+                                <Run Text="Search here"/><Run Language="sv-se" Text=" "/><Run Text="..."/>
                     </TextBlock>
                     <TextBox Style="{StaticResource TextBoxSearch}" 
                              x:Name="txtSearch" Height="18" 
-                             Margin="464,10,10,0" VerticalAlignment="Top" />
-                    <TextBox HorizontalAlignment="Left" Height="18" Margin="98,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="119"/>
-                    <Label Content="Namn" HorizontalAlignment="Left" Height="29" Margin="10,38,0,0" VerticalAlignment="Top" Width="70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                             Margin="464,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged" />
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="Namn"
+                             HorizontalAlignment="Left" 
+                             Margin="150,42,0,0" 
+                             VerticalAlignment="Top"
+                            />
+                    <Label Content="Namn" 
+                           Foreground="Black"
+                           FontSize="12"
+                           Margin="19,42,0,0"
+                           HorizontalAlignment="Left" 
+                           Height="24"
+                           VerticalAlignment="Top" 
+                           Width="61"/>
+                    <Label Content="Personnummer" 
+                           HorizontalAlignment="Left" 
+                           Height="24" Margin="19,75,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="101"/>
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="Personnummer"
+                             HorizontalAlignment="Left" 
+                             Margin="150,79,0,0" 
+                             VerticalAlignment="Top" 
+                            />
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="Adress"
+                             HorizontalAlignment="Left" 
+                             Margin="150,119,0,0" 
+                             VerticalAlignment="Top"/>
+                    <Label Content="Adress" HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
+                    <Label Content="TelefonNr" HorizontalAlignment="Left" Height="24" Margin="320,42,0,0" VerticalAlignment="Top" Width="61"/>
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="Epost"
+                             HorizontalAlignment="Left" 
+                             Margin="405,90,0,0" 
+                             VerticalAlignment="Top"/>
+                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Text="Skriv"
+                             x:Name="TelefonNr"
+                             HorizontalAlignment="Left" 
+                             Height="16" 
+                             Margin="405,46,0,0" 
+                             VerticalAlignment="Top"/>
+                    <Label Content="E-post" HorizontalAlignment="Left" Height="24" Margin="320,81,0,0" VerticalAlignment="Top" Width="61"/>
 
                 </Grid>
                 <DataGrid x:Name="KunderDataGrid"
@@ -124,7 +181,7 @@
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                           RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Grid.Row="3">
+                          Grid.Row="2" Margin="0,0,10,0">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" >
                             <DataGridCheckBoxColumn.HeaderTemplate>
@@ -140,7 +197,7 @@
                         <DataGridTextColumn Header="Adress" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="TelefoneNr" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="E-post" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="A" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Bokning" IsReadOnly="True" Width="*"/>
 
 
 

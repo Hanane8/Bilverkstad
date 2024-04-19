@@ -54,5 +54,12 @@ namespace Bilverkstad.PresentationLager
         {
 
         }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        
     }
 }
