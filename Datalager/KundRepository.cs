@@ -25,6 +25,19 @@ namespace DataLager
 
         public void SparaKund(Kund kund)
         {
+            Mekaniker mekaniker = new Mekaniker()
+            {
+                Lösenord = "test",
+                Specialisering = "Bromssystemtekniker",
+                Yrkesroll = "Bilmekaniker",
+                Namn = "Jöns",
+                Adress = "Gatan 2",
+                Epost = "jons@test.com",
+                TelefonNr = 0701231234,
+                Personnummer = "0001010101"
+                
+            };
+            _dbContext.Mekaniker.Add(mekaniker);
             _dbContext.Kunder.Add(kund);
         }
 

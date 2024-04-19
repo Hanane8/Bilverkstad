@@ -12,6 +12,7 @@ namespace DataLager
     {
         public DbSet<Kund> Kunder { get; set; }
         public DbSet<Bokning> Bokningar { get; set; }
+        public DbSet<Mekaniker> Mekaniker { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,6 +24,7 @@ namespace DataLager
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Kund>().HasKey(k => k.KundNr);
+            modelBuilder.Entity<Kund>().HasIndex(k => k.Personnummer).IsUnique();
             modelBuilder.Entity<Kund>().Property(k => k.Namn).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Personnummer).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Epost).IsRequired();
@@ -31,7 +33,14 @@ namespace DataLager
 
 
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
+            modelBuilder.Entity<Bokning>().HasOne(b => b.AnsvarigMekaniker).WithMany(m => m.Bokningar)
+                .HasForeignKey(b => b.AnställningsID);
+
             modelBuilder.Entity<Mekaniker>().HasKey(m => m.AnställningsNr);
+            modelBuilder.Entity<Mekaniker>().Property(m => m.Yrkesroll).IsRequired();
+            modelBuilder.Entity<Mekaniker>().Property(m => m.Specialisering).IsRequired();
+            modelBuilder.Entity<Mekaniker>().Property(m => m.Lösenord).IsRequired();
+            
 
             base.OnModelCreating(modelBuilder);
         }

@@ -61,5 +61,20 @@ namespace Bilverkstad.PresentationLager
         {
 
         }
+
+        private void BtnUppdatera_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnNykund_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnSpara_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

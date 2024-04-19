@@ -71,7 +71,7 @@ namespace Bilverkstad.PresentationLager
                 Personnummer = "0303030303",
                 TelefonNr = 0701234567
             };
-            _KundService.SkapaKund(kund);
+           // _KundService.SkapaKund(kund);
             menuWindow.ShowDialog();
 
         }
