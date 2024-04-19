@@ -1,0 +1,25 @@
+﻿using Entitetslager.Entiteter;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataLager
+{
+    public class ReservDelRepository
+    {
+        private readonly EntityFramework _dbContext;
+
+        public ReservDelRepository(EntityFramework dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public void SparaReservDel(ReservDel reservDel)
+        {
+            _dbContext.ReservDelar.Add(reservDel);
+            _dbContext.SaveChanges();
+        }
+    }
+}

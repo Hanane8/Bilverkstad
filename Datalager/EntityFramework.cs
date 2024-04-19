@@ -19,7 +19,7 @@ namespace DataLager
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Server=sqlutb2-db.hb.se,56077;Database=oopc2416;User Id=oopc2416;Password=EHL583;TrustServerCertificate=True");
+                "Server=sqlutb2-db.hb.se,56077; Database=oopc2416;User Id=oopc2416;Password=EHL583;TrustServerCertificate=True");
             base.OnConfiguring(optionsBuilder);
         }
 

@@ -29,6 +29,7 @@
                     <Setter Property="Foreground" Value="Green"/>
                 </Trigger>
              </Style.Triggers>
+            
         </Style>
 
         <Style x:Key="TextBoxInput"  TargetType="TextBox">

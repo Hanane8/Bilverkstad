@@ -55,5 +55,15 @@ namespace Bilverkstad.PresentationLager
         {
 
         }
+
+        private void ReservDelDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
