@@ -2,7 +2,7 @@
 {
     public class UnitOfWork
     {
-        private KundRepository _kundRepository;
+        private PersonRepository _personRepository;
         private readonly EntityFramework _dbContext;
         private BokningsRepository _bokningsRepository;
         public UnitOfWork(EntityFramework dbContext)
@@ -14,13 +14,13 @@
         {
             _dbContext.Database.EnsureCreated();
         }
-        public KundRepository KundRepo
+        public PersonRepository PersonRepo
         {
             get
             {
-                if (_kundRepository == null)
-                    _kundRepository = new KundRepository(_dbContext);
-                return _kundRepository;
+                if (_personRepository == null)
+                    _personRepository = new PersonRepository(_dbContext);
+                return _personRepository;
             }
         }
 

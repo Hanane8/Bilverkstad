@@ -23,24 +23,11 @@ namespace Bilverkstad.PresentationLager
     /// </summary>
     public partial class Menu : Window
     {
-        private string _användarnamn { get; set; }
-        private SecureString _lösenord { get; set; }
-
-        String SecureStringToString(SecureString value)
-        {
-            IntPtr valuePtr = IntPtr.Zero;
-            valuePtr = Marshal.SecureStringToGlobalAllocUnicode(value);
-            return Marshal.PtrToStringUni(valuePtr);
-
-        }
+       
+      
         public Menu(string användarnamn, PasswordBox lösenord)
         {
-            //KundService service = new KundService();
-            //Testa att skicka in securesträng i databasen
-            _användarnamn = användarnamn;
-            _lösenord = lösenord.SecurePassword;
-            var test = "test";
-            bool lika = test == SecureStringToString(_lösenord);
+            
             InitializeComponent();
         }
 

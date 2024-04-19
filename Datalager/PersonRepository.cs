@@ -8,14 +8,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataLager
 {
-    public class KundRepository
+    public class PersonRepository
     {
         private EntityFramework _dbContext;
 
-
-        public KundRepository(EntityFramework dbContext)
+        public PersonRepository(EntityFramework dbContext)
         {
             this._dbContext = dbContext;
+        }
+
+        public bool VerifieraInloggning(string användarnman, string lösenord)
+        {
+
+            Mekaniker? användare = _dbContext.Mekaniker.FirstOrDefault(x => x.Namn == användarnman);
+
+            if (användare == null)
+            {
+                return false;
+            }
+
+            return användare.Lösenord == lösenord;
         }
 
         public IQueryable HämtaKund(string personnummer)
@@ -25,19 +37,7 @@ namespace DataLager
 
         public void SparaKund(Kund kund)
         {
-            Mekaniker mekaniker = new Mekaniker()
-            {
-                Lösenord = "test",
-                Specialisering = "Bromssystemtekniker",
-                Yrkesroll = "Bilmekaniker",
-                Namn = "Jöns",
-                Adress = "Gatan 2",
-                Epost = "jons@test.com",
-                TelefonNr = 0701231234,
-                Personnummer = "0001010101"
-                
-            };
-            _dbContext.Mekaniker.Add(mekaniker);
+           
             _dbContext.Kunder.Add(kund);
         }
 

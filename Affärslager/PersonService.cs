@@ -3,36 +3,41 @@ using Entitetslager.Entiteter;
 
 namespace Affärslager
 {
-    public class KundService
+    public class PersonService
     {
         private UnitOfWork _unitOfWork;
 
-        public KundService(UnitOfWork unitofWork)
+        public PersonService(UnitOfWork unitofWork)
         {
             _unitOfWork = unitofWork;
         }
 
+        public bool VerifieraInloggning(string användarnman, string lösenord)
+        {
+           return _unitOfWork.PersonRepo.VerifieraInloggning(användarnman, lösenord);
+        }
+
         public void SkapaKund(Kund kund)
         {
-            _unitOfWork.KundRepo.SparaKund(kund);
+            _unitOfWork.PersonRepo.SparaKund(kund);
             _unitOfWork.SaveChanges();
         }
 
        
         public IQueryable HämtaKund(string personnummer)
         {
-            return _unitOfWork.KundRepo.HämtaKund(personnummer);
+            return _unitOfWork.PersonRepo.HämtaKund(personnummer);
         }
 
         public void UppdateraKund(Kund kund)
         {
-            _unitOfWork.KundRepo.UppdateraKund(kund); 
+            _unitOfWork.PersonRepo.UppdateraKund(kund); 
             _unitOfWork.SaveChanges();
         }
 
         public IEnumerable<Kund> HämtaAllaKunder()
         {
-            return _unitOfWork.KundRepo.HämtaAllaKunder();
+            return _unitOfWork.PersonRepo.HämtaAllaKunder();
         }
     }
 }

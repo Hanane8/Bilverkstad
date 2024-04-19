@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,15 +24,14 @@ namespace Bilverkstad.PresentationLager
     /// Interaction logic for Login.xaml
     /// </summary>
     public partial class Login : Window
-
     {
         
-        private readonly KundService _KundService;
+        private readonly PersonService _personService;
         public ServiceProvider serviceProvider; 
         public Login()
         {
-            serviceProvider = new ServiceCollection().AddScoped<UnitOfWork>().AddScoped<KundService>().AddScoped<EntityFramework>().BuildServiceProvider();
-            _KundService = serviceProvider.GetRequiredService<KundService>();
+            serviceProvider = new ServiceCollection().AddScoped<UnitOfWork>().AddScoped<PersonService>().AddScoped<EntityFramework>().BuildServiceProvider();
+            _personService = serviceProvider.GetRequiredService<PersonService>();
             var ensureCreated = serviceProvider.GetRequiredService<EntityFramework>();
             ensureCreated.Database.EnsureCreated();
             InitializeComponent();
@@ -61,8 +61,24 @@ namespace Bilverkstad.PresentationLager
         }
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            
+           
             PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass);
+           
+            IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
+
+            if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
+            {
+                menuWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Inkorrekt information");
+            }
+
+        }
+
+        private void TempContainer()
+        {
             Kund kund = new Kund()
             {
                 Namn = "Noel",
@@ -71,9 +87,33 @@ namespace Bilverkstad.PresentationLager
                 Personnummer = "0303030303",
                 TelefonNr = 0701234567
             };
-           // _KundService.SkapaKund(kund);
-            menuWindow.ShowDialog();
 
+            Mekaniker mekaniker = new Mekaniker()
+            {
+                Adress = "Vägen 2",
+                Epost = "jons@gmail.com",
+                TelefonNr = 0701234566,
+                Lösenord = "test",
+                Namn = "Jöns",
+                Personnummer = "0010011234",
+                Specialisering = "Motorreparationsspecialist",
+                Yrkesroll = "Bilmekaniker"
+            };
+
+            Bokning bokning = new Bokning()
+            {
+                DatumTid = DateTime.Now,
+                InlämningsDatum = DateTime.Now.AddDays(5),
+                UtlämningsDatum = DateTime.Now.AddDays(10),
+                AnsvarigMekaniker = mekaniker
+            };
+
+            ReservDel reservDel = new ReservDel()
+            {
+                Namn = "Cylinder",
+                Pris = 1000.0,
+                Lagerstatus = true
+            };
         }
     }
 }

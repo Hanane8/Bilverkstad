@@ -14,6 +14,8 @@ namespace DataLager
         public DbSet<Bokning> Bokningar { get; set; }
         public DbSet<Mekaniker> Mekaniker { get; set; }
 
+        public DbSet<ReservDel> ReservDelar { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
@@ -40,7 +42,12 @@ namespace DataLager
             modelBuilder.Entity<Mekaniker>().Property(m => m.Yrkesroll).IsRequired();
             modelBuilder.Entity<Mekaniker>().Property(m => m.Specialisering).IsRequired();
             modelBuilder.Entity<Mekaniker>().Property(m => m.Lösenord).IsRequired();
-            
+
+            modelBuilder.Entity<ReservDel>().HasKey(r => r.ReservdelNr);
+            modelBuilder.Entity<ReservDel>().Property(r => r.Namn).IsRequired();
+            modelBuilder.Entity<ReservDel>().Property(r => r.Lagerstatus).IsRequired();
+            modelBuilder.Entity<ReservDel>().Property(r => r.Pris).IsRequired();
+
 
             base.OnModelCreating(modelBuilder);
         }

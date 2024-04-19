@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entitetslager.Entiteter
 {
-    public class ReservDelar
+    public class ReservDel
     {
         public int ReservdelNr { get; set; }
         public string Namn { get; set; }
