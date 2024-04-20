@@ -76,6 +76,7 @@ namespace Bilverkstad.PresentationLager
             {
                 MessageBox.Show("Ingen reservdel är vald för uppdatering.");
             }
+            ClearTextBoxes();
 
         }
 
@@ -102,6 +103,7 @@ namespace Bilverkstad.PresentationLager
             {
                 MessageBox.Show("Fel vid sparande av reservdel: " + ex.Message);
             }
+            ClearTextBoxes();
         }
 
         private void UppdateraReservDelGrid()
@@ -109,11 +111,25 @@ namespace Bilverkstad.PresentationLager
             
             ReservDelDataGrid.ItemsSource = _reservDelRepository.HämtaAllaReservDelar();
         }
+        private void ClearTextBoxes()
+        {
+            Namn.Text = "";
+            Pris.Text = "";
+            Kvantitet.Text = "";
+        }
 
-    
 
         private void ReservDelDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            if (ReservDelDataGrid.SelectedItems.Count > 0)
+            {
+                ReservDel selectedReservDel = (ReservDel)ReservDelDataGrid.SelectedItems[0];
+
+                Namn.Text = selectedReservDel.Namn;
+                Pris.Text = selectedReservDel.Pris.ToString();
+                Kvantitet.Text = selectedReservDel.Kvantitet.ToString();
+                
+            }
 
         }
 
@@ -122,9 +138,6 @@ namespace Bilverkstad.PresentationLager
 
         }
 
-        private void LagerStatus_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -153,7 +153,7 @@
                              x:Name="Kvantitet"
                              HorizontalAlignment="Left" 
                              Margin="145,110,0,0" 
-                             VerticalAlignment="Top" TextChanged="LagerStatus_TextChanged"/>
+                             VerticalAlignment="Top" />
                     <TextBox Style="{StaticResource TextBoxInput}" 
                             
                              x:Name="Pris"
@@ -178,8 +178,13 @@
                                 </DataTemplate>
                             </DataGridCheckBoxColumn.HeaderTemplate>
                         </DataGridCheckBoxColumn>
+                     
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
 
-                        
+
 
                     </DataGrid.Columns>
 
