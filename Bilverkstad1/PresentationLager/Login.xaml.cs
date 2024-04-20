@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Affärslager;
 using DataLager;
 using Entitetslager.Entiteter;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -30,10 +31,20 @@ namespace Bilverkstad.PresentationLager
         public ServiceProvider serviceProvider; 
         public Login()
         {
-            serviceProvider = new ServiceCollection().AddScoped<UnitOfWork>().AddScoped<PersonService>().AddScoped<EntityFramework>().BuildServiceProvider();
+            serviceProvider = new ServiceCollection()
+                .AddScoped<UnitOfWork>()
+                .AddScoped<PersonService>()
+                .AddScoped<EntityFramework>()
+                .BuildServiceProvider();
+            
+           
+
             _personService = serviceProvider.GetRequiredService<PersonService>();
             var ensureCreated = serviceProvider.GetRequiredService<EntityFramework>();
             ensureCreated.Database.EnsureCreated();
+          
+
+
             InitializeComponent();
         }
 
@@ -74,7 +85,7 @@ namespace Bilverkstad.PresentationLager
             {
                 MessageBox.Show("Inkorrekt information");
             }
-
+          
         }
 
         private void TempContainer()
@@ -112,8 +123,9 @@ namespace Bilverkstad.PresentationLager
             {
                 Namn = "Cylinder",
                 Pris = 1000.0,
-                Lagerstatus = true
+                Kvantitet = 30,
             };
+            
         }
     }
 }

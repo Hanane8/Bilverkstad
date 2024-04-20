@@ -23,6 +23,7 @@ namespace DataLager
             base.OnConfiguring(optionsBuilder);
         }
 
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Kund>().HasKey(k => k.KundNr);
@@ -45,7 +46,7 @@ namespace DataLager
 
             modelBuilder.Entity<ReservDel>().HasKey(r => r.ReservdelNr);
             modelBuilder.Entity<ReservDel>().Property(r => r.Namn).IsRequired();
-            modelBuilder.Entity<ReservDel>().Property(r => r.Lagerstatus).IsRequired();
+            modelBuilder.Entity<ReservDel>().Property(r => r.Kvantitet).IsRequired();
             modelBuilder.Entity<ReservDel>().Property(r => r.Pris).IsRequired();
 
 

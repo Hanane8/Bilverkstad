@@ -1,4 +1,5 @@
 ﻿using Entitetslager.Entiteter;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,16 @@ namespace DataLager
         {
             _dbContext.ReservDelar.Add(reservDel);
             _dbContext.SaveChanges();
+        }
+        public void UppdateraReservDel(ReservDel reservDel)
+        {
+            _dbContext.Entry(reservDel).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<ReservDel> HämtaAllaReservDelar()
+        {
+            return _dbContext.ReservDelar.ToList();
         }
     }
 }
