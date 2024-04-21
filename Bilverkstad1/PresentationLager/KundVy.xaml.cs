@@ -237,5 +237,10 @@ namespace Bilverkstad.PresentationLager
                 }
             }
         }
+
+        private void KunderDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

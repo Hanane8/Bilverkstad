@@ -16,7 +16,7 @@
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
-                        Stretch="None" Opacity="0.73"
+                        Stretch="None" Opacity="0.70"
                         />
         </Border.Background>
         <Border CornerRadius="20"

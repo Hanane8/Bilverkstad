@@ -13,8 +13,34 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown" 
         >
-    <Border CornerRadius="20" Background="Beige">
-        <Grid>
+    <Border CornerRadius="50">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
+                    Stretch="None" 
+                    />
+        </Border.Background>
+        <Border CornerRadius="20"
+        BorderThickness="2"
+                Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color = "#FF4157AF" Offset="0"/>
+                    <GradientStop Color = "#FFD914A6" Offset="0.75"/>
+                    <GradientStop Color = "#FF8823A7" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color = "#CC5C0B5B" Offset="0"/>
+                    <GradientStop Color = "#CC12114F" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+
+
+
+            <Grid>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -75,11 +101,12 @@
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
+                   
 
                 </Button>
 
 
-                <Border Grid.Row="2" Background="#FF3E44C8" CornerRadius="0 50 0 0">
+                <Border Grid.Row="2" CornerRadius="0 50 0 0">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top">
                             <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0"
@@ -178,13 +205,7 @@
                                 </DataTemplate>
                             </DataGridCheckBoxColumn.HeaderTemplate>
                         </DataGridCheckBoxColumn>
-                     
-                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
-
-
+                        
 
                     </DataGrid.Columns>
 
@@ -202,8 +223,9 @@
 
 
 
-        </Grid>
+            </Grid>
+
+        </Border>
     </Border>
-
-
 </Window>
+

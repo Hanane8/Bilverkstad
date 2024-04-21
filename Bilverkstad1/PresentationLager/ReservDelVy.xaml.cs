@@ -40,7 +40,8 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            var window = Window.GetWindow(this);
+            window.Close();
         }
 
         private void BtnNyReservdel_Click(object sender, RoutedEventArgs e)
@@ -110,12 +111,13 @@ namespace Bilverkstad.PresentationLager
         {
             
             ReservDelDataGrid.ItemsSource = _reservDelRepository.HämtaAllaReservDelar();
+            ClearTextBoxes() ;
         }
         private void ClearTextBoxes()
         {
-            Namn.Text = "";
-            Pris.Text = "";
-            Kvantitet.Text = "";
+           Namn.Text = "";
+    Pris.Text = "";
+    Kvantitet.Text = "";
         }
 
 
