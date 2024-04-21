@@ -11,7 +11,7 @@ namespace Entitetslager.Entiteter
         public int ReservdelNr { get; set; }
         public string Namn { get; set; }
         public double Pris { get; set; }
-        public bool Lagerstatus { get; set; }
+        public int Kvantitet { get; set; }
 
     }
 }

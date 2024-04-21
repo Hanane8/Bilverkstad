@@ -85,7 +85,7 @@
                             <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0"
                                      Content="Ny Reservdel" Click="BtnNyReservdel_Click"  FontSize="12" >
                                 <Button.Effect>
-                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    <DropShadowEffect Opacity="0.2" Direction="270" ShadowDepth="1" Color="#FF272727"/>
                                 </Button.Effect>
                             </Button>
                             <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0"
@@ -135,48 +135,33 @@
                     <TextBox Style="{StaticResource TextBoxSearch}" 
                              x:Name="txtSearch" Height="18" 
                              Margin="464,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged" />
-                    <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="Skriv"
-                             x:Name="Namn"
-                             HorizontalAlignment="Left" 
-                             Margin="150,55,0,0" 
-                             VerticalAlignment="Top"
-                            />
-                    <Label Content="Reserv Del" 
-                           Foreground="Black"
-                           FontSize="12"
-                           Margin="19,57,0,0"
-                           HorizontalAlignment="Left" 
-                           Height="24"
-                           VerticalAlignment="Top" 
-                           Width="83"/>
                     <Label Content="Namn" 
                            HorizontalAlignment="Left" 
-                           Height="24" Margin="19,108,0,0" 
+                           Height="24" Margin="10,52,0,0" 
                            VerticalAlignment="Top" 
                            Width="101"/>
                     <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="Skriv"
-                             x:Name="Personnummer"
+                            
+                             x:Name="Namn"
                              HorizontalAlignment="Left" 
-                             Margin="150,110,0,0" 
+                             Margin="145,58,0,0" 
                              VerticalAlignment="Top" 
                             />
                     <Label Content="Pris" HorizontalAlignment="Left" Height="24" Margin="333,54,0,0" VerticalAlignment="Top" Width="61"/>
                     <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="Skriv"
-                             x:Name="Epost"
+                           
+                             x:Name="Kvantitet"
                              HorizontalAlignment="Left" 
-                             Margin="424,100,0,0" 
-                             VerticalAlignment="Top"/>
+                             Margin="145,110,0,0" 
+                             VerticalAlignment="Top" />
                     <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="Skriv"
-                             x:Name="TelefonNr"
+                            
+                             x:Name="Pris"
                              HorizontalAlignment="Left" 
                              Height="16" 
                              Margin="424,52,0,0" 
                              VerticalAlignment="Top"/>
-                    <Label Content="Lager Status" HorizontalAlignment="Left" Height="35" Margin="302,102,0,0" VerticalAlignment="Top" Width="92"/>
+                    <Label Content="kvantitet" HorizontalAlignment="Left" Height="35" Margin="14,102,0,0" VerticalAlignment="Top" Width="92"/>
 
                 </Grid>
                 <DataGrid x:Name="ReservDelDataGrid"
@@ -193,11 +178,11 @@
                                 </DataTemplate>
                             </DataGridCheckBoxColumn.HeaderTemplate>
                         </DataGridCheckBoxColumn>
-
-                        <DataGridTextColumn Header="ReservdelNr" IsReadOnly="True" Width="auto" CanUserReorder="False"/>
-                        <DataGridTextColumn Header="Namn" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Pris" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Lager Status" IsReadOnly="True" Width="*"/>
+                     
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn IsReadOnly="True" Width="*"/>
 
 
 
