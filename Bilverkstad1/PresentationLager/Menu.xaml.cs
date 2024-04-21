@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -23,12 +24,12 @@ namespace Bilverkstad.PresentationLager
     /// </summary>
     public partial class Menu : Window
     {
-       
+        private IServiceProvider _serviceProvider;
       
-        public Menu(string användarnamn, PasswordBox lösenord)
+        public Menu(string användarnamn, PasswordBox lösenord, IServiceProvider serviceProvider)
         {
-            
             InitializeComponent();
+            _serviceProvider = serviceProvider;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -51,7 +52,7 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnKund_Click(object sender, RoutedEventArgs e)
         {
-            PresentationLager.KundVy kundWindow = new PresentationLager.KundVy();
+            PresentationLager.KundVy kundWindow = new PresentationLager.KundVy(_serviceProvider);
             kundWindow.ShowDialog();
         }
 

@@ -30,20 +30,28 @@ namespace DataLager
             return användare.Lösenord == lösenord;
         }
 
-        public IQueryable HämtaKund(string personnummer)
+        public Kund HämtaKund(string personnummer)
         {
-            return _dbContext.Kunder.Where(c => c.Personnummer == personnummer);
+            return _dbContext.Kunder.FirstOrDefault(c => c.Personnummer == personnummer);
         }
 
         public void SparaKund(Kund kund)
         {
-           
+         
             _dbContext.Kunder.Add(kund);
         }
 
         public void UppdateraKund(Kund kund)
         {
-            _dbContext.Entry(kund).State = EntityState.Modified;
+            var existerandeKund = HämtaKund(kund.Personnummer);
+            if (existerandeKund != null)
+            {
+                existerandeKund.Namn = kund.Namn;
+                existerandeKund.TelefonNr = kund.TelefonNr;
+                existerandeKund.Adress = kund.Adress;
+                existerandeKund.Epost = kund.Epost;
+            }
+            _dbContext.Entry(existerandeKund).State = EntityState.Modified;
         }
 
         public IEnumerable<Kund> HämtaAllaKunder()

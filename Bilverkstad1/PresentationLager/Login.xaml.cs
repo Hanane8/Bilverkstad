@@ -61,19 +61,22 @@ namespace Bilverkstad.PresentationLager
         }
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-           
-            PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass);
-           
-            IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
+            PresentationLager.KundVy kundWindow = new PresentationLager.KundVy(serviceProvider);
+            kundWindow.ShowDialog();
 
-            if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
-            {
-                menuWindow.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Inkorrekt information");
-            }
+            //PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass, serviceProvider);
+
+            //IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
+           
+
+            //if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
+            //{
+            //    menuWindow.ShowDialog();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Inkorrekt information");
+            //}
 
         }
 

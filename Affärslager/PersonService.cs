@@ -24,7 +24,7 @@ namespace Affärslager
         }
 
        
-        public IQueryable HämtaKund(string personnummer)
+        public Kund HämtaKund(string personnummer)
         {
             return _unitOfWork.PersonRepo.HämtaKund(personnummer);
         }

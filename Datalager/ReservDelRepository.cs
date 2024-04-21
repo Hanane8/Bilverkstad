@@ -19,7 +19,6 @@ namespace DataLager
         public void SparaReservDel(ReservDel reservDel)
         {
             _dbContext.ReservDelar.Add(reservDel);
-            _dbContext.SaveChanges();
         }
     }
 }
