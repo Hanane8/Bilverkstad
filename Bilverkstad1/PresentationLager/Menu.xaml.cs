@@ -58,7 +58,7 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnReservdel_Click(object sender, RoutedEventArgs e)
         {
-            PresentationLager.ReservDelVy reservdelWindow = new PresentationLager.ReservDelVy();
+            PresentationLager.ReservDelVy reservdelWindow = new PresentationLager.ReservDelVy(_serviceProvider);
             reservdelWindow.ShowDialog();
         }
 

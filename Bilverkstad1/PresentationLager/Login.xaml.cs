@@ -35,6 +35,8 @@ namespace Bilverkstad.PresentationLager
                 .AddScoped<UnitOfWork>()
                 .AddScoped<PersonService>()
                 .AddScoped<EntityFramework>()
+                .AddScoped<ReservDelService>()
+                .AddScoped<BokningsService>()
                 .BuildServiceProvider();
             
            

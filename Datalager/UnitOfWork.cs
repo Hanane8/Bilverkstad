@@ -5,6 +5,7 @@
         private PersonRepository _personRepository;
         private readonly EntityFramework _dbContext;
         private BokningsRepository _bokningsRepository;
+        private ReservDelRepository _servDelRepository;
         public UnitOfWork(EntityFramework dbContext)
         {
             this._dbContext = dbContext;
@@ -32,6 +33,17 @@
                     _bokningsRepository = new BokningsRepository(_dbContext);
                 return _bokningsRepository;
             }
+        }
+
+        public ReservDelRepository ReservDelRepo
+        {
+            get
+            {
+                if (_servDelRepository == null)
+                    _servDelRepository = new ReservDelRepository(_dbContext);
+                return _servDelRepository;
+            }
+
         }
 
         public void SaveChanges()

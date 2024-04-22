@@ -39,5 +39,6 @@ namespace Affärslager
         {
             return _unitOfWork.PersonRepo.HämtaAllaKunder();
         }
+
     }
 }
