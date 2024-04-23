@@ -34,16 +34,14 @@ namespace Bilverkstad.PresentationLager
             serviceProvider = new ServiceCollection()
                 .AddScoped<UnitOfWork>()
                 .AddScoped<PersonService>()
+                .AddScoped<BokningsService>()
                 .AddScoped<EntityFramework>()
                 .BuildServiceProvider();
-            
-           
+
 
             _personService = serviceProvider.GetRequiredService<PersonService>();
             var ensureCreated = serviceProvider.GetRequiredService<EntityFramework>();
             ensureCreated.Database.EnsureCreated();
-          
-
 
             InitializeComponent();
         }
@@ -66,28 +64,24 @@ namespace Bilverkstad.PresentationLager
             Application.Current.Shutdown();
         }
 
-        private void TextUser_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            PresentationLager.KundVy kundWindow = new PresentationLager.KundVy(serviceProvider);
-            kundWindow.ShowDialog();
+            //PresentationLager.KundVy kundWindow = new PresentationLager.KundVy(serviceProvider);
+            //kundWindow.ShowDialog();
 
-            //PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass, serviceProvider);
+            Menu menuWindow = new Menu(textUser.Text, textPass, serviceProvider);
 
-            //IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
-           
+            IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
 
-            //if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
-            //{
-            //    menuWindow.ShowDialog();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Inkorrekt information");
-            //}
+
+            if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
+            {
+                menuWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Inkorrekt information");
+            }
 
         }
 

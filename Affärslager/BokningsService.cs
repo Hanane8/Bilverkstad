@@ -28,10 +28,10 @@ namespace Affärslager
             _unitOfWork.SaveChanges();
         }
 
-        //public void HämtaBokning()
-        //{
-
-        //}
+        public List<Bokning> HämtaBokning(Kund kund)
+        {
+            return _unitOfWork.BokningsRepo.HämtaBokning(kund);
+        }
 
         public IEnumerable<Bokning> HämtaAllaBokningar()
         {

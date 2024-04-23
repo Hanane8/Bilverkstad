@@ -35,6 +35,7 @@ namespace DataLager
             modelBuilder.Entity<Kund>().Property(k => k.Adress).IsRequired();
 
 
+
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
             modelBuilder.Entity<Bokning>().HasOne(b => b.AnsvarigMekaniker).WithMany(m => m.Bokningar)
                 .HasForeignKey(b => b.AnställningsID);

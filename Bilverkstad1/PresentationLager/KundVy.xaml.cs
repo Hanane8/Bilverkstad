@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +27,7 @@ namespace Bilverkstad.PresentationLager
     {
         private static IServiceProvider _serviceProvider;
         private PersonService _personService;
+        private BokningsService _bokningsService;
 
         public KundVy(IServiceProvider serviceProvider)
         {
@@ -34,15 +37,15 @@ namespace Bilverkstad.PresentationLager
             _serviceProvider = serviceProvider;
             _personService   = _serviceProvider.GetRequiredService<PersonService>();
             LaddaKunder();
-
         }
 
+        
+        
         private void LaddaKunder()
         {
             KunderDataGrid.Items.Clear();
             KunderDataGrid.Columns.Clear();
             IEnumerable<Kund> kunder = _personService.HämtaAllaKunder();
-            DataGridTextColumn column1 = new DataGridTextColumn();
             List<string> egenskaperAttVisa = new List<string>{"Personnummer", "Namn", "Adress", "TelefonNr", "Epost", "Bokningar"};
             List<DataGridTextColumn> kolumner = new List<DataGridTextColumn>();
 
@@ -62,11 +65,12 @@ namespace Bilverkstad.PresentationLager
             }
             foreach (Kund kund in kunder)
             {
+
                 if (kund.Bokningar != null)
                 {
                     antalBokningar = kund.Bokningar.Count;
                 }
-                    
+
                 KunderDataGrid.Items.Add(new
                 {
                     Personnummer = kund.Personnummer,
@@ -78,7 +82,7 @@ namespace Bilverkstad.PresentationLager
                 });
 
             }
-            //KunderDataGrid.ItemsSource = kunder;
+
         }
 
         private void KollaFältOchUppdateraKnapp()
@@ -102,7 +106,7 @@ namespace Bilverkstad.PresentationLager
 
             Personnummer.Text = Adress.Text = Epost.Text = Namn.Text = TelefonNr.Text = "";
             PersonnummerLbl.Foreground = TelefonnrLbl.Foreground = Brushes.Black;
-
+            Personnummer.IsEnabled = true;
         }
 
         private Kund Kund()
@@ -152,11 +156,14 @@ namespace Bilverkstad.PresentationLager
             LaddaKunder();
         }
 
-
+        private void Siffror_Kontroll(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
         private void Personnummer_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox personTextBox = (TextBox)sender;
-            //Behövs kontroll att de är siffror
             if (personTextBox.Text.Length != 10)
             {
                 PersonnummerLbl.Foreground = Brushes.Red;
@@ -236,6 +243,11 @@ namespace Bilverkstad.PresentationLager
                     Epost.Text = item.Epost;
                 }
             }
+        }
+
+        private void BtnÅterställ_Click(object sender, RoutedEventArgs e)
+        {
+            ÅterställFält();
         }
     }
 }

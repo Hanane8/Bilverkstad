@@ -13,7 +13,8 @@ namespace Entitetslager.Entiteter
         public DateTime? InlämningsDatum { get; set; }
         public DateTime? UtlämningsDatum { get; set; }
         public Mekaniker? AnsvarigMekaniker { get; set; }
-        
+
+        public Kund Kund { get; set; }
         public int AnställningsID { get; set; }
         public Bokning()
         {

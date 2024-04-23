@@ -94,6 +94,12 @@
                                     <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                 </Button.Effect>
                             </Button>
+                            <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0" x:Name="BtnÅterställ"
+                                Content="Återställ" Click="BtnÅterställ_Click" Background="#FF6067F1" FontSize="12" >
+                                <Button.Effect>
+                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                </Button.Effect>
+                            </Button>
 
 
                         </StackPanel>
@@ -154,6 +160,7 @@
                              HorizontalAlignment="Left" 
                              Margin="150,79,0,0" 
                              VerticalAlignment="Top" Foreground="Black"
+                             PreviewTextInput="Siffror_Kontroll"
                             />
                     <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="Adress"
@@ -172,7 +179,8 @@
                              HorizontalAlignment="Left" 
                              Height="16" 
                              Margin="405,46,0,0" 
-                             VerticalAlignment="Top" TextChanged="TelefonNr_TextChanged" Foreground="Black"/>
+                             VerticalAlignment="Top" TextChanged="TelefonNr_TextChanged" Foreground="Black"
+                             PreviewTextInput="Siffror_Kontroll"/>
                     <Label Content="E-post" HorizontalAlignment="Left" Height="24" Margin="320,81,0,0" VerticalAlignment="Top" Width="61"/>
 
                 </Grid>
