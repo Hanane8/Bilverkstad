@@ -47,29 +47,22 @@ namespace Bilverkstad.PresentationLager
             KunderDataGrid.Columns.Clear();
             IEnumerable<Kund> kunder = _personService.HämtaAllaKunder();
             List<string> egenskaperAttVisa = new List<string>{"Personnummer", "Namn", "Adress", "TelefonNr", "Epost", "Bokningar"};
-            List<DataGridTextColumn> kolumner = new List<DataGridTextColumn>();
 
-            int antalBokningar = 0;
 
             foreach(string egenskap in egenskaperAttVisa)
             {
-                DataGridTextColumn kolumn = new DataGridTextColumn();
-                kolumn.Header = egenskap;
-                kolumn.Binding = new Binding(egenskap);
-                kolumner.Add(kolumn);
+                KunderDataGrid.Columns.Add(new DataGridTextColumn
+                {
+                    Header = egenskap,
+                    Binding = new Binding(egenskap)
+                });
+
             }
 
-            foreach (var kolumn in kolumner)
-            {
-                KunderDataGrid.Columns.Add(kolumn);
-            }
             foreach (Kund kund in kunder)
             {
-
-                if (kund.Bokningar != null)
-                {
-                    antalBokningar = kund.Bokningar.Count;
-                }
+                int antalBokningar = kund.Bokningar?.Count ?? 0;
+               
 
                 KunderDataGrid.Items.Add(new
                 {
