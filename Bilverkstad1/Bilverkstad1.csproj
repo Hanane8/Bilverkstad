@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="App.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="images\121212-rem.png" />
     <None Remove="images\background_bilverkstad.jpg" />
     <None Remove="images\bild_back_1.png" />
@@ -41,16 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ApplicationDefinition Update="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </ApplicationDefinition>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="App.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="PresentationLager\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

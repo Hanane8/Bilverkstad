@@ -112,10 +112,11 @@ namespace Bilverkstad.PresentationLager
 
             Bokning bokning = new Bokning()
             {
-                DatumTid = DateTime.Now,
+               
                 InlämningsDatum = DateTime.Now.AddDays(5),
                 UtlämningsDatum = DateTime.Now.AddDays(10),
-                AnsvarigMekaniker = mekaniker
+                AnsvarigMekaniker = mekaniker,
+                Kund = kund
             };
 
             ReservDel reservDel = new ReservDel()

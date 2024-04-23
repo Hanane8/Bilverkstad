@@ -26,12 +26,14 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
+            WindowState = WindowState.Minimized;
 
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Window.GetWindow(this);
+            window.Close();
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -40,17 +42,43 @@ namespace Bilverkstad.PresentationLager
 
         }
 
-        private void Btnlogin_Click(object sender, RoutedEventArgs e)
+       
+        private void BtnNyTid_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void ReservDelDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void BtnUppdatera_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void textUser_TextChanged(object sender, TextChangedEventArgs e)
+        private void BtnSpara_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnAvboka_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void BokningsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AnsvarigMekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Kund_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

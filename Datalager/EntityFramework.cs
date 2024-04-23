@@ -37,8 +37,8 @@ namespace DataLager
 
 
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
-            modelBuilder.Entity<Bokning>().HasOne(b => b.AnsvarigMekaniker).WithMany(m => m.Bokningar)
-                .HasForeignKey(b => b.AnställningsID);
+            modelBuilder.Entity<Bokning>().HasOne(b => b.AnsvarigMekaniker).WithMany(m => m.Bokningar);
+                
 
             modelBuilder.Entity<Mekaniker>().HasKey(m => m.AnställningsNr);
             modelBuilder.Entity<Mekaniker>().Property(m => m.Yrkesroll).IsRequired();

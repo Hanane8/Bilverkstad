@@ -15,12 +15,12 @@
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
-                    Stretch="None" Opacity="0.73"
-                    />
+                 Stretch="None" 
+                 />
         </Border.Background>
         <Border CornerRadius="20"
-        BorderThickness="2"
-                Opacity="0.95">
+     BorderThickness="2"
+             Opacity="0.95">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color = "#FF4157AF" Offset="0"/>
@@ -35,203 +35,198 @@
                     <GradientStop Color = "#CC12114F" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
+
+
+
+
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="150"></RowDefinition>
 
-                    <RowDefinition/>
-
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="LOG IN"
-                       Foreground="DarkGray"
-                       FontSize="12"
-                       FontFamily="Montserrat"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       Margin="10,0,0,0"/>
-                <Button x:Name="BtnMinimize"
-                    BorderThickness="0"
-                    Content="-"
-                    Foreground="White"
-                    FontSize="12"
-                    Cursor="Hand"
-                    Grid.Column="1" 
-                    Click="BtnMinimize_Click" 
-                    Background="#FF13A4B8" Height="30" VerticalAlignment="Top">
-
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18" Height="18"
-                                CornerRadius="9"
-                                Background= "#FF13A4B8">
-                                <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button x:Name="BtnClose"
-                    BorderThickness="0"
-                    Content="X"
-                    Foreground="White"
-                    FontSize="12"
-                    Cursor="Hand"
-                    Grid.Column="2"
-                    Click="BtnClose_Click" 
-                    Background="#FF953707">
-
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18" Height="18"
-                                CornerRadius="9"
-                                Background="#FF953707">
-                                <ContentPresenter VerticalAlignment="Center"
-                           HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-
-                </Button>
-
-
-                <Image Source="/Images/121212-rem.png" Height="92"
-                       Width="200" Opacity="0.6"
-                       Margin="2,4,539,4" 
-                       Grid.Row="1"/>
-
-                <Label Content="Datum" 
-                   Foreground="LightGray"
-                   FontSize="12"
-                   Margin="198,50,0,0"
-                   HorizontalAlignment="Left" 
-                   Height="25" 
-                   Grid.Row="1"
-                   VerticalAlignment="Top" 
-                   Width="200"/>
-                <TextBox x:Name="textUser"
-                     FontSize="13"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31"/>
+                        <RowDefinition Height="119"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="ReservDel Manager"
+                        Foreground="DarkGray"
+                        FontSize="12"
+                        FontFamily="Montserrat"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Margin="10,0,0,0" Height="14"/>
+                    <Button x:Name="BtnMinimize"
+                     BorderThickness="0"
+                     Content="-"
                      Foreground="White"
-                     CaretBrush="LightGray"
-                     BorderBrush="DarkGray"
-                     BorderThickness="0,0,0,1"
+                     FontSize="12"
+                     Cursor="Hand" 
+                     Click="BtnMinimize_Click" 
+                     Background="#FF13A4B8" Margin="729,2,-580,3"  
+                     
+                     >
+
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                 CornerRadius="9"
+                                 Background= "#FF13A4B8">
+                                    <ContentPresenter VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button  x:Name="BtnClose"
+                     BorderThickness="0"
+                     Content="X"
+                     Foreground="White"
+                     FontSize="12"
+                     Cursor="Hand"
+                     Click="BtnClose_Click" 
+                     Background="#FF953707" Margin="750,2,-600,3" >
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                 CornerRadius="9"
+                                 Background="#FF953707">
+                                    <ContentPresenter VerticalAlignment="Center"
+                             HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+
+                    </Button>
+
+
+                    <Border Grid.Row="2" CornerRadius="0 50 0 0">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top">
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,50,30,0"
+                                  Content="Ny Tid" Click="BtnNyTid_Click"  FontSize="12" >
+                                    <Button.Effect>
+                                        <DropShadowEffect Opacity="0.2" Direction="270" ShadowDepth="1" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
+                                 Content="Uppdatera" Click="BtnUppdatera_Click"  FontSize="12" >
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
+                                 Content="Spara" Click="BtnSpara_Click"  FontSize="12" >
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+
+
+                            </StackPanel>
+                        </DockPanel>
+
+                    </Border>
+                    <Image Source="/Images/121212-rem.png" Height="92"
+                        Width="200" Opacity="0.6"
                      HorizontalAlignment="Left" 
-                     Height="20" 
-                     Margin="398,30,0,0"
-                     Grid.Row="1" 
-                     VerticalAlignment="Top" 
-                     Width="214" TextChanged="textUser_TextChanged"
-                    >
+                                     Margin="10,10,0,0" 
+                 Grid.Row="1" 
+                 VerticalAlignment="Top" 
+                />
+                </Grid>
+                <!--Main Section-->
+                <Grid Grid.Column="1" Margin="0,0,-5,0">
 
-                    <TextBox.Background>
-                        <ImageBrush
-                                Stretch="Uniform" 
-                                AlignmentX="Left"/>
-                    </TextBox.Background>
-                </TextBox>
-
-
-                <Label  Content="Password" 
-                   Foreground="LightGray"
-                   FontSize="12"
-                   Margin="198,15,0,0"
-                   HorizontalAlignment="Left" 
-                   Height="25" 
-                   Grid.Row="1"
-                   VerticalAlignment="Top" 
-                   Width="200"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="auto" MinHeight="150"/>
+                        <RowDefinition Height="196*"/>
+                    </Grid.RowDefinitions>
+                    <!--text Search-->
+                    <Grid Grid.Row="1" Grid.Column="1">
 
 
+                        <TextBox  Style="{StaticResource TextBoxSearch}"
+                          x:Name="txtSearch" Height="20" 
+                          Margin="470,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"  />
+                        <Label Content="InlämningsDatum" 
+                        HorizontalAlignment="Left" 
+                        Height="24" Margin="10,54,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="101" 
+                        Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
+                        <TextBox Style="{StaticResource TextBoxInput}" 
+                         
+                          x:Name="InlämningsDatum"
+                          HorizontalAlignment="Left" 
+                          Margin="126,58,0,0" 
+                          VerticalAlignment="Top" 
+                         />
+                        <Label Content="Pris"
+                        Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                        HorizontalAlignment="Left" Height="24" Margin="330,60,0,0" VerticalAlignment="Top" Width="61"/>
+                        <TextBox Style="{StaticResource TextBoxInput}" 
+                        
+                          x:Name="UtlämningsDatum"
+                          HorizontalAlignment="Left" 
+                          Margin="126,100,0,0" 
+                          VerticalAlignment="Top" />
+                        <TextBox Style="{StaticResource TextBoxInput}" 
+                         
+                          x:Name="Pris"
+                          HorizontalAlignment="Left" 
+                          Height="16" 
+                          Margin="414,60,0,0" 
+                          VerticalAlignment="Top"/>
+                        <Label Content="UtlämningsDatum" 
+                        HorizontalAlignment="Left" 
+                        Height="35" 
+                        Foreground="#FFEAC4EE" FontWeight="Bold" 
+                        FontStyle="Italic"
+                        Margin="14,102,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="92"/>
+                        <Label Content="Söka"
+                     Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                     HorizontalAlignment="Left" Height="24" Margin="424,8,0,0" VerticalAlignment="Top" Width="41"/>
 
-                <Button Content="Boka Tid" 
-                    HorizontalAlignment="Left" 
-                    Margin="10,43,0,0" 
-                    Cursor="Hand"
-                    Grid.Row="2" 
-                    Grid.Column="0"    
-                    VerticalAlignment="Top" 
-                    Click="Btnlogin_Click">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="150" Height="40"
-                                CornerRadius="20" Opacity="0.9">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF193987"/>
-                                        <GradientStop Color="#FFBE17CD" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
+                    </Grid>
+                    <DataGrid x:Name="ReservDelDataGrid"
+                       Style="{DynamicResource DataGridStyle1}" 
+                       CellStyle="{DynamicResource DataGridCellStyle1}" 
+                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                       RowStyle="{DynamicResource DataGridRowStyle1}" 
+                       Grid.Row="2" Margin="0,0,10,0" SelectionChanged="ReservDelDataGrid_SelectionChanged_1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
 
-                                <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-
-                </Button> 
-                <Button Content="Avboka " 
-                    HorizontalAlignment="Left" 
-                    Margin="16,129,0,0" 
-                    Cursor="Hand"
-                    Grid.Row="2" 
-                    Grid.Column="0"    
-                    VerticalAlignment="Top" 
-                    Click="Btnlogin_Click">
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Width="150" Height="40"
-                                CornerRadius="20" Opacity="0.9">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF193987"/>
-                                        <GradientStop Color="#FFBE17CD" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-
-                                <ContentPresenter VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-
-                </Button>
-
-                <DataGrid 
-                         Style="{DynamicResource DataGridStyle1}" 
-                         CellStyle="{DynamicResource DataGridCellStyle1}" 
-                         ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                         RowStyle="{DynamicResource DataGridRowStyle1}" 
-                         Grid.Column="0" 
-                         HorizontalAlignment="Left" 
-                         Height="254" Margin="204,2,0,0" 
-                         Grid.Row="2" VerticalAlignment="Top"
-                         Width="582" Grid.ColumnSpan="3"  >
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" >
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
+                        </DataGrid.Columns>
 
 
-                    </DataGrid.Columns>
+                    </DataGrid>
 
 
-                </DataGrid>
+                </Grid>
+
+
+
+
+
+
+
 
 
             </Grid>
 
         </Border>
     </Border>
+
 
 
 </Window>
