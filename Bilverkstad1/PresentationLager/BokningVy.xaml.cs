@@ -68,10 +68,7 @@ namespace Bilverkstad.PresentationLager
 
         }
 
-        private void BokningsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
 
         private void AnsvarigMekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -79,6 +76,11 @@ namespace Bilverkstad.PresentationLager
         }
 
         private void Kund_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BokningsDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }

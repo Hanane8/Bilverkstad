@@ -108,20 +108,26 @@
                     <Border Grid.Row="2" CornerRadius="0 50 0 0">
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Top">
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,50,30,0"
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,40,30,0"
                                   Content="Ny Tid" Click="BtnNyTid_Click"  FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect Opacity="0.2" Direction="270" ShadowDepth="1" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
-                                 Content="Uppdatera" Click="BtnUppdatera_Click"  FontSize="12" >
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
+                                 Content="Uppdatera Tid" Click="BtnUppdatera_Click"  FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
                                  Content="Spara" Click="BtnSpara_Click"  FontSize="12" >
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
+                                    Content="Avboka" Click="BtnAvboka_Click"  FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
@@ -157,52 +163,48 @@
                           Margin="470,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"  />
                         <Label Content="InlämningsDatum" 
                         HorizontalAlignment="Left" 
-                        Height="24" Margin="10,54,0,0" 
+                        Height="24" Margin="0,54,0,0" 
                         VerticalAlignment="Top" 
-                        Width="101" 
+                        Width="111" 
                         Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                          
                           x:Name="InlämningsDatum"
                           HorizontalAlignment="Left" 
-                          Margin="126,58,0,0" 
+                          Margin="144,58,0,0" 
                           VerticalAlignment="Top" 
                          />
-                        <Label Content="Pris"
+                        <Label Content="AnsvarigMekaniker"
                         Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
-                        HorizontalAlignment="Left" Height="24" Margin="330,60,0,0" VerticalAlignment="Top" Width="61"/>
+                        HorizontalAlignment="Left" Height="24" Margin="309,60,0,0" VerticalAlignment="Top" Width="135"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                         
                           x:Name="UtlämningsDatum"
                           HorizontalAlignment="Left" 
-                          Margin="126,100,0,0" 
+                          Margin="144,100,0,0" 
                           VerticalAlignment="Top" />
-                        <TextBox Style="{StaticResource TextBoxInput}" 
-                         
-                          x:Name="Pris"
-                          HorizontalAlignment="Left" 
-                          Height="16" 
-                          Margin="414,60,0,0" 
-                          VerticalAlignment="Top"/>
                         <Label Content="UtlämningsDatum" 
                         HorizontalAlignment="Left" 
                         Height="35" 
                         Foreground="#FFEAC4EE" FontWeight="Bold" 
                         FontStyle="Italic"
-                        Margin="14,102,0,0" 
+                        Margin="0,102,0,0" 
                         VerticalAlignment="Top" 
-                        Width="92"/>
-                        <Label Content="Söka"
+                        Width="125"/>
+                        <Label Content="Search"
                      Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                      HorizontalAlignment="Left" Height="24" Margin="424,8,0,0" VerticalAlignment="Top" Width="41"/>
+                        <Label Content="Kund"
+                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                            HorizontalAlignment="Left" Height="24" Margin="320,110,0,0" VerticalAlignment="Top" Width="71"/>
 
                     </Grid>
-                    <DataGrid x:Name="ReservDelDataGrid"
+                    <DataGrid x:Name="BokningsDataGrid"
                        Style="{DynamicResource DataGridStyle1}" 
                        CellStyle="{DynamicResource DataGridCellStyle1}" 
                        ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                        RowStyle="{DynamicResource DataGridRowStyle1}" 
-                       Grid.Row="2" Margin="0,0,10,0" SelectionChanged="ReservDelDataGrid_SelectionChanged_1">
+                       Grid.Row="2" Margin="0,0,10,0" SelectionChanged="BokningsDataGrid_SelectionChanged_1" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
 
@@ -213,6 +215,8 @@
 
 
                 </Grid>
+                <ComboBox Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="441,141,0,0" VerticalAlignment="Top" Width="123"/>
+                <ComboBox Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="441,103,0,0" VerticalAlignment="Top" Width="123"/>
 
 
 
