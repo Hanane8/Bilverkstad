@@ -8,6 +8,8 @@ namespace Entitetslager.Entiteter
 {
     public class ReservDel
     {
+      
+
         public int ReservdelNr { get; set; }
         public string Namn { get; set; }
         public double Pris { get; set; }

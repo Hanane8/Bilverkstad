@@ -189,7 +189,7 @@
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                           Grid.Row="2" Margin="0,0,10,0"
-                          IsReadOnly="true">
+                          IsReadOnly="true" SelectionChanged="KunderDataGrid_SelectionChanged">
 
                     <DataGrid.RowStyle>
                         

@@ -23,5 +23,36 @@ namespace Bilverkstad.PresentationLager
         {
             InitializeComponent();
         }
+
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+
+        }
+
+        private void Btnlogin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ReservDelDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void textUser_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

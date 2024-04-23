@@ -249,5 +249,10 @@ namespace Bilverkstad.PresentationLager
         {
             ÅterställFält();
         }
+
+        private void KunderDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

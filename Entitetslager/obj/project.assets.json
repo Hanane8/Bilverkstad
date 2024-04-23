@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\noelk\\.nuget\\packages\\": {}
+    "C:\\Users\\Hanan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+      "projectUniqueName": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
       "projectName": "Entitetslager",
-      "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
-      "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Entitetslager\\obj\\",
+      "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+      "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

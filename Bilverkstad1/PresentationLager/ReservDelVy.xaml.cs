@@ -1,5 +1,7 @@
-﻿using DataLager;
+﻿using Affärslager;
+using DataLager;
 using Entitetslager.Entiteter;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +20,17 @@ namespace Bilverkstad.PresentationLager
 {
     public partial class ReservDelVy : Window
     {
-        private readonly ReservDelRepository _reservDelRepository;
-        public ReservDelVy()
+        private readonly ReservDelService _reservdelService;
+
+        public ReservDelVy(IServiceProvider serviceProvider)
         {
+            
+            _reservdelService = serviceProvider.GetRequiredService<ReservDelService>();
             InitializeComponent();
-            _reservDelRepository = new ReservDelRepository(new EntityFramework());
             UppdateraReservDelGrid();
         }
+
+
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -40,20 +46,20 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            var window = Window.GetWindow(this);
+            window.Close();
         }
 
         private void BtnNyReservdel_Click(object sender, RoutedEventArgs e)
         {
-            
-            Namn.Text = "";
-            Pris.Text = "";
-            Kvantitet.Text = "";
+
+            ClearTextBoxes();
 
         }
 
         private void BtnUppdatera_Click(object sender, RoutedEventArgs e)
         {
+           
             if (ReservDelDataGrid.SelectedItem != null)
             {
                 ReservDel selectedReservDel = (ReservDel)ReservDelDataGrid.SelectedItem;
@@ -63,7 +69,7 @@ namespace Bilverkstad.PresentationLager
 
                 try
                 {
-                    _reservDelRepository.UppdateraReservDel(selectedReservDel);
+                    _reservdelService.UppdateraReservDel(selectedReservDel);
                     MessageBox.Show("Reservdel uppdaterad!");
                     UppdateraReservDelGrid();
                 }
@@ -95,7 +101,7 @@ namespace Bilverkstad.PresentationLager
 
             try
             {
-                _reservDelRepository.SparaReservDel(newReservDel);
+                _reservdelService.SkapaReservDel(newReservDel);
                 MessageBox.Show("Reservdel sparad!");
                 UppdateraReservDelGrid(); 
             }
@@ -109,13 +115,14 @@ namespace Bilverkstad.PresentationLager
         private void UppdateraReservDelGrid()
         {
             
-            ReservDelDataGrid.ItemsSource = _reservDelRepository.HämtaAllaReservDelar();
+            ReservDelDataGrid.ItemsSource = _reservdelService.HämtaAllaReservdel();
+            ClearTextBoxes() ;
         }
         private void ClearTextBoxes()
         {
-            Namn.Text = "";
+           Namn.Text = "";
             Pris.Text = "";
-            Kvantitet.Text = "";
+             Kvantitet.Text = "";
         }
 
 
@@ -132,12 +139,22 @@ namespace Bilverkstad.PresentationLager
             }
 
         }
+       
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            string sökterm = txtSearch.Text.ToLower();
 
+            var allaReservdelar = _reservdelService.HämtaAllaReservdel();
+
+            var matchandeReservdelar = allaReservdelar.Where(reservdel =>
+                reservdel.Namn.ToLower().Contains(sökterm) 
+               
+            ).ToList();
+
+            ReservDelDataGrid.ItemsSource = matchandeReservdelar;
         }
 
-        
+
     }
 }
