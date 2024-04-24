@@ -37,8 +37,16 @@ namespace DataLager
 
 
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
+<<<<<<< Updated upstream
             modelBuilder.Entity<Bokning>().HasOne(b => b.AnsvarigMekaniker).WithMany(m => m.Bokningar);
                 
+=======
+            modelBuilder.Entity<Bokning>().Property(b => b.InlämningsDatum).IsRequired();
+            modelBuilder.Entity<Bokning>().Property(b => b.UtlämningsDatum).IsRequired();
+            modelBuilder.Entity<Bokning>().HasOne<Kund>().WithMany(m => m.Bokningar).HasForeignKey(b => b.KundNr);
+            modelBuilder.Entity<Bokning>().HasOne<Mekaniker>().WithMany(m => m.Bokningar).HasForeignKey(b => b.AnställningsNr);
+
+>>>>>>> Stashed changes
 
             modelBuilder.Entity<Mekaniker>().HasKey(m => m.AnställningsNr);
             modelBuilder.Entity<Mekaniker>().Property(m => m.Yrkesroll).IsRequired();

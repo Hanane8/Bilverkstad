@@ -115,8 +115,13 @@ namespace Bilverkstad.PresentationLager
                
                 InlämningsDatum = DateTime.Now.AddDays(5),
                 UtlämningsDatum = DateTime.Now.AddDays(10),
+<<<<<<< Updated upstream
                 AnsvarigMekaniker = mekaniker,
                 Kund = kund
+=======
+                AnställningsNr = mekaniker.AnställningsNr,
+                KundNr = kund.KundNr
+>>>>>>> Stashed changes
             };
 
             ReservDel reservDel = new ReservDel()

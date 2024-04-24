@@ -39,6 +39,21 @@ namespace Affärslager
         {
             return _unitOfWork.PersonRepo.HämtaAllaKunder();
         }
+<<<<<<< Updated upstream
 
+=======
+        public IEnumerable<Mekaniker> HämtaAllaMekaniker()
+        {
+            return _unitOfWork.PersonRepo.HämtaAllaMekaniker();
+        }
+        public Kund HämtaKundNr(int kundNr)
+        {
+            return _unitOfWork.PersonRepo.HämtaKundNr(kundNr);
+        }
+        public Mekaniker HämtaMekanikerNr(int anställningsNr)
+        {
+            return _unitOfWork.PersonRepo.HämtaMekanikerNr(anställningsNr);
+        }
+>>>>>>> Stashed changes
     }
 }

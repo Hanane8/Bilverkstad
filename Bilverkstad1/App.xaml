@@ -115,6 +115,7 @@
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
             <Setter Property="AutoGenerateColumns" Value="true"/>
             <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="IsReadOnly" Value="True"/>
             <Setter Property="Margin" Value="0 10 0 0"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="SelectionUnit" Value="FullRow"/>

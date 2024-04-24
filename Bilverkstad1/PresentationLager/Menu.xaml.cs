@@ -64,7 +64,7 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnBokning_Click(object sender, RoutedEventArgs e)
         {
-            PresentationLager.BokningVy bokningWindow = new PresentationLager.BokningVy();
+            PresentationLager.BokningVy bokningWindow = new PresentationLager.BokningVy(_serviceProvider);
             bokningWindow.ShowDialog();
         }
     }
