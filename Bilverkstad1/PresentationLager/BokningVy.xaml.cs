@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Affärslager;
+using Entitetslager.Entiteter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +16,33 @@ using System.Windows.Shapes;
 
 namespace Bilverkstad.PresentationLager
 {
-    /// <summary>
-    /// Interaction logic for BokningVy.xaml
-    /// </summary>
+   
     public partial class BokningVy : Window
     {
-        public BokningVy()
+        private BokningsService _bokningsService;
+        private PersonService _personService;
+       
+
+        public BokningVy(IServiceProvider serviceProvider)
         {
             InitializeComponent();
+           
+            _bokningsService = (BokningsService)serviceProvider.GetService(typeof(BokningsService));
+            _personService = (PersonService)serviceProvider.GetService(typeof(PersonService));
+            UppdateraBokningDelGrid();
+            FillComboBoxes();
+        }
+        private void FillComboBoxes()
+        {
+            
+            var allaKunder = _personService.HämtaAllaKunder();
+            cmbKund.ItemsSource = allaKunder;
+            cmbKund.DisplayMemberPath = "Namn";
+
+            
+            var allaMekaniker = _personService.HämtaAllaMekaniker();
+            cmbMekaniker.ItemsSource = allaMekaniker;
+            cmbMekaniker.DisplayMemberPath = "Namn"; 
         }
 
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
@@ -42,7 +63,14 @@ namespace Bilverkstad.PresentationLager
 
         }
 
+<<<<<<< Updated upstream
        
+=======
+      
+
+      
+
+>>>>>>> Stashed changes
         private void BtnNyTid_Click(object sender, RoutedEventArgs e)
         {
 
@@ -55,8 +83,58 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnSpara_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< Updated upstream
 
         }
+=======
+            
+            string inlämningsDatumStr = InlämningsDatum.Text;
+            string utlämningsDatumStr = UtlämningsDatum.Text;
+
+           
+            DateTime inlämningsDatum;
+            DateTime utlämningsDatum;
+
+            
+            if (DateTime.TryParse(inlämningsDatumStr, out inlämningsDatum) && DateTime.TryParse(utlämningsDatumStr, out utlämningsDatum))
+            {
+                var valdKund = cmbKund.SelectedItem as Kund;
+                var valdMekaniker = cmbMekaniker.SelectedItem as Mekaniker;
+
+                if (valdKund != null && valdMekaniker != null)
+                {
+                    var nyBokning = new Bokning
+                    {
+                        KundNr = valdKund.KundNr,
+                        AnställningsNr = valdMekaniker.AnställningsNr,
+                        InlämningsDatum = inlämningsDatum, 
+                        UtlämningsDatum = utlämningsDatum 
+                    };
+
+                    _bokningsService.SkapaBokning(nyBokning);
+
+                    MessageBox.Show("Bokningen har sparats!");
+                }
+                else
+                {
+                    MessageBox.Show("Välj både kund, mekaniker, inlämningsdatum och utlämningsdatum för att spara bokningen.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Inmatade datum är inte giltiga. Ange datum i rätt format (ÅÅÅÅ-MM-DD).");
+            }
+            UppdateraBokningDelGrid();
+        }
+        private void UppdateraBokningDelGrid()
+        {
+
+            BokningsDataGrid.ItemsSource = _bokningsService.HämtaAllaBokningar();
+            ClearTextBoxes();
+        }
+
+
+>>>>>>> Stashed changes
 
         private void BtnAvboka_Click(object sender, RoutedEventArgs e)
         {
@@ -68,19 +146,59 @@ namespace Bilverkstad.PresentationLager
 
         }
 
+<<<<<<< Updated upstream
         
 
         private void AnsvarigMekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+=======
+        private void BokningsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+>>>>>>> Stashed changes
         {
 
         }
 
+<<<<<<< Updated upstream
         private void Kund_SelectionChanged(object sender, SelectionChangedEventArgs e)
+=======
+        private void cmbKund_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbKund.SelectedItem != null)
+            {
+                Kund selectedKund = (Kund)cmbKund.SelectedItem;
+
+                MessageBox.Show($"Vald kund: {selectedKund.Namn}, Kundnummer: {selectedKund.KundNr}");
+            }
+
+        }
+
+        private void cmbMekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbMekaniker.SelectedItem != null)
+            {
+                Mekaniker selectedMekaniker = (Mekaniker)cmbMekaniker.SelectedItem;
+
+                MessageBox.Show($"Vald mekaniker: {selectedMekaniker.Namn}, Anställningsnummer: {selectedMekaniker.AnställningsNr}");
+            }
+        }
+        private void ClearTextBoxes()
+        {
+            InlämningsDatum.Text = "";
+            UtlämningsDatum.Text = "";
+            cmbMekaniker.Text = "";
+            cmbKund.Text = "";
+        }
+
+        private void InlämningsDatum_TextChanged(object sender, TextChangedEventArgs e)
+>>>>>>> Stashed changes
         {
 
         }
 
+<<<<<<< Updated upstream
         private void BokningsDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+=======
+        private void UtlämningsDatum_TextChanged(object sender, TextChangedEventArgs e)
+>>>>>>> Stashed changes
         {
 
         }

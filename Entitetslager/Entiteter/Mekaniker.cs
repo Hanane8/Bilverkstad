@@ -13,5 +13,9 @@ namespace Entitetslager.Entiteter
         public string Lösenord { get; set; }
         public string Specialisering { get; set; }
         public ICollection<Bokning> Bokningar { get; set; } = new List<Bokning>();
+
+        public Mekaniker()
+        {
+        }
     }
 }

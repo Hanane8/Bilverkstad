@@ -32,7 +32,7 @@ namespace DataLager
 
         public Kund HämtaKund(string personnummer)
         {
-            return _dbContext.Kunder.FirstOrDefault(c => c.Personnummer == personnummer);
+            return _dbContext.Kunder.FirstOrDefault(k => k.Personnummer == personnummer);
         }
 
         public void SparaKund(Kund kund)
@@ -58,5 +58,19 @@ namespace DataLager
         {
             return _dbContext.Kunder.ToList();
         }
+        public IEnumerable<Mekaniker> HämtaAllaMekaniker()
+        {
+            return _dbContext.Mekaniker.ToList();
+        }
+        public Mekaniker HämtaMekanikerNr(int anställningsNr)
+        {
+            return _dbContext.Mekaniker.FirstOrDefault(m => m.AnställningsNr == anställningsNr);
+        }
+        public Kund HämtaKundNr(int kundNr)
+        {
+            return _dbContext.Kunder.FirstOrDefault(k => k.KundNr == kundNr);
+        }
+
+       
     }
 }
