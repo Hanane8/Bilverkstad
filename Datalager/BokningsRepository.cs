@@ -19,11 +19,7 @@ namespace DataLager
 
         public List<Bokning> HämtaBokning(Kund kund)
         {
-<<<<<<< Updated upstream
-            return _dbContext.Bokningar.Where(c => c.Kund.KundNr == kund.KundNr).ToList();
-=======
           return _dbContext.Bokningar.Where(c => c.KundNr == kund.KundNr).ToList();
->>>>>>> Stashed changes
         }
 
         public void UppdateraBokning(Bokning bokning)

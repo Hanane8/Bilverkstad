@@ -13,6 +13,5 @@ namespace Entitetslager.Entiteter
         public string Adress { get; set; }
         public string Epost { get; set; }
         public long TelefonNr { get; set; }
-
     }
 }
