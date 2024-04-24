@@ -34,16 +34,18 @@ namespace Bilverkstad.PresentationLager
             serviceProvider = new ServiceCollection()
                 .AddScoped<UnitOfWork>()
                 .AddScoped<PersonService>()
-                .AddScoped<BokningsService>()
                 .AddScoped<EntityFramework>()
                 .AddScoped<ReservDelService>()
                 .AddScoped<BokningsService>()
                 .BuildServiceProvider();
-
+            
+           
 
             _personService = serviceProvider.GetRequiredService<PersonService>();
             var ensureCreated = serviceProvider.GetRequiredService<EntityFramework>();
             ensureCreated.Database.EnsureCreated();
+          
+
 
             InitializeComponent();
         }
@@ -66,15 +68,18 @@ namespace Bilverkstad.PresentationLager
             Application.Current.Shutdown();
         }
 
+        private void TextUser_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            //PresentationLager.KundVy kundWindow = new PresentationLager.KundVy(serviceProvider);
-            //kundWindow.ShowDialog();
+           
 
-            Menu menuWindow = new Menu(textUser.Text, textPass, serviceProvider);
+            PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass, serviceProvider);
 
             IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
-
+           
 
             if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
             {
@@ -115,13 +120,8 @@ namespace Bilverkstad.PresentationLager
                
                 InlämningsDatum = DateTime.Now.AddDays(5),
                 UtlämningsDatum = DateTime.Now.AddDays(10),
-<<<<<<< Updated upstream
-                AnsvarigMekaniker = mekaniker,
-                Kund = kund
-=======
                 AnställningsNr = mekaniker.AnställningsNr,
                 KundNr = kund.KundNr
->>>>>>> Stashed changes
             };
 
             ReservDel reservDel = new ReservDel()

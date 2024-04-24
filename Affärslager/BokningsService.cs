@@ -32,10 +32,7 @@ namespace Affärslager
         {
             return _unitOfWork.BokningsRepo.HämtaBokning(kund);
         }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 
         public IEnumerable<Bokning> HämtaAllaBokningar()
         {

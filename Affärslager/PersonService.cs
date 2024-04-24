@@ -39,9 +39,6 @@ namespace Affärslager
         {
             return _unitOfWork.PersonRepo.HämtaAllaKunder();
         }
-<<<<<<< Updated upstream
-
-=======
         public IEnumerable<Mekaniker> HämtaAllaMekaniker()
         {
             return _unitOfWork.PersonRepo.HämtaAllaMekaniker();
@@ -54,6 +51,5 @@ namespace Affärslager
         {
             return _unitOfWork.PersonRepo.HämtaMekanikerNr(anställningsNr);
         }
->>>>>>> Stashed changes
     }
 }

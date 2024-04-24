@@ -63,14 +63,10 @@ namespace Bilverkstad.PresentationLager
 
         }
 
-<<<<<<< Updated upstream
-       
-=======
       
 
       
 
->>>>>>> Stashed changes
         private void BtnNyTid_Click(object sender, RoutedEventArgs e)
         {
 
@@ -83,10 +79,6 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnSpara_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< Updated upstream
-
-        }
-=======
             
             string inlämningsDatumStr = InlämningsDatum.Text;
             string utlämningsDatumStr = UtlämningsDatum.Text;
@@ -134,7 +126,6 @@ namespace Bilverkstad.PresentationLager
         }
 
 
->>>>>>> Stashed changes
 
         private void BtnAvboka_Click(object sender, RoutedEventArgs e)
         {
@@ -146,20 +137,11 @@ namespace Bilverkstad.PresentationLager
 
         }
 
-<<<<<<< Updated upstream
-        
-
-        private void AnsvarigMekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-=======
         private void BokningsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
->>>>>>> Stashed changes
         {
 
         }
 
-<<<<<<< Updated upstream
-        private void Kund_SelectionChanged(object sender, SelectionChangedEventArgs e)
-=======
         private void cmbKund_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbKund.SelectedItem != null)
@@ -189,16 +171,11 @@ namespace Bilverkstad.PresentationLager
         }
 
         private void InlämningsDatum_TextChanged(object sender, TextChangedEventArgs e)
->>>>>>> Stashed changes
         {
 
         }
 
-<<<<<<< Updated upstream
-        private void BokningsDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-=======
         private void UtlämningsDatum_TextChanged(object sender, TextChangedEventArgs e)
->>>>>>> Stashed changes
         {
 
         }
