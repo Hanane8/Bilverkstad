@@ -116,7 +116,7 @@ namespace Bilverkstad.PresentationLager
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        private Kund Kund()
+        private Kund NyKund()
         {
             Kund kund = new Kund()
             {
@@ -164,9 +164,9 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnUppdatera_Click(object sender, RoutedEventArgs e)
         {
-            _personService.UppdateraKund(Kund());
+            _personService.UppdateraKund(NyKund());
 
-            MessageBox.Show("Kund uppdaterad");
+            MessageBox.Show("NyKund uppdaterad");
             ÅterställFält();
             LaddaAllaKunder();
         }
@@ -190,17 +190,17 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnNykund_Click(object sender, RoutedEventArgs e)
         {
-            Kund? kund = _personService.HämtaKund(Kund().Personnummer);
+            Kund? kund = _personService.HämtaKund(NyKund().Personnummer);
             if (kund != null)
             {
-                MessageBox.Show("Kund finns redan");
+                MessageBox.Show("NyKund finns redan");
 
             }
             else
             {
-                _personService.SkapaKund(Kund());
+                _personService.SkapaKund(NyKund());
 
-                MessageBox.Show("Kund skapad");
+                MessageBox.Show("NyKund skapad");
                 ÅterställFält();
                 LaddaAllaKunder();
             }
