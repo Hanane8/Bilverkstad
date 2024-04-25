@@ -177,7 +177,7 @@
                         Cursor="Hand"
                         Grid.Row="2" 
                         VerticalAlignment="Top" 
-                        Click="Btnlogin_Click">
+                        Click="Btnlogin_Click" IsDefault="True">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="150" Height="40"

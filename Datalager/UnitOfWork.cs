@@ -10,11 +10,7 @@
         {
             this._dbContext = dbContext;
         }
-
-        public void EnsureCreated()
-        {
-            _dbContext.Database.EnsureCreated();
-        }
+       
         public PersonRepository PersonRepo
         {
             get

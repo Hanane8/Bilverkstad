@@ -35,6 +35,11 @@ namespace Affärslager
             _unitOfWork.SaveChanges();
         }
 
+        public List<Kund> SökKund(string sökTerm)
+        {
+            return _unitOfWork.PersonRepo.SökKund(sökTerm);
+        }
+
         public IEnumerable<Kund> HämtaAllaKunder()
         {
             return _unitOfWork.PersonRepo.HämtaAllaKunder();

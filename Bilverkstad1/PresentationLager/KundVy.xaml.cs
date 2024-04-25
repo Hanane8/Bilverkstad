@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -34,22 +35,28 @@ namespace Bilverkstad.PresentationLager
             Personnummer.TextChanged += Personnummer_TextChanged;
             _serviceProvider = serviceProvider;
             _personService   = _serviceProvider.GetRequiredService<PersonService>();
-            LaddaKunder();
+            LaddaAllaKunder();
 
         }
 
-        private void LaddaKunder()
+        private void LaddaAllaKunder()
+        {
+           
+            IEnumerable<Kund> kunder = _personService.HämtaAllaKunder();
+            FylliFält(kunder.ToList());
+            
+        }
+
+        private void FylliFält(List<Kund> kunder)
         {
             KunderDataGrid.Items.Clear();
             KunderDataGrid.Columns.Clear();
-            IEnumerable<Kund> kunder = _personService.HämtaAllaKunder();
-            DataGridTextColumn column1 = new DataGridTextColumn();
-            List<string> egenskaperAttVisa = new List<string>{"Personnummer", "Namn", "Adress", "TelefonNr", "Epost", "Bokningar"};
+            List<string> egenskaperAttVisa = new List<string> { "Personnummer", "Namn", "Adress", "TelefonNr", "Epost", "Bokningar" };
             List<DataGridTextColumn> kolumner = new List<DataGridTextColumn>();
 
             int antalBokningar = 0;
 
-            foreach(string egenskap in egenskaperAttVisa)
+            foreach (string egenskap in egenskaperAttVisa)
             {
                 DataGridTextColumn kolumn = new DataGridTextColumn();
                 kolumn.Header = egenskap;
@@ -67,21 +74,19 @@ namespace Bilverkstad.PresentationLager
                 {
                     antalBokningar = kund.Bokningar.Count;
                 }
-                    
+
                 KunderDataGrid.Items.Add(new
                 {
                     Personnummer = kund.Personnummer,
                     Namn = kund.Namn,
                     Adress = kund.Adress,
-                    TelefonNr =kund.TelefonNr,
+                    TelefonNr = kund.TelefonNr,
                     Epost = kund.Epost,
                     Bokningar = antalBokningar,
                 });
 
             }
-            //KunderDataGrid.ItemsSource = kunder;
         }
-
         private void KollaFältOchUppdateraKnapp()
         {
             if (Personnummer != null && Adress != null && Namn != null && TelefonNr != null && Epost != null)
@@ -103,6 +108,7 @@ namespace Bilverkstad.PresentationLager
 
             Personnummer.Text = Adress.Text = Epost.Text = Namn.Text = TelefonNr.Text = "";
             PersonnummerLbl.Foreground = TelefonnrLbl.Foreground = Brushes.Black;
+            Personnummer.IsEnabled = true;
 
         }
         private void Siffror_Kontroll(object sender, TextCompositionEventArgs e)
@@ -143,7 +149,15 @@ namespace Bilverkstad.PresentationLager
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            string sökTerm = txtSearch.Text.Trim();
 
+            List<Kund> sökResultat = SökResultatFrånDb(sökTerm);
+            FylliFält(sökResultat);
+        }
+
+        private List<Kund> SökResultatFrånDb(string sökTerm)
+        {
+            return _personService.SökKund(sökTerm);
         }
 
 
@@ -154,14 +168,14 @@ namespace Bilverkstad.PresentationLager
 
             MessageBox.Show("Kund uppdaterad");
             ÅterställFält();
-            LaddaKunder();
+            LaddaAllaKunder();
         }
 
 
         private void Personnummer_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox personTextBox = (TextBox)sender;
-            //Behövs kontroll att de är siffror
+
             if (personTextBox.Text.Length != 10)
             {
                 PersonnummerLbl.Foreground = Brushes.Red;
@@ -176,12 +190,21 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnNykund_Click(object sender, RoutedEventArgs e)
         {
-           
-            _personService.SkapaKund(Kund());
+            Kund? kund = _personService.HämtaKund(Kund().Personnummer);
+            if (kund != null)
+            {
+                MessageBox.Show("Kund finns redan");
 
-            MessageBox.Show("Kund skapad");
-            ÅterställFält();
-            LaddaKunder();
+            }
+            else
+            {
+                _personService.SkapaKund(Kund());
+
+                MessageBox.Show("Kund skapad");
+                ÅterställFält();
+                LaddaAllaKunder();
+            }
+           
 
         }
 
@@ -203,7 +226,7 @@ namespace Bilverkstad.PresentationLager
         private void TelefonNr_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox telefonnrTextBox = (TextBox)sender;
-            //felhantering för mobilnummer behövs
+
             if (TelefonNr.Text.Length != 10)
             {
                 TelefonnrLbl.Foreground = Brushes.Red;
@@ -219,7 +242,6 @@ namespace Bilverkstad.PresentationLager
         private void Epost_TextChanged(object sender, TextChangedEventArgs e)
         {
             KollaFältOchUppdateraKnapp();
-
         }
 
 
@@ -243,9 +265,10 @@ namespace Bilverkstad.PresentationLager
             }
         }
 
-        private void KunderDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+        private void BtnÅterställ_OnClick_Click(object sender, RoutedEventArgs e)
+        {
+            ÅterställFält();
         }
     }
 }

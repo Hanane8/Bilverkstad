@@ -41,6 +41,11 @@ namespace DataLager
             _dbContext.Kunder.Add(kund);
         }
 
+        public List<Kund> SökKund(string sökTerm)
+        {
+            return _dbContext.Kunder.Where(k => k.Namn.Contains(sökTerm)).ToList();
+        }
+
         public void UppdateraKund(Kund kund)
         {
             var existerandeKund = HämtaKund(kund.Personnummer);
