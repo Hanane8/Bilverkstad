@@ -63,10 +63,6 @@ namespace Bilverkstad.PresentationLager
 
         }
 
-      
-
-      
-
         private void BtnNyTid_Click(object sender, RoutedEventArgs e)
         {
 

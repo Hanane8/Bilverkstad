@@ -32,7 +32,11 @@ namespace Bilverkstad.PresentationLager
         {
 
             InitializeComponent();
-            Personnummer.TextChanged += Personnummer_TextChanged;
+            var textBoxar = new TextBox[]{Adress, TelefonNr, Namn, Epost};
+
+            foreach (var textBox in textBoxar)
+                textBox.TextChanged += KollaFältOchUppdateraKnapp;
+
             _serviceProvider = serviceProvider;
             _personService   = _serviceProvider.GetRequiredService<PersonService>();
             LaddaAllaKunder();
@@ -52,29 +56,17 @@ namespace Bilverkstad.PresentationLager
             KunderDataGrid.Items.Clear();
             KunderDataGrid.Columns.Clear();
             List<string> egenskaperAttVisa = new List<string> { "Personnummer", "Namn", "Adress", "TelefonNr", "Epost", "Bokningar" };
-            List<DataGridTextColumn> kolumner = new List<DataGridTextColumn>();
 
-            int antalBokningar = 0;
 
-            foreach (string egenskap in egenskaperAttVisa)
+            foreach (var egenskap in egenskaperAttVisa)
             {
-                DataGridTextColumn kolumn = new DataGridTextColumn();
-                kolumn.Header = egenskap;
-                kolumn.Binding = new Binding(egenskap);
-                kolumner.Add(kolumn);
-            }
-
-            foreach (var kolumn in kolumner)
-            {
+                var kolumn = new DataGridTextColumn { Header = egenskap, Binding = new Binding(egenskap) };
                 KunderDataGrid.Columns.Add(kolumn);
             }
-            foreach (Kund kund in kunder)
-            {
-                if (kund.Bokningar != null)
-                {
-                    antalBokningar = kund.Bokningar.Count;
-                }
 
+            foreach (var kund in kunder)
+            {
+                var antalBokningar = kund.Bokningar?.Count ?? 0;
                 KunderDataGrid.Items.Add(new
                 {
                     Personnummer = kund.Personnummer,
@@ -86,21 +78,14 @@ namespace Bilverkstad.PresentationLager
                 });
 
             }
+
         }
-        private void KollaFältOchUppdateraKnapp()
+        private void KollaFältOchUppdateraKnapp(object sender, TextChangedEventArgs textChangedEventArgs)
         {
-            if (Personnummer != null && Adress != null && Namn != null && TelefonNr != null && Epost != null)
-            {
+            var allaFältOk =
+                new[] { Personnummer, Adress, Namn, TelefonNr, Epost }.All(x => !string.IsNullOrEmpty(x.Text));
 
-                 bool allaFältOK = !string.IsNullOrEmpty(Personnummer.Text) &&
-                                  !string.IsNullOrEmpty(Adress.Text) &&
-                                  !string.IsNullOrEmpty(Namn.Text) &&
-                                  !string.IsNullOrEmpty(TelefonNr.Text) &&
-                                  !string.IsNullOrEmpty(Epost.Text);
-
-                BtnUppdatera.IsEnabled = allaFältOK;
-                BtnNykund.IsEnabled = allaFältOK;
-            }
+            BtnUppdatera.IsEnabled = BtnNykund.IsEnabled = allaFältOk;
         }
 
         private void ÅterställFält()
@@ -149,41 +134,22 @@ namespace Bilverkstad.PresentationLager
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string sökTerm = txtSearch.Text.Trim();
 
-            List<Kund> sökResultat = SökResultatFrånDb(sökTerm);
+            List<Kund> sökResultat = SökResultatFrånDb(txtSearch.Text.Trim());
             FylliFält(sökResultat);
         }
 
-        private List<Kund> SökResultatFrånDb(string sökTerm)
-        {
-            return _personService.SökKund(sökTerm);
-        }
-
+        private List<Kund> SökResultatFrånDb(string sökTerm) => _personService.SökKund(sökTerm);
+        
 
 
         private void BtnUppdatera_Click(object sender, RoutedEventArgs e)
         {
             _personService.UppdateraKund(NyKund());
 
-            MessageBox.Show("NyKund uppdaterad");
+            MessageBox.Show("Kund uppdaterad");
             ÅterställFält();
             LaddaAllaKunder();
-        }
-
-
-        private void Personnummer_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox personTextBox = (TextBox)sender;
-
-            if (personTextBox.Text.Length != 10)
-            {
-                PersonnummerLbl.Foreground = Brushes.Red;
-            }
-            else
-            {
-                PersonnummerLbl.Foreground = Brushes.Black;
-            }
         }
 
       
@@ -191,57 +157,32 @@ namespace Bilverkstad.PresentationLager
         private void BtnNykund_Click(object sender, RoutedEventArgs e)
         {
             Kund? kund = _personService.HämtaKund(NyKund().Personnummer);
-            if (kund != null)
-            {
-                MessageBox.Show("NyKund finns redan");
+            _personService.SkapaKund(NyKund());
+            
+            MessageBox.Show("Kund skapad");
+            ÅterställFält();
+            LaddaAllaKunder();
+            
+        }
 
-            }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e, Label label)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.Length != 10)
+                label.Foreground = Brushes.Red;
             else
-            {
-                _personService.SkapaKund(NyKund());
+                label.Foreground = Brushes.Black;
 
-                MessageBox.Show("NyKund skapad");
-                ÅterställFält();
-                LaddaAllaKunder();
-            }
-           
-
+            KollaFältOchUppdateraKnapp(sender, e);
         }
-
-
-        private void Namn_TextChanged(object sender, TextChangedEventArgs e)
+        private void Personnummer_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-            KollaFältOchUppdateraKnapp();
-
-        }
-
-        private void Adress_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            KollaFältOchUppdateraKnapp();
-
+            TextBox_TextChanged(sender, e, PersonnummerLbl);
         }
 
         private void TelefonNr_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox telefonnrTextBox = (TextBox)sender;
-
-            if (TelefonNr.Text.Length != 10)
-            {
-                TelefonnrLbl.Foreground = Brushes.Red;
-            }
-            else
-            {
-                KollaFältOchUppdateraKnapp();
-                TelefonnrLbl.Foreground = Brushes.Black;
-            }
-
-        }
-
-        private void Epost_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            KollaFältOchUppdateraKnapp();
+            TextBox_TextChanged(sender, e, TelefonnrLbl);
         }
 
 

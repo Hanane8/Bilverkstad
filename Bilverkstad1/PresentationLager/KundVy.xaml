@@ -127,12 +127,15 @@
                     <TextBox Style="{StaticResource TextBoxSearch}" 
                              x:Name="txtSearch" Height="18" 
                              Foreground="Black"
-                             Margin="451,11,24,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged" />
+                             Margin="451,11,24,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"
+                             />
                     <TextBox Style="{StaticResource TextBoxInput}" 
+                             
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
                              Margin="150,42,0,0" 
-                             VerticalAlignment="Top" TextChanged="Namn_TextChanged" Foreground="Black"
+                             VerticalAlignment="Top" Foreground="Black"
+                             
                             />
                     <Label Content="Namn" 
                            Foreground="Black"
@@ -155,12 +158,13 @@
                              Margin="150,79,0,0" 
                              VerticalAlignment="Top" Foreground="Black"
                              PreviewTextInput="Siffror_Kontroll"
+                             TextChanged="Personnummer_TextChanged"
                             />
                     <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="Adress"
                              HorizontalAlignment="Left" 
                              Margin="150,119,0,0" 
-                             VerticalAlignment="Top" TextChanged="Adress_TextChanged" Foreground="Black"/>
+                             VerticalAlignment="Top" Foreground="Black"/>
                     <Label Content="Adress" HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
                     <Label Content="TelefonNr" 
                            HorizontalAlignment="Left" 
@@ -172,7 +176,7 @@
                              x:Name="Epost"
                              HorizontalAlignment="Left" 
                              Margin="405,90,0,0" 
-                             VerticalAlignment="Top" TextChanged="Epost_TextChanged" Foreground="Black"/>
+                             VerticalAlignment="Top" Foreground="Black"/>
                     <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="TelefonNr"
                              HorizontalAlignment="Left" 

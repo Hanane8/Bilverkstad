@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Affärslager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d28e303bafb72906748cbcac9b54059b2f22d9c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20eea243eb18f71e20dd6a2dcd06bc0c676a8257")]
 [assembly: System.Reflection.AssemblyProductAttribute("Affärslager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Affärslager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
