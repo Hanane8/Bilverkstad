@@ -13,6 +13,6 @@ namespace Entitetslager.Entiteter
         public DateTime? UtlämningsDatum { get; set; }
         public int KundNr { get; set; }
         public int AnställningsNr { get; set; }
-   
+
     }
 }

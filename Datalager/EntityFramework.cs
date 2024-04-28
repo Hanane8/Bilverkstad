@@ -15,6 +15,8 @@ namespace DataLager
         public DbSet<Mekaniker> Mekaniker { get; set; }
 
         public DbSet<ReservDel> ReservDelar { get; set; }
+        public DbSet<Bil> Bilar { get; set; }
+        public DbSet<Journal> Journaler { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,14 +36,18 @@ namespace DataLager
             modelBuilder.Entity<Kund>().Property(k => k.TelefonNr).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Adress).IsRequired();
 
-            modelBuilder.Entity<Bil>().HasOne<Kund>().WithMany(k => k.Bilar).HasForeignKey(k => k.KundNr);
+            modelBuilder.Entity<Bil>().HasKey(b => b.RegNr);
 
+            modelBuilder.Entity<Journal>().HasOne(j => j.Bil).WithOne().HasForeignKey<Journal>(j => j.RegNr);
+            modelBuilder.Entity<Journal>().HasOne(j => j.Bokning).WithOne().HasForeignKey<Bokning>(j => j.BokningsNr);
+            modelBuilder.Entity<Journal>().HasMany(j => j.ReservDelar).WithOne().OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Journal>().HasKey(j => j.JournalNr);
+                
 
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
             modelBuilder.Entity<Bokning>().Property(b => b.InlämningsDatum).IsRequired();
             modelBuilder.Entity<Bokning>().Property(b => b.UtlämningsDatum).IsRequired();
             modelBuilder.Entity<Bokning>().HasOne<Kund>().WithMany(m => m.Bokningar).HasForeignKey(b => b.KundNr);
-            modelBuilder.Entity<Bokning>().HasOne<Mekaniker>().WithMany(m => m.Bokningar).HasForeignKey(b => b.AnställningsNr);
 
 
             modelBuilder.Entity<Mekaniker>().HasKey(m => m.AnställningsNr);
