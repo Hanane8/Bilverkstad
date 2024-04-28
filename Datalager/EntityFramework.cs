@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bilverkstad1;
 using Entitetslager.Entiteter;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,7 @@ namespace DataLager
         public DbSet<ReservDel> ReservDelar { get; set; }
         public DbSet<Bil> Bilar { get; set; }
         public DbSet<Journal> Journaler { get; set; }
+        public DbSet<JournalReservDel> JournalReservDelar { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,7 +42,19 @@ namespace DataLager
 
             modelBuilder.Entity<Journal>().HasOne(j => j.Bil).WithOne().HasForeignKey<Journal>(j => j.RegNr);
             modelBuilder.Entity<Journal>().HasOne(j => j.Bokning).WithOne().HasForeignKey<Bokning>(j => j.BokningsNr);
-            modelBuilder.Entity<Journal>().HasMany(j => j.ReservDelar).WithOne().OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<Journal>().HasMany(j => j.ReservDelar).WithOne().OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<JournalReservDel>()
+                .HasKey(jr => new { jr.JournalNr, jr.ReservdelNr }); // Configure the composite key
+
+            modelBuilder.Entity<JournalReservDel>()
+                .HasOne(jr => jr.Journal)
+                .WithMany(j => j.JournalReservDelar)
+                .HasForeignKey(jr => jr.JournalNr);
+
+            modelBuilder.Entity<JournalReservDel>()
+                .HasOne(jr => jr.ReservDel)
+                .WithMany(r => r.JournalReservDelar)
+                .HasForeignKey(jr => jr.ReservdelNr);
             modelBuilder.Entity<Journal>().HasKey(j => j.JournalNr);
                 
 

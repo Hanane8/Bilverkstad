@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bilverkstad1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Entitetslager.Entiteter
         public string RegNr { get; set; }
         public Bil Bil { get; set; }
         public Bokning Bokning { get; set; }
-        public ICollection<ReservDel> ReservDelar { get; set; }
+        public List<JournalReservDel> JournalReservDelar { get; set; }
         public int AnställningsNr { get; set; }
     }
 }

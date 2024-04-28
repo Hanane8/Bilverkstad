@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Affärslager;
+using Bilverkstad1;
 using DataLager;
 using Entitetslager.Entiteter;
 using Microsoft.EntityFrameworkCore;
@@ -44,8 +45,11 @@ namespace Bilverkstad.PresentationLager
             var ensureCreated = serviceProvider.GetRequiredService<EntityFramework>();
             ensureCreated.Database.EnsureCreated();
 
-            TempContainer(ensureCreated);
-            var test = ensureCreated.Journaler.Find(5);
+            //TempContainer(ensureCreated); 
+
+            
+            var test = ensureCreated.Journaler.Include(j => j.JournalReservDelar).ThenInclude(jr => jr.ReservDel)
+                .FirstOrDefault(j => j.JournalNr == 2);
             InitializeComponent();
         }
 
@@ -285,36 +289,51 @@ namespace Bilverkstad.PresentationLager
                     Åtgärder = action,
                     RegNr = car.RegNr,
                     Bokning = bokning,
-                    ReservDelar = reservDelar,
                     AnställningsNr = i
                 };
+                JournalReservDel del1 = new JournalReservDel
+                {
+                    Journal = journal,
+                    ReservDel = reservDelar[0]
+                };
+                JournalReservDel del2 = new JournalReservDel
+                {
+                    Journal = journal,
+                    ReservDel = reservDelar[1]
+                };
 
+                JournalReservDel del3 = new JournalReservDel
+                {
+                    Journal = journal,
+                    ReservDel = reservDelar[2]
+                };
+                journal.JournalReservDelar = new List<JournalReservDel> { del1, del2, del3 };
                 journals.Add(journal);
             }
 
 
-            //foreach (var kund in kunder)
-            //{
-            //    entityFramework.Kunder.Add(kund);
-            //}
+            foreach (var kund in kunder)
+            {
+                entityFramework.Kunder.Add(kund);
+            }
 
-            //foreach (var bil in cars)
-            //{
-            //    entityFramework.Bilar.Add(bil);
-            //}
-            //foreach (var mekaniker in mekanikerList)
-            //{
-            //    entityFramework.Mekaniker.Add(mekaniker);
-            //}
-            //foreach (var reservDel in reservDels)
-            //{
-            //    entityFramework.ReservDelar.Add(reservDel);
-            //}
+            foreach (var bil in cars)
+            {
+                entityFramework.Bilar.Add(bil);
+            }
+            foreach (var mekaniker in mekanikerList)
+            {
+                entityFramework.Mekaniker.Add(mekaniker);
+            }
+            foreach (var reservDel in reservDels)
+            {
+                entityFramework.ReservDelar.Add(reservDel);
+            }
 
-            //foreach (var bokning in bokningList)
-            //{
-            //    entityFramework.Bokningar.Add(bokning);
-            //}
+            foreach (var bokning in bokningList)
+            {
+                entityFramework.Bokningar.Add(bokning);
+            }
 
             foreach (var journal in journals)
             {
