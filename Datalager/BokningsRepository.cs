@@ -32,7 +32,10 @@ namespace DataLager
             _dbContext.Bokningar.Add(bokning);
             
         }
-
+        public void AvbokaBokning(Bokning bokning)
+        {
+            _dbContext.Bokningar.Remove(bokning);
+        }
         public IEnumerable<Bokning> HämtaAllaBokningar()
         {
             return _dbContext.Bokningar.ToList();

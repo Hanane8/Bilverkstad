@@ -32,7 +32,11 @@ namespace Affärslager
         {
             return _unitOfWork.BokningsRepo.HämtaBokning(kund);
         }
-
+        public void AvbokaBokning(Bokning bokning)
+        {
+            _unitOfWork.BokningsRepo.AvbokaBokning(bokning);
+            _unitOfWork.SaveChanges();
+        }
 
         public IEnumerable<Bokning> HämtaAllaBokningar()
         {
