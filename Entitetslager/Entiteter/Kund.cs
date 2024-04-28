@@ -10,5 +10,6 @@ namespace Entitetslager.Entiteter
     {
         public int KundNr { get; set; }
         public List<Bokning>? Bokningar { get; set; }
+        public List<Bil>? Bilar { get; set; }
     }
 }

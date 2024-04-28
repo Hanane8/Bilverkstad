@@ -11,5 +11,7 @@ namespace Entitetslager.Entiteter
         public string RegNr { get; set; }
         public string Märke { get; set; }
         public int Årsmodell { get; set; }
+        public int KundNr { get; set; }
+        public Kund Kund { get; set; }
     }
 }

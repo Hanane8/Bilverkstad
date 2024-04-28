@@ -68,10 +68,6 @@ namespace Bilverkstad.PresentationLager
             Application.Current.Shutdown();
         }
 
-        private void TextUser_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
            

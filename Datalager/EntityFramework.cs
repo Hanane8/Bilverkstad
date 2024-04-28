@@ -34,6 +34,8 @@ namespace DataLager
             modelBuilder.Entity<Kund>().Property(k => k.TelefonNr).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Adress).IsRequired();
 
+            modelBuilder.Entity<Bil>().HasOne<Kund>().WithMany(k => k.Bilar).HasForeignKey(k => k.KundNr);
+
 
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
             modelBuilder.Entity<Bokning>().Property(b => b.InlämningsDatum).IsRequired();
