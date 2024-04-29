@@ -30,10 +30,8 @@ namespace DataLager
             return användare.Lösenord == lösenord;
         }
 
-        public Kund HämtaKund(string personnummer)
-        {
-            return _dbContext.Kunder.FirstOrDefault(k => k.Personnummer == personnummer);
-        }
+        public Kund HämtaKund(string personnummer) => _dbContext.Kunder.FirstOrDefault(k => k.Personnummer == personnummer);
+        
 
         public void SparaKund(Kund kund)
         {
@@ -41,10 +39,8 @@ namespace DataLager
             _dbContext.Kunder.Add(kund);
         }
 
-        public List<Kund> SökKund(string sökTerm)
-        {
-            return _dbContext.Kunder.Where(k => k.Namn.Contains(sökTerm)).ToList();
-        }
+        public List<Kund> SökKund(string sökTerm) => _dbContext.Kunder.Where(k => k.Namn.Contains(sökTerm)).ToList();
+        
 
         public void UppdateraKund(Kund kund)
         {
@@ -59,23 +55,21 @@ namespace DataLager
             _dbContext.Entry(existerandeKund).State = EntityState.Modified;
         }
 
-        public IEnumerable<Kund> HämtaAllaKunder()
+        public IEnumerable<Kund> HämtaAllaKunder() => _dbContext.Kunder.ToList();
+        
+        public IEnumerable<Mekaniker> HämtaAllaMekaniker() =>_dbContext.Mekaniker.ToList();
+        
+        public Mekaniker HämtaMekanikerNr(int anställningsNr) =>_dbContext.Mekaniker.FirstOrDefault(m => m.AnställningsNr == anställningsNr);
+        
+        public Kund HämtaKundNr(int kundNr) => _dbContext.Kunder.FirstOrDefault(k => k.KundNr == kundNr);
+        
+
+        public List<Bil> HämtaBilar(Kund kund) => _dbContext.Bilar.Where( b => b.KundNr == kund.KundNr).ToList();
+        public Bil SökBil(string regnr) => _dbContext.Bilar.FirstOrDefault(b => b.RegNr == regnr);
+        public void SkapaBil(Bil bil)
         {
-            return _dbContext.Kunder.ToList();
-        }
-        public IEnumerable<Mekaniker> HämtaAllaMekaniker()
-        {
-            return _dbContext.Mekaniker.ToList();
-        }
-        public Mekaniker HämtaMekanikerNr(int anställningsNr)
-        {
-            return _dbContext.Mekaniker.FirstOrDefault(m => m.AnställningsNr == anställningsNr);
-        }
-        public Kund HämtaKundNr(int kundNr)
-        {
-            return _dbContext.Kunder.FirstOrDefault(k => k.KundNr == kundNr);
+            _dbContext.Bilar.Add(bil);
         }
 
-       
     }
 }

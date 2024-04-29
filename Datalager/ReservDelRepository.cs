@@ -27,9 +27,7 @@ namespace DataLager
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<ReservDel> HämtaAllaReservDelar()
-        {
-            return _dbContext.ReservDelar.ToList();
-        }
+        public IEnumerable<ReservDel> HämtaAllaReservDelar() => _dbContext.ReservDelar.ToList();
+        
     }
 }

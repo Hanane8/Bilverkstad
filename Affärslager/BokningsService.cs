@@ -28,19 +28,15 @@ namespace Affärslager
             _unitOfWork.SaveChanges();
         }
 
-        public List<Bokning> HämtaBokning(Kund kund)
-        {
-            return _unitOfWork.BokningsRepo.HämtaBokning(kund);
-        }
+        public List<Bokning> HämtaBokning(Kund kund) =>_unitOfWork.BokningsRepo.HämtaBokning(kund);
+        
         public void AvbokaBokning(Bokning bokning)
         {
             _unitOfWork.BokningsRepo.AvbokaBokning(bokning);
             _unitOfWork.SaveChanges();
         }
 
-        public IEnumerable<Bokning> HämtaAllaBokningar()
-        {
-            return _unitOfWork.BokningsRepo.HämtaAllaBokningar();
-        }
+        public IEnumerable<Bokning> HämtaAllaBokningar() =>_unitOfWork.BokningsRepo.HämtaAllaBokningar();
+        
     }
 }

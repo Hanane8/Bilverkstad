@@ -37,6 +37,15 @@ namespace Affärslager
             _unitOfWork.PersonRepo.UppdateraKund(kund); 
             _unitOfWork.SaveChanges();
         }
+        public List<Bil> HämtaBilar(Kund kund) => _unitOfWork.PersonRepo.HämtaBilar(kund);
+
+        public void SkapaBil(Bil bil)
+        {
+            _unitOfWork.PersonRepo.SkapaBil(bil);
+            _unitOfWork.SaveChanges();
+        }
+
+        public Bil SökBil(string regNr) => _unitOfWork.PersonRepo.SökBil(regNr);
 
     }
 }

@@ -38,24 +38,24 @@
             </Border.Background>
             <Grid>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="119"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="NyKund Manager"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31"/>
+                        <RowDefinition Height="119"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="NyKund Manager"
                            Foreground="DarkGray"
                            FontSize="12"
                            FontFamily="Montserrat"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            Margin="10,0,0,0" Height="14"/>
-                <Button x:Name="BtnMinimize"
+                    <Button x:Name="BtnMinimize"
                         BorderThickness="0"
                         Content="-"
                         Foreground="White"
@@ -67,18 +67,18 @@
                         >
 
 
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18" Height="18"
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
                                     CornerRadius="9"
                                     Background= "#FF13A4B8">
-                                <ContentPresenter VerticalAlignment="Center"
+                                    <ContentPresenter VerticalAlignment="Center"
                                   HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button  x:Name="BtnClose"
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button  x:Name="BtnClose"
                         BorderThickness="0"
                         Content="X"
                         Foreground="White"
@@ -87,78 +87,78 @@
                         Click="BtnClose_Click" 
                         Background="#FF953707" Margin="750,2,-600,3" >
 
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18" Height="18"
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
                                     CornerRadius="9"
                                     Background="#FF953707">
-                                <ContentPresenter VerticalAlignment="Center"
+                                    <ContentPresenter VerticalAlignment="Center"
                                 HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
 
-                </Button>
+                    </Button>
 
 
-                <Border Grid.Row="2"  CornerRadius="0 50 0 0">
-                    <DockPanel>
-                        <StackPanel DockPanel.Dock="Top">
-                            <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0" Name="BtnNykund"
+                    <Border Grid.Row="2"  CornerRadius="0 50 0 0">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top">
+                                <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0" Name="BtnNykund"
                                      Content="Ny Kund" Click="BtnNykund_Click" Background="#FF6067F1" FontSize="12" >
-                                <Button.Effect>
-                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
-                                </Button.Effect>
-                            </Button>
-                            <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0" Name="BtnUppdatera"
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+                                <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0" Name="BtnUppdatera"
                                     Content="Uppdatera" Click="BtnUppdatera_Click" Background="#FF6067F1" FontSize="12" >
-                                <Button.Effect>
-                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
-                                </Button.Effect>
-                            </Button>
-                            <Button Style="{StaticResource ButtonMenu}" Margin="10,20,10,0" x:Name="BtnÅterställ"
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+                                <Button Style="{StaticResource ButtonMenu}" Margin="10,20,10,0" x:Name="BtnÅterställ"
                                 Content="Återställ" Click="BtnÅterställ_OnClick_Click" Background="#FF6067F1" FontSize="12" >
-                                <Button.Effect>
-                                    <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
-                                </Button.Effect>
-                            </Button>
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
 
 
-                        </StackPanel>
-                    </DockPanel>
+                            </StackPanel>
+                        </DockPanel>
 
-                </Border>
-                <Image Source="/Images/121212-rem.png" Height="92"
+                    </Border>
+                    <Image Source="/Images/121212-rem.png" Height="92"
                            Width="200" Opacity="0.6"
                         HorizontalAlignment="Left" 
                                         Margin="10,10,0,0" 
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
                    />
-            </Grid>
-            <!--Main Section-->
-            <Grid Grid.Column="1" Margin="0,0,-5,0">
+                </Grid>
+                <!--Main Section-->
+                <Grid Grid.Column="1" Margin="0,0,-5,0">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="29*"/>
-                    <RowDefinition Height="auto" MinHeight="150"/>
-                    <RowDefinition Height="196*"/>
-                </Grid.RowDefinitions>
-                <!--text Search-->
-                <Grid Grid.Row="1" Grid.Column="1">
-                    <TextBox Style="{StaticResource TextBoxSearch}" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="29*"/>
+                        <RowDefinition Height="auto" MinHeight="150"/>
+                        <RowDefinition Height="196*"/>
+                    </Grid.RowDefinitions>
+                    <!--text Search-->
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <TextBox Style="{StaticResource TextBoxSearch}" 
                              x:Name="txtSearch" Height="18" 
                              
                              Margin="451,11,24,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"
                              />
-                    <TextBox Style="{StaticResource TextBoxInput}" 
+                        <TextBox Style="{StaticResource TextBoxInput}" 
                              
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
-                             Margin="150,42,0,0" 
-                             VerticalAlignment="Top"        
+                             Margin="120,42,0,0" 
+                             VerticalAlignment="Top" Width="96"        
                             />
-                    <Label Content="Namn" 
+                        <Label Content="Namn" 
                            Foreground="#FFEAC4EE" 
                            FontWeight="Bold" FontStyle="Italic"
                            FontSize="12"
@@ -167,7 +167,7 @@
                            Height="24"
                            VerticalAlignment="Top" 
                            Width="61"/>
-                    <Label Content="Personnummer" 
+                        <Label Content="Personnummer" 
                            Name="PersonnummerLbl"
                             Foreground="#FFEAC4EE" 
                            FontWeight="Bold" FontStyle="Italic"
@@ -179,50 +179,75 @@
                         <TextBox Style= "{StaticResource TextBoxInput}" 
                              x:Name="Personnummer"
                              HorizontalAlignment="Left" 
-                             Margin="150,79,0,0" 
+                             Margin="120,79,0,0" 
                              VerticalAlignment="Top" 
                              PreviewTextInput="Siffror_Kontroll"
-                             TextChanged="Personnummer_TextChanged"
+                             TextChanged="Personnummer_TextChanged" Width="96"
                             />
-                    <TextBox Style="{StaticResource TextBoxInput}" 
+                        <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="Adress"
                              HorizontalAlignment="Left" 
-                             Margin="150,119,0,0" 
-                             VerticalAlignment="Top" />
-                    <Label Content="Adress" 
+                             Margin="120,119,0,0" 
+                             VerticalAlignment="Top" Width="96" />
+                        <Label Content="Adress" 
                             Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
-                    <Label Content="TelefonNr" 
+                        <Label Content="TelefonNr" 
                             Foreground="#FFEAC4EE"
                            FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" 
-                           Height="24" Margin="320,42,0,0" 
+                           Height="24" Margin="230,42,0,0" 
                            VerticalAlignment="Top" Width="61" 
                            Name="TelefonnrLbl"
                            />
-                    <TextBox Style="{StaticResource TextBoxInput}" 
+                        <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="Epost"
                              HorizontalAlignment="Left" 
-                             Margin="405,90,0,0" 
-                             VerticalAlignment="Top"/>
-                    <TextBox Style="{StaticResource TextBoxInput}" 
+                             Margin="315,79,0,0" 
+                             VerticalAlignment="Top" Width="86"/>
+                        <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="TelefonNr"
                              HorizontalAlignment="Left" 
                              Height="16" 
-                             Margin="405,46,0,0" 
+                             Margin="315,46,0,0" 
                              VerticalAlignment="Top" 
                              TextChanged="TelefonNr_TextChanged" 
-                             PreviewTextInput="Siffror_Kontroll"/>
-                    <Label Content="E-post" 
+                             PreviewTextInput="Siffror_Kontroll" Width="86"/>
+                        <Label Content="E-post" 
                             Foreground="#FFEAC4EE" 
                            FontWeight="Bold" FontStyle="Italic" 
-                           HorizontalAlignment="Left" Height="24" Margin="320,81,0,0" VerticalAlignment="Top" Width="61"/>
-                    <Label Content="Sök" 
+                           HorizontalAlignment="Left" Height="24" Margin="230,81,0,0" VerticalAlignment="Top" Width="61"/>
+                        <Label Content="Sök" 
                             Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Margin="421,6,0,0" VerticalAlignment="Top"/>
+                        <Label Content="RegNr" 
+                               Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                               HorizontalAlignment="Left" Margin="426,42,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Märke" 
+                               Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                               HorizontalAlignment="Left" Margin="426,80,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Årsmodell" 
+                               Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                               HorizontalAlignment="Left" Margin="426,113,0,0" VerticalAlignment="Top"/>
+                        <TextBox Style="{StaticResource TextBoxInput}" 
+                            x:Name="Märke"
+                            HorizontalAlignment="Left" 
+                            Margin="491,79,0,0" 
+                            VerticalAlignment="Top" Width="86"/>
+                        <TextBox Style="{StaticResource TextBoxInput}" 
+                            x:Name="RegNr"
+                            HorizontalAlignment="Left" 
+                            Margin="491,46,0,0" 
+                            VerticalAlignment="Top" Width="86"/>
+                        <TextBox Style="{StaticResource TextBoxInput}" 
+                            x:Name="Årsmodell"
+                            HorizontalAlignment="Left" 
+                            Margin="491,119,0,0" 
+                            VerticalAlignment="Top" Width="86"
+                            PreviewTextInput="Siffror_Kontroll"/>
 
-                </Grid>
-                <DataGrid x:Name="KunderDataGrid"
+                    </Grid>
+                    <DataGrid x:Name="KunderDataGrid"
                           Style="{DynamicResource DataGridStyle1}" 
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
@@ -249,8 +274,8 @@
 
 
 
-        </Grid>
-    </Border>
+            </Grid>
+        </Border>
     </Border>
 
 

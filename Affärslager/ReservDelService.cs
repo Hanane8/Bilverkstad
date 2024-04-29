@@ -27,9 +27,7 @@ namespace Affärslager
             _unitOfWork.ReservDelRepo.UppdateraReservDel(reservDel);
             _unitOfWork.SaveChanges();
         }
-        public IEnumerable<ReservDel> HämtaAllaReservdel()
-        {
-            return _unitOfWork.ReservDelRepo.HämtaAllaReservDelar();
-        }
+        public IEnumerable<ReservDel> HämtaAllaReservdel()=>_unitOfWork.ReservDelRepo.HämtaAllaReservDelar();
+        
     }
 }
