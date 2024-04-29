@@ -48,8 +48,8 @@ namespace Bilverkstad.PresentationLager
             //TempContainer(ensureCreated); 
 
             
-            var test = ensureCreated.Journaler.Include(j => j.JournalReservDelar).ThenInclude(jr => jr.ReservDel)
-                .FirstOrDefault(j => j.JournalNr == 2);
+            //var test = ensureCreated.Journaler.Include(j => j.JournalReservDelar).ThenInclude(jr => jr.ReservDel)
+            //    .FirstOrDefault(j => j.JournalNr == 2);
             InitializeComponent();
         }
 

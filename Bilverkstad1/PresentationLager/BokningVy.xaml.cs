@@ -224,32 +224,34 @@ namespace Bilverkstad.PresentationLager
                 }
 
                 // Uppdatera ComboBoxar med de valda värdena
-                cmbMekaniker.SelectedItem = selectedBokning.AnställningsNr;
-                cmbKund.SelectedItem = selectedBokning.KundNr;
+                var mekaniker = _personService.HämtaMekanikerNr(selectedBokning.AnställningsNr);
+                var kund = _personService.HämtaKundNr(selectedBokning.KundNr);
+                cmbMekaniker.SelectedItem = mekaniker;
+                cmbKund.SelectedItem = kund;
             }
         }
 
 
-        private void cmbKund_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbKund.SelectedItem != null)
-            {
-                Kund selectedKund = (Kund)cmbKund.SelectedItem;
+        //private void cmbKund_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cmbKund.SelectedItem != null)
+        //    {
+        //        Kund selectedKund = (Kund)cmbKund.SelectedItem;
 
-                MessageBox.Show($"Vald kund: {selectedKund.Namn}, Kundnummer: {selectedKund.KundNr}");
-            }
+        //        MessageBox.Show($"Vald kund: {selectedKund.Namn}, Kundnummer: {selectedKund.KundNr}");
+        //    }
 
-        }
+        //}
 
-        private void cmbMekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbMekaniker.SelectedItem != null)
-            {
-                Mekaniker selectedMekaniker = (Mekaniker)cmbMekaniker.SelectedItem;
+        //private void cmbMekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cmbMekaniker.SelectedItem != null)
+        //    {
+        //        Mekaniker selectedMekaniker = (Mekaniker)cmbMekaniker.SelectedItem;
 
-                MessageBox.Show($"Vald mekaniker: {selectedMekaniker.Namn}, Anställningsnummer: {selectedMekaniker.AnställningsNr}");
-            }
-        }
+        //        MessageBox.Show($"Vald mekaniker: {selectedMekaniker.Namn}, Anställningsnummer: {selectedMekaniker.AnställningsNr}");
+        //    }
+        //}
         private void ClearTextBoxes()
         {
             InlämningsDatum.Text = "";
