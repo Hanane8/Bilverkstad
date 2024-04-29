@@ -211,5 +211,7 @@ namespace Bilverkstad.PresentationLager
         {
             ÅterställFält();
         }
+
+       
     }
 }

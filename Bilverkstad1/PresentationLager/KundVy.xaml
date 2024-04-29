@@ -13,8 +13,30 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown" 
         >
-    <Border CornerRadius="20" Background="Beige">
-        <Grid>
+    <Border CornerRadius="50">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
+             Stretch="None" 
+             />
+        </Border.Background>
+        <Border CornerRadius="20"
+ BorderThickness="2"
+         Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color = "#FF4157AF" Offset="0"/>
+                    <GradientStop Color = "#FFD914A6" Offset="0.75"/>
+                    <GradientStop Color = "#FF8823A7" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color = "#CC5C0B5B" Offset="0"/>
+                    <GradientStop Color = "#CC12114F" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -79,7 +101,7 @@
                 </Button>
 
 
-                <Border Grid.Row="2" Background="#FF3E44C8" CornerRadius="0 50 0 0">
+                <Border Grid.Row="2"  CornerRadius="0 50 0 0">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top">
                             <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0" Name="BtnNykund"
@@ -126,7 +148,7 @@
                 <Grid Grid.Row="1" Grid.Column="1">
                     <TextBox Style="{StaticResource TextBoxSearch}" 
                              x:Name="txtSearch" Height="18" 
-                             Foreground="Black"
+                             
                              Margin="451,11,24,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"
                              />
                     <TextBox Style="{StaticResource TextBoxInput}" 
@@ -134,11 +156,11 @@
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
                              Margin="150,42,0,0" 
-                             VerticalAlignment="Top" Foreground="Black"
-                             
+                             VerticalAlignment="Top"        
                             />
                     <Label Content="Namn" 
-                           Foreground="Black"
+                           Foreground="#FFEAC4EE" 
+                           FontWeight="Bold" FontStyle="Italic"
                            FontSize="12"
                            Margin="19,42,0,0"
                            HorizontalAlignment="Left" 
@@ -147,16 +169,18 @@
                            Width="61"/>
                     <Label Content="Personnummer" 
                            Name="PersonnummerLbl"
+                            Foreground="#FFEAC4EE" 
+                           FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" 
                            Height="24" Margin="19,75,0,0" 
                            VerticalAlignment="Top" 
                            Width="101"
                            />
-                    <TextBox Style="{StaticResource TextBoxInput}" 
+                        <TextBox Style= "{StaticResource TextBoxInput}" 
                              x:Name="Personnummer"
                              HorizontalAlignment="Left" 
                              Margin="150,79,0,0" 
-                             VerticalAlignment="Top" Foreground="Black"
+                             VerticalAlignment="Top" 
                              PreviewTextInput="Siffror_Kontroll"
                              TextChanged="Personnummer_TextChanged"
                             />
@@ -164,9 +188,13 @@
                              x:Name="Adress"
                              HorizontalAlignment="Left" 
                              Margin="150,119,0,0" 
-                             VerticalAlignment="Top" Foreground="Black"/>
-                    <Label Content="Adress" HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
+                             VerticalAlignment="Top" />
+                    <Label Content="Adress" 
+                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                           HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
                     <Label Content="TelefonNr" 
+                            Foreground="#FFEAC4EE"
+                           FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" 
                            Height="24" Margin="320,42,0,0" 
                            VerticalAlignment="Top" Width="61" 
@@ -176,50 +204,42 @@
                              x:Name="Epost"
                              HorizontalAlignment="Left" 
                              Margin="405,90,0,0" 
-                             VerticalAlignment="Top" Foreground="Black"/>
+                             VerticalAlignment="Top"/>
                     <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="TelefonNr"
                              HorizontalAlignment="Left" 
                              Height="16" 
                              Margin="405,46,0,0" 
-                             VerticalAlignment="Top" TextChanged="TelefonNr_TextChanged" Foreground="Black"
+                             VerticalAlignment="Top" 
+                             TextChanged="TelefonNr_TextChanged" 
                              PreviewTextInput="Siffror_Kontroll"/>
-                    <Label Content="E-post" HorizontalAlignment="Left" Height="24" Margin="320,81,0,0" VerticalAlignment="Top" Width="61"/>
-                    <Label Content="Sök" HorizontalAlignment="Left" Margin="421,6,0,0" VerticalAlignment="Top"/>
+                    <Label Content="E-post" 
+                            Foreground="#FFEAC4EE" 
+                           FontWeight="Bold" FontStyle="Italic" 
+                           HorizontalAlignment="Left" Height="24" Margin="320,81,0,0" VerticalAlignment="Top" Width="61"/>
+                    <Label Content="Sök" 
+                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                           HorizontalAlignment="Left" Margin="421,6,0,0" VerticalAlignment="Top"/>
 
                 </Grid>
                 <DataGrid x:Name="KunderDataGrid"
                           Style="{DynamicResource DataGridStyle1}" 
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
-                          Grid.Row="2" Margin="0,0,5,0"
-                          IsReadOnly="true"   
-                          Background="#FFFDFDFE">
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Foreground" Value="Black"></Setter>
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>>
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                          RowStyle="{DynamicResource DataGridRowStyle1}" 
+                          Grid.Row="2" Margin="0,0,10,0" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
 
-                    <DataGrid.RowStyle>
-                        
-                        <Style TargetType="DataGridRow">
-                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="KolumnRubrik_OnClick"/>
-                        </Style>
-                    </DataGrid.RowStyle>
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        </DataGrid.Columns>
+
+
+                    </DataGrid>
 
 
 
-            </Grid>
+
+                </Grid>
 
 
 
@@ -230,6 +250,7 @@
 
 
         </Grid>
+    </Border>
     </Border>
 
 
