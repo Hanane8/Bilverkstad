@@ -186,24 +186,33 @@ namespace Bilverkstad.PresentationLager
         }
 
 
-        private void KolumnRubrik_OnClick(object sender, MouseButtonEventArgs e)
+        private void KolumnRubrik_OnClick(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
-            DataGridRow rad = sender as DataGridRow;
-            if (rad != null)
+            try
             {
-
-                var item = rad.Item as dynamic;
-
-                if (item != null)
-                {
-                    Personnummer.Text = item.Personnummer;
+                object rad = KunderDataGrid.SelectedItems[0];
+            var valdRad = new
+            {
+                Personnummer = ((dynamic)rad).Personnummer,
+                Namn = ((dynamic)rad).Namn,
+                Adress = ((dynamic)rad).Adress,
+                TelefonNr = ((dynamic)rad).TelefonNr,
+                Epost = ((dynamic)rad).Epost
+            };
+            if (valdRad != null)
+            {
+                
+                    Personnummer.Text = valdRad.Personnummer;
                     Personnummer.IsEnabled = false;
-                    Adress.Text = item.Adress;
-                    Namn.Text = item.Namn;
-                    TelefonNr.Text = "0" + item.TelefonNr.ToString();
-                    Epost.Text = item.Epost;
-                }
+                    Adress.Text = valdRad.Adress;
+                    Namn.Text = valdRad.Namn;
+                    TelefonNr.Text = "0" + valdRad.TelefonNr.ToString();
+                    Epost.Text = valdRad.Epost;
+                  
+                
             }
+                }
+                catch { }
         }
 
 
