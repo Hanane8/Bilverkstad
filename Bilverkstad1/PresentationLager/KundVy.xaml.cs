@@ -105,7 +105,7 @@ namespace Bilverkstad.PresentationLager
         private void KollaFältOchUppdateraKnapp(object sender, TextChangedEventArgs textChangedEventArgs)
         {
             var allaFältOk =
-                new[] { Personnummer, Adress, Namn, TelefonNr, Epost }.All(x => !string.IsNullOrEmpty(x.Text));
+                new[] { Personnummer, Adress, Namn, TelefonNr, Epost, Märke, RegNr, Årsmodell }.All(x => !string.IsNullOrEmpty(x.Text));
 
             //Om alla fält är korrekt ifyllda så går det att trycka på respektive knapp
             BtnUppdatera.IsEnabled = BtnNykund.IsEnabled = allaFältOk;
