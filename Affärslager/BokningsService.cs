@@ -21,9 +21,12 @@ namespace Affärslager
         public void SkapaBokning(Bokning bokning)
         {
             _unitOfWork.BokningsRepo.SparaBokning(bokning);
-            _unitOfWork.SaveChanges(); 
+            //_unitOfWork.SaveChanges();
+        }
 
-           
+        public void SaveChanges()
+        {
+            _unitOfWork.SaveChanges();
         }
         public void UppdateraBokning(Bokning bokning)
         {

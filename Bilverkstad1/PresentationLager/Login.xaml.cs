@@ -38,6 +38,7 @@ namespace Bilverkstad.PresentationLager
                 .AddScoped<EntityFramework>()
                 .AddScoped<ReservDelService>()
                 .AddScoped<BokningsService>()
+                .AddScoped<JournalService>()
                 .BuildServiceProvider();
            
 
@@ -206,6 +207,8 @@ namespace Bilverkstad.PresentationLager
                 }
             };
 
+
+           
             List<Bokning> bokningList = new List<Bokning>()
             {
                 new Bokning()
@@ -254,7 +257,13 @@ namespace Bilverkstad.PresentationLager
                 new ReservDel() { Namn = "Crankshaft", Pris = 800.0, Kvantitet = 10 },
                 new ReservDel() { Namn = "Camshaft", Pris = 600.0, Kvantitet = 8 }
             };
-
+            var test = new Bokning()
+            {
+                AnställningsNr = 1,
+                InlämningsDatum = DateTime.Now,
+                UtlämningsDatum = DateTime.Now.AddDays(1),
+                KundNr = 1,
+            };
             List<Journal> journals = new List<Journal>();
 
             for (int i = 0; i < 5; i++)
@@ -339,6 +348,7 @@ namespace Bilverkstad.PresentationLager
             {
                 entityFramework.Journaler.Add(journal);
             }
+
             entityFramework.SaveChanges();
 
             

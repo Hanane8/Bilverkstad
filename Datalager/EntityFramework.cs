@@ -43,9 +43,8 @@ namespace DataLager
             modelBuilder.Entity<Journal>().HasKey(j => j.JournalNr);
             modelBuilder.Entity<Journal>().HasOne(j => j.Bil).WithOne().HasForeignKey<Journal>(j => j.RegNr);
             modelBuilder.Entity<Journal>().HasOne(j => j.Bokning).WithOne().HasForeignKey<Bokning>(j => j.BokningsNr);
-            //modelBuilder.Entity<Journal>().HasMany(j => j.ReservDelar).WithOne().OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<JournalReservDel>()
-                .HasKey(jr => new { jr.JournalNr, jr.ReservdelNr }); // Configure the composite key
+                .HasKey(jr => new { jr.JournalNr, jr.ReservdelNr }); // Konfigurera sammansatt nyckel
 
             modelBuilder.Entity<JournalReservDel>()
                 .HasOne(jr => jr.Journal)

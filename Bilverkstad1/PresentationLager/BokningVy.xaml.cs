@@ -159,14 +159,14 @@ namespace Bilverkstad.PresentationLager
                     
                     var nyJournal = new Journal
                     {
-                        BokningsNr = sparadBokning.BokningsNr,
+                        Bokning = nyBokning,
                         Åtgärder = atgarder,
                         AnställningsNr = valdMekaniker.AnställningsNr,
                     };
 
                   
                     _journalService.SkapaJournal(nyJournal);
-
+                    _bokningsService.SaveChanges();
                     MessageBox.Show("Bokningen har sparats!");
                 }
                 else
