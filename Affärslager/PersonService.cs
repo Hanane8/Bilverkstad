@@ -46,6 +46,7 @@ namespace Affärslager
         }
 
         public Bil SökBil(string regNr) => _unitOfWork.PersonRepo.SökBil(regNr);
+        public Bil Hämtabil(string regNr) => _unitOfWork.PersonRepo.Hämtabil(regNr);
 
     }
 }

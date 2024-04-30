@@ -40,6 +40,7 @@ namespace DataLager
 
             modelBuilder.Entity<Bil>().HasKey(b => b.RegNr);
 
+            modelBuilder.Entity<Journal>().HasKey(j => j.JournalNr);
             modelBuilder.Entity<Journal>().HasOne(j => j.Bil).WithOne().HasForeignKey<Journal>(j => j.RegNr);
             modelBuilder.Entity<Journal>().HasOne(j => j.Bokning).WithOne().HasForeignKey<Bokning>(j => j.BokningsNr);
             //modelBuilder.Entity<Journal>().HasMany(j => j.ReservDelar).WithOne().OnDelete(DeleteBehavior.Cascade);
@@ -55,7 +56,6 @@ namespace DataLager
                 .HasOne(jr => jr.ReservDel)
                 .WithMany(r => r.JournalReservDelar)
                 .HasForeignKey(jr => jr.ReservdelNr);
-            modelBuilder.Entity<Journal>().HasKey(j => j.JournalNr);
                 
 
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);

@@ -1,4 +1,6 @@
-﻿namespace DataLager
+﻿using Datalager;
+
+namespace DataLager
 {
     public class UnitOfWork
     {
@@ -6,6 +8,7 @@
         private readonly EntityFramework _dbContext;
         private BokningsRepository _bokningsRepository;
         private ReservDelRepository _servDelRepository;
+        private JournalRepository _journalRepository;
         public UnitOfWork(EntityFramework dbContext)
         {
             this._dbContext = dbContext;
@@ -38,6 +41,16 @@
                 if (_servDelRepository == null)
                     _servDelRepository = new ReservDelRepository(_dbContext);
                 return _servDelRepository;
+            }
+
+        }
+        public JournalRepository JournalRepo
+        {
+            get
+            {
+                if (_journalRepository == null)
+                    _journalRepository = new JournalRepository(_dbContext);
+                return _journalRepository;
             }
 
         }

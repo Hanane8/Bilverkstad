@@ -88,15 +88,12 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnSpara_Click(object sender, RoutedEventArgs e)
         {
-            string namn = Namn.Text;
-            double pris = double.Parse(Pris.Text); 
-            int kvantitet = int.Parse(Kvantitet.Text);
-
+           
             ReservDel newReservDel = new ReservDel
             {
-                Namn = namn,
-                Pris = pris,
-                Kvantitet = kvantitet,
+                Namn = Namn.Text,
+                Pris = double.Parse(Pris.Text),
+                Kvantitet = int.Parse(Kvantitet.Text),
             };
 
             try

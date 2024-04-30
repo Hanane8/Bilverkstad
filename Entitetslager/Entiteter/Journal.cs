@@ -14,7 +14,13 @@ namespace Entitetslager.Entiteter
         public string RegNr { get; set; }
         public Bil Bil { get; set; }
         public Bokning Bokning { get; set; }
+        public int BokningsNr { get; set; }
         public List<JournalReservDel> JournalReservDelar { get; set; }
         public int AnställningsNr { get; set; }
+
+        public Journal()
+        {
+        }
     }
+
 }

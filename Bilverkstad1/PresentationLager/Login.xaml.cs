@@ -340,6 +340,8 @@ namespace Bilverkstad.PresentationLager
                 entityFramework.Journaler.Add(journal);
             }
             entityFramework.SaveChanges();
+
+            
         }
     }
 }

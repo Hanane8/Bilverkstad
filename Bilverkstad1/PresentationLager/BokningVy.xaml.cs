@@ -1,4 +1,5 @@
 ﻿using Affärslager;
+using DataLager;
 using Entitetslager.Entiteter;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,33 +18,40 @@ using System.Windows.Shapes;
 
 namespace Bilverkstad.PresentationLager
 {
-   
+
     public partial class BokningVy : Window
     {
         private BokningsService _bokningsService;
         private PersonService _personService;
-       
+        private ReservDelService _reservDelService;
+        private JournalService _journalService;
 
         public BokningVy(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-           
+
             _bokningsService = (BokningsService)serviceProvider.GetService(typeof(BokningsService));
             _personService = (PersonService)serviceProvider.GetService(typeof(PersonService));
+            _reservDelService = (ReservDelService)serviceProvider.GetService(typeof(ReservDelService));
+            _journalService = (JournalService)serviceProvider.GetService(typeof(JournalService));
             UppdateraBokningDelGrid();
             FillComboBoxes();
         }
         private void FillComboBoxes()
         {
-            
+
             var allaKunder = _personService.HämtaAllaKunder();
             cmbKund.ItemsSource = allaKunder;
             cmbKund.DisplayMemberPath = "Namn";
 
-            
+
             var allaMekaniker = _personService.HämtaAllaMekaniker();
             cmbMekaniker.ItemsSource = allaMekaniker;
-            cmbMekaniker.DisplayMemberPath = "Namn"; 
+            cmbMekaniker.DisplayMemberPath = "Namn";
+
+            var allaReservdel = _reservDelService.HämtaAllaReservdel();
+            cmbReservdel.ItemsSource = allaReservdel;
+            cmbReservdel.DisplayMemberPath = "Namn";
         }
 
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
@@ -122,19 +130,18 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnSpara_Click(object sender, RoutedEventArgs e)
         {
-            
             string inlämningsDatumStr = InlämningsDatum.Text;
             string utlämningsDatumStr = UtlämningsDatum.Text;
 
-           
             DateTime inlämningsDatum;
             DateTime utlämningsDatum;
 
-            
             if (DateTime.TryParse(inlämningsDatumStr, out inlämningsDatum) && DateTime.TryParse(utlämningsDatumStr, out utlämningsDatum))
             {
                 var valdKund = cmbKund.SelectedItem as Kund;
                 var valdMekaniker = cmbMekaniker.SelectedItem as Mekaniker;
+                var valdReservdel = cmbReservdel.SelectedItem as ReservDel;
+                string atgarder = Åtgärder.Text;
 
                 if (valdKund != null && valdMekaniker != null)
                 {
@@ -142,11 +149,23 @@ namespace Bilverkstad.PresentationLager
                     {
                         KundNr = valdKund.KundNr,
                         AnställningsNr = valdMekaniker.AnställningsNr,
-                        InlämningsDatum = inlämningsDatum, 
-                        UtlämningsDatum = utlämningsDatum 
+                        InlämningsDatum = inlämningsDatum,
+                        UtlämningsDatum = utlämningsDatum,
                     };
 
-                    _bokningsService.SkapaBokning(nyBokning);
+                     _bokningsService.SkapaBokning(nyBokning);
+
+                     var sparadBokning = _bokningsService.HämtaBokning(nyBokning).FirstOrDefault(); 
+                    
+                    var nyJournal = new Journal
+                    {
+                        BokningsNr = sparadBokning.BokningsNr,
+                        Åtgärder = atgarder,
+                        AnställningsNr = valdMekaniker.AnställningsNr,
+                    };
+
+                  
+                    _journalService.SkapaJournal(nyJournal);
 
                     MessageBox.Show("Bokningen har sparats!");
                 }
@@ -161,6 +180,8 @@ namespace Bilverkstad.PresentationLager
             }
             UppdateraBokningDelGrid();
         }
+
+
         private void UppdateraBokningDelGrid()
         {
 
@@ -249,7 +270,7 @@ namespace Bilverkstad.PresentationLager
             {
                 Mekaniker selectedMekaniker = (Mekaniker)cmbMekaniker.SelectedItem;
 
-              //MessageBox.Show($"Vald mekaniker: {selectedMekaniker.Namn}, Anställningsnummer: {selectedMekaniker.AnställningsNr}");
+                //MessageBox.Show($"Vald mekaniker: {selectedMekaniker.Namn}, Anställningsnummer: {selectedMekaniker.AnställningsNr}");
             }
         }
         private void ClearTextBoxes()
@@ -268,6 +289,16 @@ namespace Bilverkstad.PresentationLager
         private void UtlämningsDatum_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void cmbreservdel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbReservdel.SelectedItem != null)
+            {
+                ReservDel selectedReservdel = (ReservDel)cmbReservdel.SelectedItem;
+
+                //MessageBox.Show($"Vald mekaniker: {selectedMekaniker.Namn}, Anställningsnummer: {selectedMekaniker.AnställningsNr}");
+            }
         }
     }
 }

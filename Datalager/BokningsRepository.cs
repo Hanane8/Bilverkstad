@@ -17,8 +17,10 @@ namespace DataLager
             this._dbContext = dbContext;
         }
 
-        public List<Bokning> HämtaBokning(Kund kund) =>_dbContext.Bokningar.Where(c => c.KundNr == kund.KundNr).ToList();
-        
+        public List<Bokning> HämtaBokning(Bokning bokning) =>_dbContext.Bokningar.Where(b => b.BokningsNr == bokning.BokningsNr).ToList();
+
+        public List<Bokning> HämtaBokning(Kund kund) => _dbContext.Bokningar.Where(c => c.KundNr == kund.KundNr).ToList();
+
 
         public void UppdateraBokning(Bokning bokning)
         {
@@ -30,6 +32,11 @@ namespace DataLager
             _dbContext.Bokningar.Add(bokning);
             
         }
+       
+        //public Bokning HämtaBokningNr(int bokningsNr)
+        //{
+            //return _dbContext.Bokningar.FirstOrDefault(b => b.BokningsNr == bokningsNr);
+        //}
         public void AvbokaBokning(Bokning bokning)
         {
             _dbContext.Bokningar.Remove(bokning);

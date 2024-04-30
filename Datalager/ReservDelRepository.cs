@@ -26,6 +26,7 @@ namespace DataLager
             _dbContext.Entry(reservDel).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
+       
 
         public IEnumerable<ReservDel> HämtaAllaReservDelar() => _dbContext.ReservDelar.ToList();
         

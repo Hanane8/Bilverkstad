@@ -164,32 +164,32 @@
                           Margin="470,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"  />
                         <Label Content="InlämningsDatum" 
                         HorizontalAlignment="Left" 
-                        Height="24" Margin="0,54,0,0" 
+                        Height="24" Margin="309,97,0,0" 
                         VerticalAlignment="Top" 
-                        Width="111" 
+                        Width="112" 
                         Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                          
                           x:Name="InlämningsDatum"
                           HorizontalAlignment="Left" 
-                          Margin="144,58,0,0" 
+                          Margin="439,97,0,0" 
                           VerticalAlignment="Top" TextChanged="InlämningsDatum_TextChanged" 
                          />
                         <Label Content="AnställningsNr"
                         Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
-                        HorizontalAlignment="Left" Height="24" Margin="309,60,0,0" VerticalAlignment="Top" Width="135"/>
+                        HorizontalAlignment="Left" Height="27" Margin="10,0,0,0" VerticalAlignment="Center" Width="105"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                         
                           x:Name="UtlämningsDatum"
                           HorizontalAlignment="Left" 
-                          Margin="144,100,0,0" 
+                          Margin="439,61,0,0" 
                           VerticalAlignment="Top" TextChanged="UtlämningsDatum_TextChanged" />
                         <Label Content="UtlämningsDatum" 
                         HorizontalAlignment="Left" 
-                        Height="35" 
+                        Height="34" 
                         Foreground="#FFEAC4EE" FontWeight="Bold" 
                         FontStyle="Italic"
-                        Margin="0,102,0,0" 
+                        Margin="309,64,0,0" 
                         VerticalAlignment="Top" 
                         Width="125"/>
                         <Label Content="Search"
@@ -197,7 +197,38 @@
                      HorizontalAlignment="Left" Height="24" Margin="405,8,0,0" VerticalAlignment="Top" Width="60"/>
                         <Label Content="Kund"
                             Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
-                            HorizontalAlignment="Left" Height="24" Margin="320,110,0,0" VerticalAlignment="Top" Width="71"/>
+                            HorizontalAlignment="Left"
+                            Height="58" Margin="10,113,0,0" VerticalAlignment="Top" 
+                            Width="71"/>
+                        <Label Content="Reservdel" 
+                               Foreground="#FFEAC4EE" 
+                               FontWeight="Bold" 
+                               FontStyle="Italic"
+                               HorizontalAlignment="Left" 
+                               Height="26" 
+                               Margin="10,28,0,0" 
+                               VerticalAlignment="Top" 
+                               Width="105"/>
+
+                        <ComboBox 
+                             x:Name="cmbReservdel" HorizontalAlignment="Left" Height="22" 
+                            Margin="122,30,0,0" VerticalAlignment="Top" 
+                            Width="123" SelectionChanged="cmbreservdel_SelectionChanged"/>
+                        <TextBox Style="{StaticResource TextBoxInput}" 
+                         
+                            x:Name="Åtgärder"
+                            HorizontalAlignment="Left" 
+                            Margin="439,133,0,0" 
+                            VerticalAlignment="Top" TextChanged="InlämningsDatum_TextChanged" 
+                         />
+                        <Label Content="Åtgärder" 
+                            HorizontalAlignment="Left" 
+                            Height="24" Margin="309,131,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="112" 
+                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
+
+
 
                     </Grid>
                     <DataGrid x:Name="BokningsDataGrid"
@@ -218,9 +249,9 @@
 
                 </Grid>
                 <ComboBox  x:Name="cmbKund"
-                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="441,141,0,0" VerticalAlignment="Top" Width="123" SelectionChanged="cmbKund_SelectionChanged "/>
+                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="123,154,0,0" VerticalAlignment="Top" Width="124" SelectionChanged="cmbKund_SelectionChanged "/>
                 <ComboBox  x:Name="cmbMekaniker"
-                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="441,103,0,0" VerticalAlignment="Top" Width="123" SelectionChanged="cmbMekaniker_SelectionChanged"/>
+                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="123,109,0,0" VerticalAlignment="Top" Width="124" SelectionChanged="cmbMekaniker_SelectionChanged"/>
 
 
 

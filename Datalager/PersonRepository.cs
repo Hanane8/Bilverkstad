@@ -70,6 +70,6 @@ namespace DataLager
         {
             _dbContext.Bilar.Add(bil);
         }
-
+        public Bil Hämtabil(string regnr) => _dbContext.Bilar.FirstOrDefault(b => b.RegNr == regnr);
     }
 }
