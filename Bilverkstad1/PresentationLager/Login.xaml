@@ -131,6 +131,7 @@
                          Grid.Row="2" 
                          VerticalAlignment="Top" 
                          Width="214"
+                         Padding="20,0,0,0"
                         >
 
                     <TextBox.Background>
