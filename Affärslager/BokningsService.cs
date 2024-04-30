@@ -21,7 +21,6 @@ namespace Affärslager
         public void SkapaBokning(Bokning bokning)
         {
             _unitOfWork.BokningsRepo.SparaBokning(bokning);
-            //_unitOfWork.SaveChanges();
         }
 
         public void SaveChanges()
@@ -42,7 +41,6 @@ namespace Affärslager
             _unitOfWork.BokningsRepo.AvbokaBokning(bokning);
             _unitOfWork.SaveChanges();
         }
-        //public Bokning HämtaBokningNr(int bokningsNr) => _unitOfWork.BokningsRepo.HämtaBokningNr(bokningsNr);
         public List<Bokning> HämtaBokning(Bokning bokning) => _unitOfWork.BokningsRepo.HämtaBokning(bokning);
 
 

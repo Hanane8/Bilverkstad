@@ -24,13 +24,6 @@ namespace Affärslager
             _unitOfWork.SaveChanges();
         }
 
-        /*public List<Journal> HämtaAllaJournaler()
-        {
-            return _unitOfWork.JournalRepo.Include(j => j.Bil)
-                                      .Include(j => j.Bokning)
-                                      .Include(j => j.JournalReservDelar)
-                                      .ToList();
-        }*/
         
     }
 }

@@ -155,7 +155,6 @@ namespace Bilverkstad.PresentationLager
 
                      _bokningsService.SkapaBokning(nyBokning);
                      List<Bil> bilar = _personService.HämtaBilar(valdKund);
-                     //var sparadBokning = _bokningsService.HämtaBokning(nyBokning).FirstOrDefault();
 
                     var nyJournal = new Journal
                     {
@@ -269,7 +268,6 @@ namespace Bilverkstad.PresentationLager
             {
                 Kund selectedKund = (Kund)cmbKund.SelectedItem;
 
-                //MessageBox.Show($"Vald kund: {selectedKund.Namn}, Kundnummer: {selectedKund.KundNr}");
             }
 
         }
@@ -280,7 +278,6 @@ namespace Bilverkstad.PresentationLager
             {
                 Mekaniker selectedMekaniker = (Mekaniker)cmbMekaniker.SelectedItem;
 
-                //MessageBox.Show($"Vald mekaniker: {selectedMekaniker.Namn}, Anställningsnummer: {selectedMekaniker.AnställningsNr}");
             }
         }
         private void ClearTextBoxes()

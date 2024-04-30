@@ -98,9 +98,23 @@ namespace Bilverkstad.PresentationLager
 
             try
             {
-                _reservdelService.SkapaReservDel(newReservDel);
-                MessageBox.Show("Reservdel sparad!");
-                UppdateraReservDelGrid(); 
+                List<ReservDel> reservdelar = _reservdelService.HämtaAllaReservdel().ToList();
+                bool finnsredan = false;
+                for (int i = 0; i < reservdelar.Count; i++)
+                {
+                    if (reservdelar[0].Namn == newReservDel.Namn) finnsredan = true;
+                }
+                if (finnsredan)
+                {
+                    MessageBox.Show("Reservdel finns redan");
+                }
+                else
+                {
+
+                    _reservdelService.SkapaReservDel(newReservDel);
+                    MessageBox.Show("Reservdel sparad!");
+                    UppdateraReservDelGrid(); 
+                }
             }
             catch (Exception ex)
             {
