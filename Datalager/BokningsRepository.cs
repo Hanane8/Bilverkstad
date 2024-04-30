@@ -32,15 +32,7 @@ namespace DataLager
             _dbContext.Bokningar.Add(bokning);
             
         }
-       
-        //public Bokning HämtaBokningNr(int bokningsNr)
-        //{
-            //return _dbContext.Bokningar.FirstOrDefault(b => b.BokningsNr == bokningsNr);
-        //}
-        public void AvbokaBokning(Bokning bokning)
-        {
-            _dbContext.Bokningar.Remove(bokning);
-        }
+        
         public IEnumerable<Bokning> HämtaAllaBokningar() => _dbContext.Bokningar.ToList();
         
     }

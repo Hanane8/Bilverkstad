@@ -13,7 +13,12 @@ namespace DataLager
         {
             this._dbContext = dbContext;
         }
-       
+        
+        /// <summary>
+        /// Metod som ansvarar för att låta andra
+        /// metoder/klasser använda repository för operationer
+        /// angående kund
+        /// </summary>
         public PersonRepository PersonRepo
         {
             get
@@ -23,7 +28,11 @@ namespace DataLager
                 return _personRepository;
             }
         }
-
+        /// <summary>
+        /// Metod som ansvarar för att låta andra
+        /// metoder/klasser använda repository för operationer
+        /// angående Bokningar
+        /// </summary>
         public BokningsRepository BokningsRepo
         {
             get
@@ -33,7 +42,11 @@ namespace DataLager
                 return _bokningsRepository;
             }
         }
-
+        /// <summary>
+        /// Metod som ansvarar för att låta andra
+        /// metoder/klasser använda repository för operationer
+        /// angående Reservdelar
+        /// </summary>
         public ReservDelRepository ReservDelRepo
         {
             get
@@ -44,6 +57,11 @@ namespace DataLager
             }
 
         }
+        /// <summary>
+        /// Metod som ansvarar för att låta andra
+        /// metoder/klasser använda repository för operationer
+        /// angående Journal
+        /// </summary>
         public JournalRepository JournalRepo
         {
             get
@@ -55,6 +73,11 @@ namespace DataLager
 
         }
 
+
+        /// <summary>
+        /// Metod som ser till att all ny information skriven
+        /// till databasen sparas för permanent lagring
+        /// </summary>
         public void SaveChanges()
         {
             _dbContext.SaveChanges();

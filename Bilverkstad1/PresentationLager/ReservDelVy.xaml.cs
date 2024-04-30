@@ -86,6 +86,12 @@ namespace Bilverkstad.PresentationLager
 
         }
 
+        /// <summary>
+        /// Här implementeras Spara funktionen där nya reservdelar
+        /// kan sparas till databasen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSpara_Click(object sender, RoutedEventArgs e)
         {
            
@@ -100,6 +106,7 @@ namespace Bilverkstad.PresentationLager
             {
                 List<ReservDel> reservdelar = _reservdelService.HämtaAllaReservdel().ToList();
                 bool finnsredan = false;
+                //Kollar om reservdel rédan finns
                 for (int i = 0; i < reservdelar.Count; i++)
                 {
                     if (reservdelar[0].Namn == newReservDel.Namn) finnsredan = true;
@@ -110,7 +117,7 @@ namespace Bilverkstad.PresentationLager
                 }
                 else
                 {
-
+                    //Initierar skapandet av reservdelen
                     _reservdelService.SkapaReservDel(newReservDel);
                     MessageBox.Show("Reservdel sparad!");
                     UppdateraReservDelGrid(); 
@@ -122,13 +129,18 @@ namespace Bilverkstad.PresentationLager
             }
             ClearTextBoxes();
         }
-
+        /// <summary>
+        /// Uppdaterar fälten med korrekt information
+        /// </summary>
         private void UppdateraReservDelGrid()
         {
             
             ReservDelDataGrid.ItemsSource = _reservdelService.HämtaAllaReservdel();
             ClearTextBoxes() ;
         }
+        /// <summary>
+        /// Rensar alla textboxar
+        /// </summary>
         private void ClearTextBoxes()
         {
            Namn.Text = "";
@@ -136,9 +148,14 @@ namespace Bilverkstad.PresentationLager
              Kvantitet.Text = "";
         }
 
-
+        /// <summary>
+        /// Metoden som hanterar knapp tryck på en rad
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReservDelDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            //Fyller fält med information
             if (ReservDelDataGrid.SelectedItems.Count > 0)
             {
                 ReservDel selectedReservDel = (ReservDel)ReservDelDataGrid.SelectedItems[0];
@@ -151,7 +168,11 @@ namespace Bilverkstad.PresentationLager
 
         }
        
-
+        /// <summary>
+        /// Hanterar sökfunktionen när användaren kan skriva in önskat filter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string sökterm = txtSearch.Text.ToLower();

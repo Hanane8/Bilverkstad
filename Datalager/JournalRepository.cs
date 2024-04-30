@@ -19,6 +19,10 @@ namespace Datalager
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Ser till att databasen sparar ner journalen
+        /// </summary>
+        /// <param name="journal"></param>
         public void SparaJournal(Journal journal)
         {
             _dbContext.Journaler.Add(journal);

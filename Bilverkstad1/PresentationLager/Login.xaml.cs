@@ -75,7 +75,7 @@ namespace Bilverkstad.PresentationLager
 
             IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
            
-
+            //Kontrollerar om informationen är giltig eller inte
             if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
             {
                 menuWindow.ShowDialog();

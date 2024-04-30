@@ -36,12 +36,6 @@ namespace Affärslager
         public List<Bokning> HämtaBokning(Kund kund) => _unitOfWork.BokningsRepo.HämtaBokning(kund);
 
 
-        public void AvbokaBokning(Bokning bokning)
-        {
-            _unitOfWork.BokningsRepo.AvbokaBokning(bokning);
-            _unitOfWork.SaveChanges();
-        }
-        public List<Bokning> HämtaBokning(Bokning bokning) => _unitOfWork.BokningsRepo.HämtaBokning(bokning);
 
 
         public IEnumerable<Bokning> HämtaAllaBokningar() =>_unitOfWork.BokningsRepo.HämtaAllaBokningar();

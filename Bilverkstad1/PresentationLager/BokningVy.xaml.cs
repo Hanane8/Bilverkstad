@@ -191,29 +191,6 @@ namespace Bilverkstad.PresentationLager
 
 
 
-        private void BtnAvboka_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (BokningsDataGrid.SelectedItem != null)
-                {
-                    Bokning selectedBokning = (Bokning)BokningsDataGrid.SelectedItem;
-                    _bokningsService.AvbokaBokning(selectedBokning);
-                    MessageBox.Show("Bokning avbokad!");
-                    UppdateraBokningDelGrid();
-                }
-                else
-                {
-                    MessageBox.Show("Ingen bokning är vald för avbokning.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fel vid avbokning av bokning: " + ex.Message);
-            }
-        }
-
-
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string sökterm = txtSearch.Text.ToLower();

@@ -20,6 +20,10 @@ namespace DataLager
         public DbSet<Journal> Journaler { get; set; }
         public DbSet<JournalReservDel> JournalReservDelar { get; set; }
 
+        /// <summary>
+        /// Skapar kopplingen med databasen
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
@@ -30,6 +34,7 @@ namespace DataLager
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Här specificeras beteende för attribut hos Kund
             modelBuilder.Entity<Kund>().HasKey(k => k.KundNr);
             modelBuilder.Entity<Kund>().HasIndex(k => k.Personnummer).IsUnique();
             modelBuilder.Entity<Kund>().Property(k => k.Namn).IsRequired();
@@ -38,10 +43,14 @@ namespace DataLager
             modelBuilder.Entity<Kund>().Property(k => k.TelefonNr).IsRequired();
             modelBuilder.Entity<Kund>().Property(k => k.Adress).IsRequired();
 
+            //Här specificeras beteende för attribut hos Bil
             modelBuilder.Entity<Bil>().HasKey(b => b.RegNr);
 
+            //Här specificeras beteende för attribut hos Journal
             modelBuilder.Entity<Journal>().HasKey(j => j.JournalNr);
             modelBuilder.Entity<Journal>().HasOne(j => j.Bokning).WithOne().HasForeignKey<Bokning>(j => j.BokningsNr);
+
+            //Här specificeras beteende för attribut hos JournalReservDel
             modelBuilder.Entity<JournalReservDel>()
                 .HasKey(jr => new { jr.JournalNr, jr.ReservdelNr }); // Konfigurera sammansatt nyckel
 
@@ -54,19 +63,20 @@ namespace DataLager
                 .HasOne(jr => jr.ReservDel)
                 .WithMany(r => r.JournalReservDelar)
                 .HasForeignKey(jr => jr.ReservdelNr);
-                
 
+            //Här specificeras beteende för attribut hos Bokning
             modelBuilder.Entity<Bokning>().HasKey(b => b.BokningsNr);
             modelBuilder.Entity<Bokning>().Property(b => b.InlämningsDatum).IsRequired();
             modelBuilder.Entity<Bokning>().Property(b => b.UtlämningsDatum).IsRequired();
             modelBuilder.Entity<Bokning>().HasOne<Kund>().WithMany(m => m.Bokningar).HasForeignKey(b => b.KundNr);
 
-
+            //Här specificeras beteende för attribut hos Mekaniker
             modelBuilder.Entity<Mekaniker>().HasKey(m => m.AnställningsNr);
             modelBuilder.Entity<Mekaniker>().Property(m => m.Yrkesroll).IsRequired();
             modelBuilder.Entity<Mekaniker>().Property(m => m.Specialisering).IsRequired();
             modelBuilder.Entity<Mekaniker>().Property(m => m.Lösenord).IsRequired();
 
+            //Här specificeras beteende för attribut hos Reservdel
             modelBuilder.Entity<ReservDel>().HasKey(r => r.ReservdelNr);
             modelBuilder.Entity<ReservDel>().Property(r => r.Namn).IsRequired();
             modelBuilder.Entity<ReservDel>().Property(r => r.Kvantitet).IsRequired();

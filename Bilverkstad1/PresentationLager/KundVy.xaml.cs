@@ -278,6 +278,7 @@ namespace Bilverkstad.PresentationLager
             }
             else
             {
+                //En egen brush med egen färg
                 Color customColor = Color.FromRgb(255, 170, 238);
                 SolidColorBrush brush = new SolidColorBrush(customColor);
                 label.Foreground = brush;
@@ -295,11 +296,16 @@ namespace Bilverkstad.PresentationLager
             TextBox_TextChanged(sender, e, TelefonnrLbl);
         }
 
-
+        /// <summary>
+        /// Metoden som sköter vad som händer om man trycker på en rad
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="selectionChangedEventArgs"></param>
         private void KolumnRubrik_OnClick(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
             try
             { 
+                //Tar in vald rad och gör om till önskat format
                 object rad = KunderDataGrid.SelectedItems[0];
                 var valdRad = new
                 {
@@ -311,7 +317,7 @@ namespace Bilverkstad.PresentationLager
                     RegNr = ((dynamic)rad).Bilar
                 };
                 Bil bil = SökBil(valdRad.RegNr);
-                
+                //Om bilen inte redan finns
                 if (valdRad != null)
                 {
                     

@@ -127,12 +127,6 @@
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
-                                    Content="Avboka" Click="BtnAvboka_Click"  FontSize="12" >
-                                    <Button.Effect>
-                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
-                                    </Button.Effect>
-                                </Button>
 
 
                             </StackPanel>
