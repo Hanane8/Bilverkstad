@@ -154,14 +154,15 @@ namespace Bilverkstad.PresentationLager
                     };
 
                      _bokningsService.SkapaBokning(nyBokning);
+                     List<Bil> bilar = _personService.HämtaBilar(valdKund);
+                     //var sparadBokning = _bokningsService.HämtaBokning(nyBokning).FirstOrDefault();
 
-                     var sparadBokning = _bokningsService.HämtaBokning(nyBokning).FirstOrDefault(); 
-                    
                     var nyJournal = new Journal
                     {
                         Bokning = nyBokning,
                         Åtgärder = atgarder,
                         AnställningsNr = valdMekaniker.AnställningsNr,
+                        RegNr = bilar[0].RegNr
                     };
 
                   
