@@ -216,7 +216,16 @@ namespace Bilverkstad.PresentationLager
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            string sökterm = txtSearch.Text.ToLower();
 
+            var allaBokningar = _bokningsService.HämtaAllaBokningar();
+
+            var matchandeBokning = allaBokningar.Where(bokning =>
+                bokning.BokningsNr.ToString().Contains(sökterm)
+
+            ).ToList();
+
+            BokningsDataGrid.ItemsSource = matchandeBokning;
         }
 
         private void BokningsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

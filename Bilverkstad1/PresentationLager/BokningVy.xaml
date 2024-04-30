@@ -161,7 +161,7 @@
 
                         <TextBox  Style="{StaticResource TextBoxSearch}"
                           x:Name="txtSearch" Height="20" 
-                          Margin="470,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"  />
+                          Margin="470,0,10,141" VerticalAlignment="Bottom" TextChanged="txtSearch_TextChanged"  />
                         <Label Content="InlämningsDatum" 
                         HorizontalAlignment="Left" 
                         Height="24" Margin="309,97,0,0" 
