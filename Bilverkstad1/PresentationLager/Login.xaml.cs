@@ -78,6 +78,7 @@ namespace Bilverkstad.PresentationLager
             //Kontrollerar om informationen är giltig eller inte
             if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
             {
+                GetWindow(this)?.Close();
                 menuWindow.ShowDialog();
             }
             else

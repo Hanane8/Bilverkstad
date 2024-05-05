@@ -118,7 +118,7 @@ namespace Bilverkstad.PresentationLager
         {
             Color customColor = Color.FromRgb(255, 170, 238);
             SolidColorBrush brush = new SolidColorBrush(customColor);
-            Personnummer.Text = Adress.Text = Epost.Text = Namn.Text = TelefonNr.Text = "";
+            Personnummer.Text = Adress.Text = Epost.Text = Namn.Text = TelefonNr.Text = Märke.Text = Årsmodell.Text = RegNr.Text = "";
             PersonnummerLbl.Foreground = TelefonnrLbl.Foreground = brush;
             Personnummer.IsEnabled = true;
 
@@ -168,7 +168,8 @@ namespace Bilverkstad.PresentationLager
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            var window = GetWindow(this);
+            window.Close();
         }
 
         /// <summary>
