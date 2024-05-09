@@ -94,7 +94,6 @@ namespace Bilverkstad.PresentationLager
         /// <param name="e"></param>
         private void BtnSpara_Click(object sender, RoutedEventArgs e)
         {
-           
             ReservDel newReservDel = new ReservDel
             {
                 Namn = Namn.Text,
@@ -104,23 +103,22 @@ namespace Bilverkstad.PresentationLager
 
             try
             {
-                List<ReservDel> reservdelar = _reservdelService.HämtaAllaReservdel().ToList();
-                bool finnsredan = false;
-                //Kollar om reservdel rédan finns
-                for (int i = 0; i < reservdelar.Count; i++)
-                {
-                    if (reservdelar[0].Namn == newReservDel.Namn) finnsredan = true;
-                }
-                if (finnsredan)
+                // Hämta alla befintliga reservdelar från ReservDelService
+                var reservdelar = _reservdelService.HämtaAllaReservdel();
+
+                // Kontrollera om den nya reservdelen redan finns
+                bool finnsRedan = reservdelar.Any(reservdel => reservdel.Namn.Equals(newReservDel.Namn));
+
+                if (finnsRedan)
                 {
                     MessageBox.Show("Reservdel finns redan");
                 }
                 else
                 {
-                    //Initierar skapandet av reservdelen
+                    // Om reservdelen inte redan finns, spara den
                     _reservdelService.SkapaReservDel(newReservDel);
                     MessageBox.Show("Reservdel sparad!");
-                    UppdateraReservDelGrid(); 
+                    UppdateraReservDelGrid();
                 }
             }
             catch (Exception ex)
@@ -129,6 +127,7 @@ namespace Bilverkstad.PresentationLager
             }
             ClearTextBoxes();
         }
+
         /// <summary>
         /// Uppdaterar fälten med korrekt information
         /// </summary>
