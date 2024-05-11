@@ -96,6 +96,7 @@ namespace Bilverkstad.PresentationLager
                     if (valdKund != null && valdMekaniker != null)
                     {
                         selectedBokning.KundNr = valdKund.KundNr;
+
                         selectedBokning.AnställningsNr = valdMekaniker.AnställningsNr;
                         selectedBokning.InlämningsDatum = inlämningsDatum;
                         selectedBokning.UtlämningsDatum = utlämningsDatum;
@@ -148,12 +149,13 @@ namespace Bilverkstad.PresentationLager
                     var nyBokning = new Bokning
                     {
                         KundNr = valdKund.KundNr,
+                        Namn = valdKund.Namn,
                         AnställningsNr = valdMekaniker.AnställningsNr,
                         InlämningsDatum = inlämningsDatum,
                         UtlämningsDatum = utlämningsDatum,
                     };
 
-                     _bokningsService.SkapaBokning(nyBokning);
+                    _bokningsService.SkapaBokning(nyBokning);
                      List<Bil> bilar = _personService.HämtaBilar(valdKund);
 
                     var nyJournal = new Journal
@@ -218,7 +220,7 @@ namespace Bilverkstad.PresentationLager
                 }
                 else
                 {
-                    InlämningsDatum.Text = string.Empty; // Om InlämningsDatum är null, sätt texten till tom sträng
+                    InlämningsDatum.Text = string.Empty; 
                 }
 
                 if (selectedBokning.UtlämningsDatum != null)

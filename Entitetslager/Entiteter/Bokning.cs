@@ -16,6 +16,7 @@ namespace Entitetslager.Entiteter
         public DateTime? InlämningsDatum { get; set; }
         public DateTime? UtlämningsDatum { get; set; }
         public int KundNr { get; set; }
+        public string Namn { get; set; }
         public int AnställningsNr { get; set; }
 
     }

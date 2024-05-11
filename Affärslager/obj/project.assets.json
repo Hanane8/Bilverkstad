@@ -2788,11 +2788,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+      "projectUniqueName": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Affärslager\\Affärslager.csproj",
       "projectName": "Affärslager",
-      "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+      "projectPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Affärslager\\Affärslager.csproj",
       "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Affärslager\\obj\\",
+      "outputPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Affärslager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2809,8 +2809,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\Datalager.csproj": {
-              "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Datalager\\Datalager.csproj"
+            "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Datalager\\Datalager.csproj": {
+              "projectPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Datalager\\Datalager.csproj"
             }
           }
         }
