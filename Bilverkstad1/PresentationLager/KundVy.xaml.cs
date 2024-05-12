@@ -148,7 +148,7 @@ namespace Bilverkstad.PresentationLager
                 Adress = Adress.Text,
                 Epost = Epost.Text,
                 Namn = Namn.Text,
-                TelefonNr = Convert.ToInt32(TelefonNr.Text)
+                TelefonNr = Convert.ToInt64(TelefonNr.Text)
             };
             return kund;
         }
@@ -269,12 +269,14 @@ namespace Bilverkstad.PresentationLager
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <param name="label"></param>
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e, Label label)
+      
+        private void Personnummer_TextChanged(object sender, TextChangedEventArgs e)
         {
+
             TextBox textBox = (TextBox)sender;
-            if (textBox.Text.Length != 10)
+            if (textBox.Text.Length != 12)
             {
-                label.Foreground = Brushes.Red;
+                PersonnummerLbl.Foreground = Brushes.Red;
 
             }
             else
@@ -282,19 +284,29 @@ namespace Bilverkstad.PresentationLager
                 //En egen brush med egen färg
                 Color customColor = Color.FromRgb(255, 170, 238);
                 SolidColorBrush brush = new SolidColorBrush(customColor);
-                label.Foreground = brush;
+                PersonnummerLbl.Foreground = brush;
             }
 
             KollaFältOchUppdateraKnapp(sender, e);
         }
-        private void Personnummer_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox_TextChanged(sender, e, PersonnummerLbl);
-        }
 
         private void TelefonNr_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox_TextChanged(sender, e, TelefonnrLbl);
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.Length != 10)
+            {
+                TelefonnrLbl.Foreground = Brushes.Red;
+
+            }
+            else
+            {
+                //En egen brush med egen färg
+                Color customColor = Color.FromRgb(255, 170, 238);
+                SolidColorBrush brush = new SolidColorBrush(customColor);
+                TelefonnrLbl.Foreground = brush;
+            }
+
+            KollaFältOchUppdateraKnapp(sender, e);
         }
 
         /// <summary>

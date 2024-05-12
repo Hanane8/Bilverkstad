@@ -43,8 +43,6 @@ namespace Bilverkstad.PresentationLager
            
 
             _personService = serviceProvider.GetRequiredService<PersonService>();
-            var ensureCreated = serviceProvider.GetRequiredService<EntityFramework>();
-            ensureCreated.Database.EnsureCreated();
 
             InitializeComponent();
         }
