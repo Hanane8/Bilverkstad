@@ -2783,19 +2783,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hanan\\.nuget\\packages\\": {}
+    "C:\\Users\\noelk\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+      "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
       "projectName": "Affärslager",
-      "projectPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Affärslager\\Affärslager.csproj",
-      "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Affärslager\\obj\\",
+      "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+      "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2809,8 +2809,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Datalager\\Datalager.csproj": {
-              "projectPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Datalager\\Datalager.csproj"
+            "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj": {
+              "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj"
             }
           }
         }
@@ -2819,6 +2819,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2840,7 +2845,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -4,7 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bilverkstad.PresentationLager"
+        xmlns:vm="clr-namespace:Bilverkstad1.ViewModel"
        
+
+
         Title="KundVy" Height="450" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -13,6 +16,7 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown" 
         >
+
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
@@ -105,19 +109,19 @@
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Top">
                                 <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0" Name="BtnNykund"
-                                     Content="Ny Kund" Click="BtnNykund_Click" Background="#FF6067F1" FontSize="12" IsEnabled="False" >
+                                     Content="Ny Kund" Background="#FF6067F1" FontSize="12" IsEnabled="False" Command="{Binding NyKundCommand}">
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
-                                <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0" Name="BtnUppdatera"
-                                    Content="Uppdatera" Click="BtnUppdatera_Click" Background="#FF6067F1" FontSize="12" IsEnabled="False" >
+                                <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0" Name="BtnUppdatera" 
+                                    Content="Uppdatera" Background="#FF6067F1" FontSize="12" IsEnabled="False" Command="{Binding UppdateraCommand}">
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}" Margin="10,20,10,0" x:Name="BtnÅterställ"
-                                Content="Återställ" Click="BtnÅterställ_OnClick_Click" Background="#FF6067F1" FontSize="12" >
+                                Content="Återställ" Command="{Binding ÅterställCommand}" Background="#FF6067F1" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
@@ -156,7 +160,8 @@
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
                              Margin="120,42,0,0" 
-                             VerticalAlignment="Top" Width="96"        
+                             VerticalAlignment="Top" Width="96"   
+                             Text ="{Binding [Namn], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             />
                         <Label Content="Namn" 
                            Foreground="#FFEAC4EE" 
@@ -183,12 +188,14 @@
                              VerticalAlignment="Top" 
                              PreviewTextInput="Siffror_Kontroll"
                              TextChanged="Personnummer_TextChanged" Width="96"
+                             Text ="{Binding [PersonNr], Mode=TwoWay}"
                             />
                         <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="Adress"
                              HorizontalAlignment="Left" 
                              Margin="120,119,0,0" 
-                             VerticalAlignment="Top" Width="96" />
+                             VerticalAlignment="Top" Width="96"
+                             Text ="{Binding [Adress], Mode=TwoWay}"/>
                         <Label Content="Adress" 
                             Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
@@ -204,7 +211,8 @@
                              x:Name="Epost"
                              HorizontalAlignment="Left" 
                              Margin="315,79,0,0" 
-                             VerticalAlignment="Top" Width="86"/>
+                             VerticalAlignment="Top" Width="86"
+                             Text ="{Binding [Epost], Mode=TwoWay}"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="TelefonNr"
                              HorizontalAlignment="Left" 
@@ -212,7 +220,8 @@
                              Margin="315,46,0,0" 
                              VerticalAlignment="Top" 
                              TextChanged="TelefonNr_TextChanged" 
-                             PreviewTextInput="Siffror_Kontroll" Width="86"/>
+                             PreviewTextInput="Siffror_Kontroll" Width="86"
+                             Text ="{Binding [TelefonNr], Mode=TwoWay}"/>
                         <Label Content="E-post" 
                             Foreground="#FFEAC4EE" 
                            FontWeight="Bold" FontStyle="Italic" 
@@ -233,18 +242,21 @@
                             x:Name="Märke"
                             HorizontalAlignment="Left" 
                             Margin="491,79,0,0" 
-                            VerticalAlignment="Top" Width="86"/>
+                            VerticalAlignment="Top" Width="86"
+                            Text ="{Binding [Märke], Mode=TwoWay}"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                             x:Name="RegNr"
                             HorizontalAlignment="Left" 
                             Margin="491,46,0,0" 
-                            VerticalAlignment="Top" Width="86"/>
+                            VerticalAlignment="Top" Width="86"
+                            Text ="{Binding [RegNr], Mode=TwoWay}"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                             x:Name="Årsmodell"
                             HorizontalAlignment="Left" 
                             Margin="491,119,0,0" 
                             VerticalAlignment="Top" Width="86"
-                            PreviewTextInput="Siffror_Kontroll"/>
+                            PreviewTextInput="Siffror_Kontroll"
+                            Text ="{Binding [Årsmodell], Mode=TwoWay}"/>
 
                     </Grid>
                     <DataGrid x:Name="KunderDataGrid"
@@ -252,7 +264,8 @@
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                           RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Grid.Row="2" Margin="0,0,10,0" SelectionChanged="KolumnRubrik_OnClick" >
+                          Grid.Row="2" Margin="0,0,10,0" SelectionChanged="KolumnRubrik_OnClick"
+                          ItemsSource="{Binding KundData}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
 
