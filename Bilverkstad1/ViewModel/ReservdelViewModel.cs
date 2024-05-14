@@ -66,7 +66,7 @@ namespace Bilverkstad1.ViewModel
             set
             {
                 _selectedReservDel = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedReservDel));
             }
         }
 
@@ -142,7 +142,7 @@ namespace Bilverkstad1.ViewModel
             catch (Exception ex)
             {
                
-               // MessageBox.Show("Fel vid sparande av reservdel: " + ex.Message);
+               //MessageBox.Show("Fel vid sparande av reservdel: " + ex.Message);
             }
         }
 
@@ -155,6 +155,7 @@ namespace Bilverkstad1.ViewModel
         {
             
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

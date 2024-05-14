@@ -110,19 +110,19 @@
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Top">
                                 <Button Style="{StaticResource ButtonMenu}" Margin="30,50,30,0"
-                                     Content="Ny Reservdel" Click="BtnNyReservdel_Click"  FontSize="12" >
+                                     Content="Ny Reservdel"  FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect Opacity="0.2" Direction="270" ShadowDepth="1" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
-                                    Content="Uppdatera" Click="BtnUppdatera_Click"  FontSize="12" >
+                                    Content="Uppdatera" Command="{Binding UpdateCommand}"  FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
-                                    Content="Spara" Click="BtnSpara_Click"  FontSize="12" >
+                                    Content="Spara" Command="{Binding SaveCommand}" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
@@ -155,7 +155,7 @@
 
                         <TextBox  Style="{StaticResource TextBoxSearch}"
                              x:Name="txtSearch" Height="20" 
-                             Margin="470,10,10,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"  />
+                             Margin="470,10,10,0" VerticalAlignment="Top"   />
                         <Label Content="Namn" 
                            HorizontalAlignment="Left" 
                            Height="24" Margin="10,0,0,0" 
@@ -163,7 +163,7 @@
                            Width="101" 
                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                            
+                             Text="{Binding Path=SelectedReservDel.Namn, Mode=TwoWay}"
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
                              Margin="126,58,0,0" 
@@ -173,13 +173,13 @@
                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Height="24" Margin="330,60,0,0" VerticalAlignment="Top" Width="61"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                           
+                              Text="{Binding Path=SelectedReservDel.Kvantitet, Mode=TwoWay}"
                              x:Name="Kvantitet"
                              HorizontalAlignment="Left" 
                              Margin="126,100,0,0" 
                              VerticalAlignment="Top" />
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                            
+                             Text="{Binding Path=SelectedReservDel.Pris, Mode=TwoWay}"
                              x:Name="Pris"
                              HorizontalAlignment="Left" 
                              Height="16" 
@@ -203,7 +203,7 @@
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                           RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Grid.Row="2" Margin="0,0,10,0" SelectionChanged="ReservDelDataGrid_SelectionChanged_1">
+                          Grid.Row="2" Margin="0,0,10,0" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
 

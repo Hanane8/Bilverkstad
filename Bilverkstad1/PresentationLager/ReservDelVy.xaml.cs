@@ -27,7 +27,7 @@ namespace Bilverkstad.PresentationLager
             
             _reservdelService = serviceProvider.GetRequiredService<ReservDelService>();
             InitializeComponent();
-            UppdateraReservDelGrid();
+            //UppdateraReservDelGrid();
         }
 
 
@@ -50,7 +50,7 @@ namespace Bilverkstad.PresentationLager
             window.Close();
         }
 
-        private void BtnNyReservdel_Click(object sender, RoutedEventArgs e)
+        /*private void BtnNyReservdel_Click(object sender, RoutedEventArgs e)
         {
 
             ClearTextBoxes();
@@ -184,7 +184,7 @@ namespace Bilverkstad.PresentationLager
             ).ToList();
 
             ReservDelDataGrid.ItemsSource = matchandeReservdelar;
-        }
+        }*/
 
 
     }
