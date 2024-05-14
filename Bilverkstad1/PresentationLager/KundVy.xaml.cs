@@ -33,50 +33,10 @@ namespace Bilverkstad.PresentationLager
         public KundVy(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            DataContext = new KundViewModel(serviceProvider);
             InitializeComponent();
-            BtnUppdatera.IsEnabled = true;
-            //var textBoxar = new TextBox[]{Adress, TelefonNr, Namn, Epost};
-
-            //foreach (var textBox in textBoxar)
-            //    textBox.TextChanged += KollaFältOchUppdateraKnapp;
-
-            //_serviceProvider = serviceProvider;
-            //_personService   = _serviceProvider.GetRequiredService<PersonService>();
-            //_bokingService   = _serviceProvider.GetRequiredService<BokningsService>();
-            //LaddaAllaKunder();
-            //BtnNykund.IsEnabled = true;
-
-        }
-       
-        private void KollaFältOchUppdateraKnapp(object sender, TextChangedEventArgs textChangedEventArgs)
-        {
-            var allaFältOk =
-                new[] { Personnummer, Adress, Namn, TelefonNr, Epost, Märke, RegNr, Årsmodell }.All(x => !string.IsNullOrEmpty(x.Text));
-
-            //Om alla fält är korrekt ifyllda så går det att trycka på respektive knapp
-            //BtnUppdatera.IsEnabled = BtnNykund.IsEnabled = allaFältOk;
-            BtnNykund.IsEnabled = true;
+            
         }
 
-        /// <summary>
-        /// Återställer alla fält för enkelt skapa/uppdatera ny kund
-        /// </summary>
-        private void ÅterställFält()
-        {
-            Color customColor = Color.FromRgb(255, 170, 238);
-            SolidColorBrush brush = new SolidColorBrush(customColor);
-            Personnummer.Text = Adress.Text = Epost.Text = Namn.Text = TelefonNr.Text = Märke.Text = Årsmodell.Text = RegNr.Text = "";
-            PersonnummerLbl.Foreground = TelefonnrLbl.Foreground = brush;
-            Personnummer.IsEnabled = true;
-
-        }
-
-        /// <summary>
-        /// Ser till så att 3 fält endast accepterar siffror
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Siffror_Kontroll(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
@@ -100,37 +60,6 @@ namespace Bilverkstad.PresentationLager
             var window = GetWindow(this);
             window.Close();
         }
-
-        /// <summary>
-        /// Metoden hanterar sökfältet där
-        /// användaren söker efter en kund
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //Alla kunder som matchar input skickas in i FylliFält och skrivs ut till användaren
-            List<Kund> sökResultat = SökResultatFrånDb(txtSearch.Text.Trim());
-            //FylliFält(sökResultat);
-        }
-
-        /// <summary>
-        /// Metoden som ansvarar för att söka i databasen efter kunder
-        /// som matchar input i sökfält
-        /// </summary>
-        /// <param name="sökTerm">Det som användaren skrivit in</param>
-        /// <returns></returns>
-        private List<Kund> SökResultatFrånDb(string sökTerm) => _personService.SökKund(sökTerm);
-
-        
-
-        /// <summary>
-        /// Metoden nedan är för Personnummer samt Telefonnummer
-        /// och kontrollerar om rätt antal siffror har skrivits in
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <param name="label"></param>
       
         private void Personnummer_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -149,7 +78,6 @@ namespace Bilverkstad.PresentationLager
                 PersonnummerLbl.Foreground = brush;
             }
 
-            KollaFältOchUppdateraKnapp(sender, e);
         }
 
         private void TelefonNr_TextChanged(object sender, TextChangedEventArgs e)
@@ -168,7 +96,6 @@ namespace Bilverkstad.PresentationLager
                 TelefonnrLbl.Foreground = brush;
             }
 
-            KollaFältOchUppdateraKnapp(sender, e);
         }
 
         /// <summary>

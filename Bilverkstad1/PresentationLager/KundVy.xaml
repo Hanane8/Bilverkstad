@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bilverkstad.PresentationLager"
         xmlns:vm="clr-namespace:Bilverkstad1.ViewModel"
-       
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:visualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 
 
         Title="KundVy" Height="450" Width="800"
@@ -16,6 +18,9 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown" 
         >
+    <Window.DataContext>
+        <vm:KundViewModel />
+    </Window.DataContext>
 
     <Border CornerRadius="50">
         <Border.Background>
@@ -121,7 +126,7 @@
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}" Margin="10,20,10,0" x:Name="BtnÅterställ"
-                                Content="Återställ" Command="{Binding ÅterställCommand}" Background="#FF6067F1" FontSize="12" >
+                                Content="Återställ" Command="{Binding ÅterställCommand, UpdateSourceTrigger=PropertyChanged}" Background="#FF6067F1" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
@@ -153,15 +158,21 @@
                         <TextBox Style="{StaticResource TextBoxSearch}" 
                              x:Name="txtSearch" Height="18" 
                              
-                             Margin="451,11,24,0" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged"
-                             />
-                        <TextBox Style="{StaticResource TextBoxInput}" 
+                             Margin="451,11,24,0" VerticalAlignment="Top" Text="{Binding Sök,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             >
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="TextChanged">
+                                    <b:InvokeCommandAction Command="{Binding SökCommand}" />
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+                        </TextBox>
+                            <TextBox Style="{StaticResource TextBoxInput}" 
                              
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
                              Margin="120,42,0,0" 
                              VerticalAlignment="Top" Width="96"   
-                             Text ="{Binding [Namn], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text ="{Binding  Namn, Mode=TwoWay}"
                             />
                         <Label Content="Namn" 
                            Foreground="#FFEAC4EE" 
@@ -174,12 +185,13 @@
                            Width="61"/>
                         <Label Content="Personnummer" 
                            Name="PersonnummerLbl"
-                            Foreground="#FFEAC4EE" 
+                            Foreground="{Binding LabelColorPersonNr}" 
                            FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" 
                            Height="24" Margin="19,75,0,0" 
                            VerticalAlignment="Top" 
                            Width="101"
+                           
                            />
                         <TextBox Style= "{StaticResource TextBoxInput}" 
                              x:Name="Personnummer"
@@ -187,15 +199,16 @@
                              Margin="120,79,0,0" 
                              VerticalAlignment="Top" 
                              PreviewTextInput="Siffror_Kontroll"
-                             TextChanged="Personnummer_TextChanged" Width="96"
-                             Text ="{Binding [PersonNr], Mode=TwoWay}"
-                            />
+                             Width="96"
+                             Text ="{Binding Personnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            >
+                        </TextBox>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="Adress"
                              HorizontalAlignment="Left" 
                              Margin="120,119,0,0" 
                              VerticalAlignment="Top" Width="96"
-                             Text ="{Binding [Adress], Mode=TwoWay}"/>
+                             Text ="{Binding Adress, Mode=TwoWay}"/>
                         <Label Content="Adress" 
                             Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
@@ -212,7 +225,7 @@
                              HorizontalAlignment="Left" 
                              Margin="315,79,0,0" 
                              VerticalAlignment="Top" Width="86"
-                             Text ="{Binding [Epost], Mode=TwoWay}"/>
+                             Text ="{Binding Epost, Mode=TwoWay}"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                              x:Name="TelefonNr"
                              HorizontalAlignment="Left" 
@@ -221,7 +234,7 @@
                              VerticalAlignment="Top" 
                              TextChanged="TelefonNr_TextChanged" 
                              PreviewTextInput="Siffror_Kontroll" Width="86"
-                             Text ="{Binding [TelefonNr], Mode=TwoWay}"/>
+                             Text ="{Binding TelefonNr, Mode=TwoWay}"/>
                         <Label Content="E-post" 
                             Foreground="#FFEAC4EE" 
                            FontWeight="Bold" FontStyle="Italic" 
@@ -243,20 +256,20 @@
                             HorizontalAlignment="Left" 
                             Margin="491,79,0,0" 
                             VerticalAlignment="Top" Width="86"
-                            Text ="{Binding [Märke], Mode=TwoWay}"/>
+                            Text ="{Binding Märke, Mode=TwoWay}"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                             x:Name="RegNr"
                             HorizontalAlignment="Left" 
                             Margin="491,46,0,0" 
                             VerticalAlignment="Top" Width="86"
-                            Text ="{Binding [RegNr], Mode=TwoWay}"/>
+                            Text ="{Binding RegNr, Mode=TwoWay}"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                             x:Name="Årsmodell"
                             HorizontalAlignment="Left" 
                             Margin="491,119,0,0" 
                             VerticalAlignment="Top" Width="86"
                             PreviewTextInput="Siffror_Kontroll"
-                            Text ="{Binding [Årsmodell], Mode=TwoWay}"/>
+                            Text ="{Binding År, Mode=TwoWay}"/>
 
                     </Grid>
                     <DataGrid x:Name="KunderDataGrid"

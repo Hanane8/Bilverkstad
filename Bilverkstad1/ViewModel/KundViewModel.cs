@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Affärslager;
 using Bilverkstad.PresentationLager;
 using Entitetslager.Entiteter;
@@ -18,22 +19,20 @@ using MessageBox = System.Windows.Forms.MessageBox;
 namespace Bilverkstad1.ViewModel
 {
 
-    public class KundDataViewModel
-    {
-        public string Personnummer { get; set; }
-        public string Namn { get; set; }
-        public string Adress { get; set; }
-        public string TelefonNr { get; set; }
-        public string Epost { get; set; }
-        public int Bokingar { get; set; }
-        public string Bilar { get; set; }
-    }
+    
     public class KundViewModel: INotifyPropertyChanged
     {
+        #region ICommands
+
+        
+
         public ICommand NyKundCommand { get; }
         public ICommand UppdateraCommand { get; }
         public ICommand ÅterställCommand { get; }
-        public ICommand FylliFältCommand { get; }
+        public ICommand SökCommand { get; }
+        public ICommand TextKontrollCommand { get; }
+
+        #endregion
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private PersonService _personService;
@@ -41,29 +40,46 @@ namespace Bilverkstad1.ViewModel
 
 
         private Dictionary<string, string> kontaktInfo = new Dictionary<string, string>();
-        private string _namn, _adress, _personnummer, _telefonnr, _epost, _märke, _regnr, _årsmodell;
+        private string _namn, _adress, _personnummer, _telefonnr, _epost, _märke, _regnr, _årsmodell, _sök, _personnummerlbl,_telefonNrlbl;
 
         public ObservableCollection<KundDataViewModel> KundData { get; set; } =
             new ObservableCollection<KundDataViewModel>();
-        public KundViewModel(IServiceProvider serviceProvider)
+        public KundViewModel()
         {
+            IServiceProvider serviceProvider = KundVy._serviceProvider;
             _personService = serviceProvider.GetRequiredService<PersonService>();
             _bokningsService = serviceProvider.GetRequiredService<BokningsService>();
+
             NyKundCommand = new RelayCommand(BtnNyKund);
             UppdateraCommand = new RelayCommand(BtnUppdatera);
             ÅterställCommand = new RelayCommand(BtnÅterställ);
+            SökCommand = new RelayCommand(SökKund);
             LaddaAllaKunder();
         }
 
-        public string this[string namn]
+        private string HämtaAttribut(string key)
         {
-            get { return kontaktInfo.ContainsKey(namn) ? kontaktInfo[namn] : null; }
-            set
+            kontaktInfo.TryGetValue(key, out string value);
+            return value;
+        }
+
+        private void SättAttribut(string key, string value)
+        {
+            if (kontaktInfo.ContainsKey(key))
             {
-                kontaktInfo[namn] = value;
-                OnPropertyChanged(namn);
+                if (kontaktInfo[key] != value)
+                {
+                    kontaktInfo[key] = value;
+                    OnPropertyChanged(key);
+                }
+            }
+            else
+            {
+                kontaktInfo.Add(key, value);
+                OnPropertyChanged(key);
             }
         }
+
       
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
@@ -78,11 +94,11 @@ namespace Bilverkstad1.ViewModel
         {
             Kund kund = new Kund
             {
-                Namn = _namn,
-                Adress = _adress,
-                TelefonNr = Convert.ToInt64(_telefonnr),
-                Personnummer = _personnummer,
-                Epost = _epost
+                Namn = HämtaAttribut("Namn"),
+                Adress = HämtaAttribut("Adress"),
+                TelefonNr = Convert.ToInt64(HämtaAttribut("TelefonNr")),
+                Personnummer = HämtaAttribut("PersonNr"),
+                Epost = HämtaAttribut("Epost")
             };
             return kund;
         }
@@ -119,16 +135,18 @@ namespace Bilverkstad1.ViewModel
 
         }
 
+        private List<Kund> SökResultatFrånDb(string sökTerm) => _personService.SökKund(sökTerm);
+
+
+        private void SökKund(object x)
+        {
+            //Alla kunder som matchar input skickas in i FylliFält och skrivs ut till användaren
+            List<Kund> sökResultat = SökResultatFrånDb(_sök);
+            FylliFält(sökResultat);
+        }
+
         public void BtnNyKund(object x)
         {
-            _namn = this["Namn"];
-            _adress = this["Adress"];
-            _epost = this["Epost"];
-            _telefonnr = this["TelefonNr"];
-            _personnummer = this["PersonNr"];
-            _märke = this["Märke"];
-            _regnr = this["RegNr"];
-            _årsmodell = this["Årsmodell"];
 
             Kund? kund = _personService.HämtaKund(NyKund().Personnummer);
             if (kund != null)
@@ -166,21 +184,121 @@ namespace Bilverkstad1.ViewModel
 
         }
 
+        private void KontrolleraInput()
+        {
+            
+            if (_personnummer.Length != 12)
+            {
+                LabelColorPersonNr = Brushes.Red;
+            }
+            else
+            {
+                LabelColorPersonNr = _labelColor;
+            }
+        }
+
+        #region Attribut
+
+        private SolidColorBrush _labelColor = new SolidColorBrush(Color.FromRgb(255, 170, 238));
+
+        public SolidColorBrush LabelColorPersonNr
+        {
+            get { return _labelColor; }
+            set
+            {
+                _labelColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PersonnummerLbl
+        {
+            get { return _personnummer; }
+            set
+            {
+                _personnummer = value;
+                OnPropertyChanged();
+                KontrolleraInput();
+            }
+        }
+
+        public string TelefonnummerLbl
+        {
+            get { return _telefonNrlbl; }
+            set
+            {
+                _telefonNrlbl = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Sök
+        {
+            get { return _sök; }
+            set
+            {
+                if (_sök != value)
+                {
+                    _sök = value;
+                    OnPropertyChanged(nameof(Sök));
+                }
+            }
+        }
+
+        public string Namn
+        {
+            get { return HämtaAttribut(nameof(Namn)); }
+            set { SättAttribut(nameof(Namn), value); }
+        }
+
+        public string Adress
+        {
+            get { return HämtaAttribut(nameof(Adress)); }
+            set { SättAttribut(nameof(Adress), value);}
+        }
+
+        public string Personnummer
+        {
+            get { return HämtaAttribut(nameof(Personnummer)); }
+            set { SättAttribut(nameof(Personnummer), value); }
+        }
+
+        public string TelefonNr
+        {
+            get { return HämtaAttribut(nameof(TelefonNr)); }
+            set { SättAttribut(nameof(TelefonNr), value); }
+        }
+
+        public string Epost
+        {
+            get { return HämtaAttribut(nameof(Epost)); }
+            set { SättAttribut(nameof(Epost), value); }
+        }
+
+        public string Märke
+        {
+            get { return HämtaAttribut(nameof(Märke)); }
+            set { SättAttribut(nameof(Märke), value); }
+        }
+        public string Årsmodell
+        {
+            get { return HämtaAttribut(nameof(Årsmodell)); }
+            set { SättAttribut(nameof(Årsmodell), value); }
+        }
+        public string RegNr
+        {
+            get { return HämtaAttribut(nameof(RegNr)); }
+            set { SättAttribut(nameof(RegNr), value); }
+        }
+
+        #endregion
         public void BtnUppdatera(object x)
         {
-            _namn = this["Namn"];
-            _adress = this["Adress"];
-            _epost = this["Epost"];
-            _telefonnr = this["TelefonNr"];
-            _personnummer = this["PersonNr"];
-            _märke = this["Märke"];
-            _regnr = this["RegNr"];
-            _årsmodell = this["Årsmodell"];
 
             _personService.UppdateraKund(NyKund());
             MessageBox.Show("Kund uppdaterad");
         }
 
+        
         public void BtnÅterställ(object x)
         {
             foreach (var key in kontaktInfo.Keys.ToList())
@@ -188,6 +306,7 @@ namespace Bilverkstad1.ViewModel
                 kontaktInfo[key] = "";
                 OnPropertyChanged(key);
             }
+
         }
 
     }   
