@@ -18,7 +18,8 @@ using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Bilverkstad1.ViewModel
 {
-
+    //TODO
+    //1. Personnummer textchanged ändra färg
     
     public class KundViewModel: INotifyPropertyChanged
     {
@@ -34,6 +35,7 @@ namespace Bilverkstad1.ViewModel
 
         #endregion
 
+        
         public event PropertyChangedEventHandler? PropertyChanged;
         private PersonService _personService;
         private BokningsService _bokningsService;
@@ -80,7 +82,6 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
-      
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
@@ -144,7 +145,7 @@ namespace Bilverkstad1.ViewModel
             List<Kund> sökResultat = SökResultatFrånDb(_sök);
             FylliFält(sökResultat);
         }
-
+        
         public void BtnNyKund(object x)
         {
 
@@ -187,19 +188,19 @@ namespace Bilverkstad1.ViewModel
         private void KontrolleraInput()
         {
             
-            if (_personnummer.Length != 12)
+            if (kontaktInfo["Personnummer"].Length != 12)
             {
                 LabelColorPersonNr = Brushes.Red;
             }
             else
             {
-                LabelColorPersonNr = _labelColor;
+                LabelColorPersonNr = new(Color.FromRgb(255, 170, 238));
             }
         }
 
         #region Attribut
 
-        private SolidColorBrush _labelColor = new SolidColorBrush(Color.FromRgb(255, 170, 238));
+        private SolidColorBrush _labelColor = new(Color.FromRgb(255, 170, 238));
 
         public SolidColorBrush LabelColorPersonNr
         {
@@ -210,18 +211,7 @@ namespace Bilverkstad1.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        public string PersonnummerLbl
-        {
-            get { return _personnummer; }
-            set
-            {
-                _personnummer = value;
-                OnPropertyChanged();
-                KontrolleraInput();
-            }
-        }
-
+      
         public string TelefonnummerLbl
         {
             get { return _telefonNrlbl; }
@@ -259,7 +249,7 @@ namespace Bilverkstad1.ViewModel
         public string Personnummer
         {
             get { return HämtaAttribut(nameof(Personnummer)); }
-            set { SättAttribut(nameof(Personnummer), value); }
+            set { SättAttribut(nameof(Personnummer), value); KontrolleraInput(); }
         }
 
         public string TelefonNr
