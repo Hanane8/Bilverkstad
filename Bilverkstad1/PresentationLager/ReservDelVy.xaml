@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bilverkstad.PresentationLager"
+        xmlns:vm="clr-namespace:Bilverkstad1.ViewModel"
        
         Title="KundVy" Height="450" Width="800"
         WindowStyle="None"
@@ -13,6 +14,10 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown" 
         >
+    <Window.DataContext>
+        <vm:ReservdelViewModel />
+    </Window.DataContext>
+
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
@@ -109,20 +114,26 @@
                     <Border Grid.Row="2" CornerRadius="0 50 0 0">
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Top">
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,50,30,0"
-                                     Content="Ny Reservdel"  FontSize="12" >
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
+                                     Content="Save"  Command="{Binding SaveCommand }" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect Opacity="0.2" Direction="270" ShadowDepth="1" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
-                                    Content="Uppdatera" Command="{Binding UpdateCommand}"  FontSize="12" >
+                                    Content="Uppdate" Command="{Binding UpdateCommand}"  FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
-                                    Content="Spara" Command="{Binding SaveCommand}" FontSize="12" >
+                                    Content="Delete" Command="{Binding DeleteCommand}" FontSize="12" >
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
+                                    Content="Add" Command="{Binding AddCommand}" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
@@ -163,7 +174,7 @@
                            Width="101" 
                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="{Binding Path=SelectedReservDel.Namn, Mode=TwoWay}"
+                             Text="{Binding SelectedReservDel.Namn, Mode=TwoWay, FallbackValue=''}"
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
                              Margin="126,58,0,0" 
@@ -173,13 +184,13 @@
                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Height="24" Margin="330,60,0,0" VerticalAlignment="Top" Width="61"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                              Text="{Binding Path=SelectedReservDel.Kvantitet, Mode=TwoWay}"
+                              Text="{Binding SelectedReservDel.Kvantitet, Mode=TwoWay, FallbackValue='0'}" 
                              x:Name="Kvantitet"
                              HorizontalAlignment="Left" 
                              Margin="126,100,0,0" 
                              VerticalAlignment="Top" />
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="{Binding Path=SelectedReservDel.Pris, Mode=TwoWay}"
+                             Text="{Binding SelectedReservDel.Pris,Mode=TwoWay, FallbackValue='0'}"
                              x:Name="Pris"
                              HorizontalAlignment="Left" 
                              Height="16" 
@@ -198,14 +209,20 @@
                         HorizontalAlignment="Left" Height="24" Margin="424,8,0,0" VerticalAlignment="Top" Width="41"/>
 
                     </Grid>
-                    <DataGrid x:Name="ReservDelDataGrid"
+                    <DataGrid 
+                          x:Name="ReservDelDataGrid"
+                          ItemsSource="{Binding ReservDels }"
+                          SelectedItem="{Binding SelectedReservDel }"
                           Style="{DynamicResource DataGridStyle1}" 
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                           RowStyle="{DynamicResource DataGridRowStyle1}" 
                           Grid.Row="2" Margin="0,0,10,0" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="" Width="auto" />
+
+
+
 
                         </DataGrid.Columns>
 

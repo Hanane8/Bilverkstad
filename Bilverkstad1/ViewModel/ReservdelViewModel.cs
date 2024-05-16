@@ -12,12 +12,13 @@ using System.Windows.Input;
 using DataLager;
 using System.Xml.Linq;
 using Affärslager;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Controls;
 
 namespace Bilverkstad1.ViewModel
 {
-    internal class ReservdelViewModel : INotifyPropertyChanged
+    public class ReservdelViewModel : INotifyPropertyChanged
     {
-        //private UnitOfWork _unitOfWork;
         private readonly ReservDelService _reservDelService;
         private ReservDel _reservDel;
         private ReservDel _selectedReservDel;
@@ -26,6 +27,23 @@ namespace Bilverkstad1.ViewModel
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand AddCommand { get; }
+        public ReservdelViewModel()
+        {
+            IServiceProvider serviceProvider = ReservDelVy._serviceProvider;
+            _reservDelService = serviceProvider.GetRequiredService<ReservDelService>();
+
+            _reservDel = new ReservDel();
+
+            ReservDels = new ObservableCollection<ReservDel>();
+            UpdateCommand = new RelayCommand(UpdateReservDel);
+            SaveCommand = new RelayCommand(SaveReservDel);
+            DeleteCommand = new RelayCommand(DeleteReservDel);
+            AddCommand = new RelayCommand(AddReservDel);
+            UppdateraReservdelar();
+
+        }
+
+
 
         public string Namn
         {
@@ -67,6 +85,8 @@ namespace Bilverkstad1.ViewModel
             {
                 _selectedReservDel = value;
                 OnPropertyChanged(nameof(SelectedReservDel));
+
+
             }
         }
 
@@ -76,40 +96,41 @@ namespace Bilverkstad1.ViewModel
             set
             {
                 _reservDels = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(ReservDels));
             }
         }
-        public ReservdelViewModel(ReservDelService reservDelService)
-        {
-            //_unitOfWork = unitOfWork;
-            _reservDel = new ReservDel();
-            _reservDelService = reservDelService;
-            ReservDels = new ObservableCollection<ReservDel>();
-            UpdateCommand = new RelayCommand(UpdateReservDel);
-            SaveCommand = new RelayCommand(SaveReservDel);
-            DeleteCommand = new RelayCommand(DeleteReservDel);
-            AddCommand = new RelayCommand(AddReservDel);
 
+        private void AddReservDel(object parameter)
+        {
+            ClearTextBoxes();
         }
+
+
 
         private void UpdateReservDel(object parameter)
         {
-            if (parameter is ReservDel updatedReservDel)
+            if (SelectedReservDel != null)
             {
-                
-                if (_selectedReservDel != null)
+                try
                 {
-                   
-                    _selectedReservDel.Namn = updatedReservDel.Namn;
-                    _selectedReservDel.Pris = updatedReservDel.Pris;
-                    _selectedReservDel.Kvantitet = updatedReservDel.Kvantitet;
+                    _reservDelService.UppdateraReservDel(SelectedReservDel);
 
-                   
-                    OnPropertyChanged(nameof(SelectedReservDel));
+                    UppdateraReservdelar();
+                }
+                catch (Exception ex)
+                {
+
                 }
             }
+            else
+            {
 
+            }
+            ClearTextBoxes();
         }
+
+
+
         private void UppdateraReservdelar()
         {
             ReservDels.Clear();
@@ -118,43 +139,66 @@ namespace Bilverkstad1.ViewModel
             {
                 ReservDels.Add(reservdel);
             }
+
         }
+
+
+
+        private void ClearTextBoxes()
+        {
+            Namn = "";
+            Pris = 0;
+            Kvantitet = 0;
+        }
+
+        private void DeleteReservDel(object parameter)
+        {
+            try
+            {
+                if (_selectedReservDel != null)
+                {
+                    _reservDelService.DeleteReservDel(_selectedReservDel);
+
+                    UppdateraReservdelar();
+
+                    ClearTextBoxes();
+                }
+                else
+                {
+                    Console.WriteLine("Ingen reservdel är vald för borttagning.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fel vid borttagning av reservdel: " + ex.Message);
+            }
+        }
+
 
         private void SaveReservDel(object parameter)
         {
             try
             {
-                ReservDel nyReservdel = new ReservDel
+                ReservDel nyReservDel = new ReservDel
                 {
                     Namn = Namn,
                     Pris = Pris,
                     Kvantitet = Kvantitet
                 };
 
-                _reservDelService.SkapaReservDel(nyReservdel);
+
+                _reservDelService.SkapaReservDel(nyReservDel);
+
 
                 UppdateraReservdelar();
-
-                Namn = "";
-                Pris = 0;
-                Kvantitet = 0;
+                ClearTextBoxes();
             }
             catch (Exception ex)
             {
-               
-               //MessageBox.Show("Fel vid sparande av reservdel: " + ex.Message);
+
             }
         }
 
-        private void DeleteReservDel(object parameter)
-        {
-            
-        }
-
-        private void AddReservDel(object parameter)
-        {
-            
-        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

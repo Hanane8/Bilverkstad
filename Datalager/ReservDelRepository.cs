@@ -34,12 +34,16 @@ namespace DataLager
             _dbContext.Entry(reservDel).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
-       
+
         /// <summary>
         /// Hämtar och returnerar alla reservdelar från databasen
         /// </summary>
         /// <returns></returns>
         public IEnumerable<ReservDel> HämtaAllaReservDelar() => _dbContext.ReservDelar.ToList();
-        
+
+        public void DeleteReservDel(ReservDel selectedReservDel)
+        {
+            _dbContext.ReservDelar.Remove(selectedReservDel);
+        }
     }
 }

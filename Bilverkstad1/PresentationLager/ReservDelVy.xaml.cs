@@ -1,4 +1,5 @@
 ﻿using Affärslager;
+using Bilverkstad1.ViewModel;
 using DataLager;
 using Entitetslager.Entiteter;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,12 +21,14 @@ namespace Bilverkstad.PresentationLager
 {
     public partial class ReservDelVy : Window
     {
-        private readonly ReservDelService _reservdelService;
+       
+        public static IServiceProvider _serviceProvider;
 
         public ReservDelVy(IServiceProvider serviceProvider)
         {
-            
-            _reservdelService = serviceProvider.GetRequiredService<ReservDelService>();
+
+            _serviceProvider = serviceProvider;
+           
             InitializeComponent();
             //UppdateraReservDelGrid();
         }
@@ -92,6 +95,7 @@ namespace Bilverkstad.PresentationLager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
         private void BtnSpara_Click(object sender, RoutedEventArgs e)
         {
             ReservDel newReservDel = new ReservDel
