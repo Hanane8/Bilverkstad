@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,13 +21,12 @@ namespace Bilverkstad1.ViewModel
 {
     //TODO
     //1. Personnummer textchanged ändra färg
-    
-    public class KundViewModel: INotifyPropertyChanged
+
+    public class KundViewModel : INotifyPropertyChanged
     {
         #region ICommands
 
-        
-
+        public ICommand ClickCommand { get; }
         public ICommand NyKundCommand { get; }
         public ICommand UppdateraCommand { get; }
         public ICommand ÅterställCommand { get; }
@@ -35,14 +35,14 @@ namespace Bilverkstad1.ViewModel
 
         #endregion
 
-        
+
         public event PropertyChangedEventHandler? PropertyChanged;
         private PersonService _personService;
         private BokningsService _bokningsService;
 
 
         private Dictionary<string, string> kontaktInfo = new Dictionary<string, string>();
-        private string _namn, _adress, _personnummer, _telefonnr, _epost, _märke, _regnr, _årsmodell, _sök, _personnummerlbl,_telefonNrlbl;
+        private string _märke, _regnr, _årsmodell, _sök;
 
         public ObservableCollection<KundDataViewModel> KundData { get; set; } =
             new ObservableCollection<KundDataViewModel>();
@@ -56,6 +56,8 @@ namespace Bilverkstad1.ViewModel
             UppdateraCommand = new RelayCommand(BtnUppdatera);
             ÅterställCommand = new RelayCommand(BtnÅterställ);
             SökCommand = new RelayCommand(SökKund);
+            ClickCommand = new RelayCommand(KolumnClick);
+
             LaddaAllaKunder();
         }
 
@@ -73,6 +75,7 @@ namespace Bilverkstad1.ViewModel
                 {
                     kontaktInfo[key] = value;
                     OnPropertyChanged(key);
+                    
                 }
             }
             else
@@ -88,6 +91,36 @@ namespace Bilverkstad1.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+        private void KolumnClick(object x)
+        {
+            KundDataViewModel kundDataViewModel = (KundDataViewModel)x;
+            Bil bil = SökBil(kundDataViewModel.Bilar);
+            SättAttribut("Namn", kundDataViewModel.Namn);
+            SättAttribut("Epost", kundDataViewModel.Epost);
+            SättAttribut("TelefonNr", kundDataViewModel.TelefonNr);
+            SättAttribut("Personnummer", kundDataViewModel.Personnummer);
+            SättAttribut("Adress", kundDataViewModel.Adress);
+            SättAttribut("RegNr", bil.RegNr);
+            SättAttribut("Årsmodell", bil.Årsmodell.ToString());
+            SättAttribut("Märke", bil.Märke);
+        }
+
+      
+        private KundDataViewModel _selectedItem;
+
+        public KundDataViewModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
+            }
+        }
         private Bil SökBil(string regNr) => _personService.SökBil(regNr);
 
 
@@ -185,23 +218,74 @@ namespace Bilverkstad1.ViewModel
 
         }
 
-        private void KontrolleraInput()
+
+        private bool InputNumerisk(string x)
         {
+            return Regex.IsMatch(x, "^[0-9]*$");
+           
+        }
+
+        private void KontrolleraInputModell()
+        {
+            if (kontaktInfo.ContainsKey("Årsmodell"))
+            {
+
+                if (kontaktInfo["Årsmodell"].Length != 4)
+                {
+                    LabelColorModell = Brushes.Red;
+                }
+                else
+                {
+                    LabelColorModell = new(Color.FromRgb(255, 170, 238));
+                }
+            }
+        }
+        private void KontrolleraInputPerson()
+        {
+            if (kontaktInfo.ContainsKey("Personnummer"))
+            {
+
+                if (kontaktInfo["Personnummer"].Length != 12)
+                {
+                    LabelColorPersonNr = Brushes.Red;
+                }
+                else
+                {
+                    LabelColorPersonNr = new(Color.FromRgb(255, 170, 238));
+                }
+            }
+        }
+
+        private void KontrolleraInputTelefon()
+        {
+            if (kontaktInfo.ContainsKey("TelefonNr"))
+            {
+                if (kontaktInfo["TelefonNr"].Length != 10)
+                {
+                    LabelColorTelefonNr = Brushes.Red;
+                }
+                else
+                {
+                    LabelColorTelefonNr = new(Color.FromRgb(255, 170, 238));
+                }
+            }
             
-            if (kontaktInfo["Personnummer"].Length != 12)
-            {
-                LabelColorPersonNr = Brushes.Red;
-            }
-            else
-            {
-                LabelColorPersonNr = new(Color.FromRgb(255, 170, 238));
-            }
         }
 
         #region Attribut
 
+
         private SolidColorBrush _labelColor = new(Color.FromRgb(255, 170, 238));
 
+        public SolidColorBrush LabelColorModell
+        {
+            get { return _labelColor; }
+            set
+            {
+                _labelColor = value;
+                OnPropertyChanged();
+            }
+        }
         public SolidColorBrush LabelColorPersonNr
         {
             get { return _labelColor; }
@@ -211,16 +295,18 @@ namespace Bilverkstad1.ViewModel
                 OnPropertyChanged();
             }
         }
-      
-        public string TelefonnummerLbl
+
+        public SolidColorBrush LabelColorTelefonNr
         {
-            get { return _telefonNrlbl; }
+            get { return _labelColor; }
             set
             {
-                _telefonNrlbl = value;
+                _labelColor = value;
                 OnPropertyChanged();
             }
         }
+      
+      
         public string Sök
         {
             get { return _sök; }
@@ -249,13 +335,28 @@ namespace Bilverkstad1.ViewModel
         public string Personnummer
         {
             get { return HämtaAttribut(nameof(Personnummer)); }
-            set { SättAttribut(nameof(Personnummer), value); KontrolleraInput(); }
+            set 
+            {
+                if (InputNumerisk(value))
+                {
+                    SättAttribut(nameof(Personnummer), value);
+                    KontrolleraInputPerson(); 
+                }
+            }
         }
 
         public string TelefonNr
         {
             get { return HämtaAttribut(nameof(TelefonNr)); }
-            set { SättAttribut(nameof(TelefonNr), value); }
+            set 
+            {
+                if (InputNumerisk(value))
+                {
+                    SättAttribut(nameof(TelefonNr), value);
+                    KontrolleraInputTelefon();
+                }
+                
+            }
         }
 
         public string Epost
@@ -272,7 +373,14 @@ namespace Bilverkstad1.ViewModel
         public string Årsmodell
         {
             get { return HämtaAttribut(nameof(Årsmodell)); }
-            set { SättAttribut(nameof(Årsmodell), value); }
+            set 
+            {
+                if (InputNumerisk(value))
+                {
+                    SättAttribut(nameof(Årsmodell), value);
+                    KontrolleraInputModell();
+                }
+            }
         }
         public string RegNr
         {

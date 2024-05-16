@@ -198,7 +198,6 @@
                              HorizontalAlignment="Left" 
                              Margin="120,79,0,0" 
                              VerticalAlignment="Top" 
-                             PreviewTextInput="Siffror_Kontroll"
                              Width="96"
                              Text ="{Binding Personnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             >
@@ -213,7 +212,7 @@
                             Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Height="24" Margin="19,107,0,0" VerticalAlignment="Top" Width="61"/>
                         <Label Content="TelefonNr" 
-                            Foreground="#FFEAC4EE"
+                            Foreground="{Binding LabelColorTelefonNr}"
                            FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" 
                            Height="24" Margin="230,42,0,0" 
@@ -232,9 +231,10 @@
                              Height="16" 
                              Margin="315,46,0,0" 
                              VerticalAlignment="Top" 
-                             TextChanged="TelefonNr_TextChanged" 
-                             PreviewTextInput="Siffror_Kontroll" Width="86"
-                             Text ="{Binding TelefonNr, Mode=TwoWay}"/>
+                             Width="86"
+                             Text ="{Binding TelefonNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                           
+                        </TextBox>
                         <Label Content="E-post" 
                             Foreground="#FFEAC4EE" 
                            FontWeight="Bold" FontStyle="Italic" 
@@ -249,7 +249,7 @@
                                Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                                HorizontalAlignment="Left" Margin="426,80,0,0" VerticalAlignment="Top"/>
                         <Label Content="Årsmodell" 
-                               Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
+                               Foreground="{Binding LabelColorModell}" FontWeight="Bold" FontStyle="Italic"
                                HorizontalAlignment="Left" Margin="426,113,0,0" VerticalAlignment="Top"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                             x:Name="Märke"
@@ -268,8 +268,8 @@
                             HorizontalAlignment="Left" 
                             Margin="491,119,0,0" 
                             VerticalAlignment="Top" Width="86"
-                            PreviewTextInput="Siffror_Kontroll"
-                            Text ="{Binding År, Mode=TwoWay}"/>
+
+                            Text ="{Binding Årsmodell, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     </Grid>
                     <DataGrid x:Name="KunderDataGrid"
@@ -277,16 +277,19 @@
                           CellStyle="{DynamicResource DataGridCellStyle1}" 
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                           RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Grid.Row="2" Margin="0,0,10,0" SelectionChanged="KolumnRubrik_OnClick"
+                          Grid.Row="2" Margin="0,0,10,0"
                           ItemsSource="{Binding KundData}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
 
                         </DataGrid.Columns>
-
+                        <b:Interaction.Triggers>
+                            <b:EventTrigger EventName="SelectionChanged">
+                                <b:InvokeCommandAction Command="{Binding ClickCommand}" CommandParameter="{Binding SelectedItem, ElementName=KunderDataGrid}"></b:InvokeCommandAction>
+                            </b:EventTrigger>
+                        </b:Interaction.Triggers>
 
                     </DataGrid>
-
 
 
 
