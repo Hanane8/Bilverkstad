@@ -174,7 +174,7 @@
                            Width="101" 
                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="{Binding SelectedReservDel.Namn, Mode=TwoWay, FallbackValue=''}"
+                             Text="{Binding Namn, Mode=TwoWay}"
                              x:Name="Namn"
                              HorizontalAlignment="Left" 
                              Margin="126,58,0,0" 
@@ -184,13 +184,13 @@
                            Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                            HorizontalAlignment="Left" Height="24" Margin="330,60,0,0" VerticalAlignment="Top" Width="61"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                              Text="{Binding SelectedReservDel.Kvantitet, Mode=TwoWay, FallbackValue='0'}" 
+                              Text="{Binding Kvantitet, Mode=TwoWay}" 
                              x:Name="Kvantitet"
                              HorizontalAlignment="Left" 
                              Margin="126,100,0,0" 
                              VerticalAlignment="Top" />
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                             Text="{Binding SelectedReservDel.Pris,Mode=TwoWay, FallbackValue='0'}"
+                             Text="{Binding Pris, Mode=TwoWay }"
                              x:Name="Pris"
                              HorizontalAlignment="Left" 
                              Height="16" 

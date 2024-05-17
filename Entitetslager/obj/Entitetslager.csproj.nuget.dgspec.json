@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {}
+    "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {
+    "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+        "projectUniqueName": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
         "projectName": "Entitetslager",
-        "projectPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
+        "projectPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\Entitetslager.csproj",
         "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hanan\\Desktop\\Bilverkstad\\Entitetslager\\obj\\",
+        "outputPath": "C:\\Users\\Hanan\\Downloads\\Bilverkstad\\Entitetslager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hanan\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -43,8 +43,6 @@ namespace Bilverkstad1.ViewModel
 
         }
 
-
-
         public string Namn
         {
             get { return _reservDel.Namn; }
@@ -86,7 +84,7 @@ namespace Bilverkstad1.ViewModel
                 _selectedReservDel = value;
                 OnPropertyChanged(nameof(SelectedReservDel));
 
-
+                SetData();
             }
         }
 
@@ -105,7 +103,15 @@ namespace Bilverkstad1.ViewModel
             ClearTextBoxes();
         }
 
-
+        private void SetData()
+        {
+            if (_selectedReservDel != null)
+            {
+                Namn = _selectedReservDel.Namn;
+                Pris = _selectedReservDel.Pris;
+                Kvantitet = _selectedReservDel.Kvantitet;
+            }
+        }
 
         private void UpdateReservDel(object parameter)
         {
@@ -113,23 +119,22 @@ namespace Bilverkstad1.ViewModel
             {
                 try
                 {
+                    SelectedReservDel.Namn = Namn;
+                    SelectedReservDel.Pris = Pris;
+                    SelectedReservDel.Kvantitet = Kvantitet;
+
                     _reservDelService.UppdateraReservDel(SelectedReservDel);
 
                     UppdateraReservdelar();
                 }
                 catch (Exception ex)
                 {
-
+                   
                 }
             }
-            else
-            {
 
-            }
             ClearTextBoxes();
         }
-
-
 
         private void UppdateraReservdelar()
         {
