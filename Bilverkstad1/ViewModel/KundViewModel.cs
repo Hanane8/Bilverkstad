@@ -15,6 +15,7 @@ using Affärslager;
 using Bilverkstad.PresentationLager;
 using Entitetslager.Entiteter;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Bilverkstad1.ViewModel
@@ -43,6 +44,7 @@ namespace Bilverkstad1.ViewModel
 
         private Dictionary<string, string> kontaktInfo = new Dictionary<string, string>();
         private string _märke, _regnr, _årsmodell, _sök;
+        private bool korrektInput = false;
 
         public ObservableCollection<KundDataViewModel> KundData { get; set; } =
             new ObservableCollection<KundDataViewModel>();
@@ -94,16 +96,23 @@ namespace Bilverkstad1.ViewModel
 
         private void KolumnClick(object x)
         {
-            KundDataViewModel kundDataViewModel = (KundDataViewModel)x;
-            Bil bil = SökBil(kundDataViewModel.Bilar);
-            SättAttribut("Namn", kundDataViewModel.Namn);
-            SättAttribut("Epost", kundDataViewModel.Epost);
-            SättAttribut("TelefonNr", kundDataViewModel.TelefonNr);
-            SättAttribut("Personnummer", kundDataViewModel.Personnummer);
-            SättAttribut("Adress", kundDataViewModel.Adress);
-            SättAttribut("RegNr", bil.RegNr);
-            SättAttribut("Årsmodell", bil.Årsmodell.ToString());
-            SättAttribut("Märke", bil.Märke);
+            if(x != null)
+            {
+
+                KundDataViewModel kundDataViewModel = (KundDataViewModel)x;
+                Bil bil = SökBil(kundDataViewModel.Bilar);
+                SättAttribut("Namn", kundDataViewModel.Namn);
+                SättAttribut("Epost", kundDataViewModel.Epost);
+                SättAttribut("TelefonNr", kundDataViewModel.TelefonNr);
+                SättAttribut("Personnummer", kundDataViewModel.Personnummer);
+                SättAttribut("Adress", kundDataViewModel.Adress);
+                SättAttribut("RegNr", bil.RegNr);
+                SättAttribut("Årsmodell", bil.Årsmodell.ToString());
+                SättAttribut("Märke", bil.Märke);
+                korrektInput = true;
+            }
+            
+            
         }
 
       
@@ -131,7 +140,7 @@ namespace Bilverkstad1.ViewModel
                 Namn = HämtaAttribut("Namn"),
                 Adress = HämtaAttribut("Adress"),
                 TelefonNr = Convert.ToInt64(HämtaAttribut("TelefonNr")),
-                Personnummer = HämtaAttribut("PersonNr"),
+                Personnummer = HämtaAttribut("Personnummer"),
                 Epost = HämtaAttribut("Epost")
             };
             return kund;
@@ -162,7 +171,7 @@ namespace Bilverkstad1.ViewModel
                     Bokingar = antalBokningar,
                     Bilar = bilarRegNr
                 };
-
+                
                 // Add the KundDataViewModel to KundData collection
                 KundData.Add(kundDataViewModel);
             }
@@ -179,43 +188,67 @@ namespace Bilverkstad1.ViewModel
             FylliFält(sökResultat);
         }
         
+        private bool IFylldaFällt()
+        {
+            try
+            {
+                string[] textboxar = [
+                    kontaktInfo["Namn"], kontaktInfo["Personnummer"], kontaktInfo["TelefonNr"],
+                    kontaktInfo["Epost"], kontaktInfo["Adress"], kontaktInfo["Märke"], kontaktInfo["RegNr"],
+                    kontaktInfo["Årsmodell"]
+                ];
+
+                return textboxar.All(x => !string.IsNullOrEmpty(x));
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
         public void BtnNyKund(object x)
         {
-
-            Kund? kund = _personService.HämtaKund(NyKund().Personnummer);
-            if (kund != null)
+            if (IFylldaFällt() && korrektInput == true)
             {
-                MessageBox.Show("Kund finns");
-            }
-            else
-            {
-                //Om kund inte finns så sparas kunden in i databasen
-                _personService.SkapaKund(NyKund());
-
-                //Om bilen inte redan tillhör någon
-                if (SökBil(_regnr) == null)
+                Kund? kund = _personService.HämtaKund(NyKund().Personnummer);
+                if (kund != null)
                 {
-                    //Skapar en ny bil
-                    Bil bil = new Bil()
-                    {
-                        Årsmodell = Convert.ToInt16(_årsmodell),
-                        KundNr = _personService.HämtaKund(NyKund().Personnummer).KundNr,
-                        Märke = _märke,
-                        RegNr = _regnr
-                    };
-                    _personService.SkapaBil(bil);
-
-                    //Efter skapad och sparad bil nollställs fält och kunder laddas in igen
-                    MessageBox.Show("Kund skapad");
-                    //ÅterställFält();
-                    //LaddaAllaKunder();
+                    MessageBox.Show("Kund finns");
                 }
                 else
                 {
-                    MessageBox.Show("Bil finns redan");
+                    //Om kund inte finns så sparas kunden in i databasen
+                    _personService.SkapaKund(NyKund());
+
+                    //Om bilen inte redan tillhör någon
+                    if (SökBil(_regnr) == null)
+                    {
+                        //Skapar en ny bil
+                        Bil bil = new Bil()
+                        {
+                            Årsmodell = Convert.ToInt16(_årsmodell),
+                            KundNr = _personService.HämtaKund(NyKund().Personnummer).KundNr,
+                            Märke = _märke,
+                            RegNr = _regnr
+                        };
+                        _personService.SkapaBil(bil);
+
+                        //Efter skapad och sparad bil nollställs fält och kunder laddas in igen
+                        MessageBox.Show("Kund skapad");
+                        //TODO 
+                        //Ful lösning
+                        BtnÅterställ(x);
+                        LaddaAllaKunder();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bil finns redan");
+                    }
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Fält ej korrekt ifyllda");
+            }
         }
 
 
@@ -233,10 +266,13 @@ namespace Bilverkstad1.ViewModel
                 if (kontaktInfo["Årsmodell"].Length != 4)
                 {
                     LabelColorModell = Brushes.Red;
+                    korrektInput = false;
                 }
                 else
                 {
                     LabelColorModell = new(Color.FromRgb(255, 170, 238));
+                    korrektInput = true;
+
                 }
             }
         }
@@ -248,10 +284,13 @@ namespace Bilverkstad1.ViewModel
                 if (kontaktInfo["Personnummer"].Length != 12)
                 {
                     LabelColorPersonNr = Brushes.Red;
+                    korrektInput = false;
                 }
                 else
                 {
                     LabelColorPersonNr = new(Color.FromRgb(255, 170, 238));
+                    korrektInput = true;
+
                 }
             }
         }
@@ -391,9 +430,20 @@ namespace Bilverkstad1.ViewModel
         #endregion
         public void BtnUppdatera(object x)
         {
+            if (IFylldaFällt() && korrektInput == true)
+            {
+                _personService.UppdateraKund(NyKund());
+                MessageBox.Show("Kund uppdaterad");
+                //TODO 
+                //Ful lösning
+                BtnÅterställ(x);
+                LaddaAllaKunder();
+            }
+            else
+            {
+                MessageBox.Show("Inkorrekta fält");
+            }
 
-            _personService.UppdateraKund(NyKund());
-            MessageBox.Show("Kund uppdaterad");
         }
 
         

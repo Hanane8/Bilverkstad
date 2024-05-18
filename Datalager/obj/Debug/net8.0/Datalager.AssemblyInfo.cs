@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Datalager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+184072a7d4114ec8c07b385f03f7b8cab29ef0d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d0b557d2222f0e96ab106dccdf59d97d434a50c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Datalager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Datalager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
