@@ -156,12 +156,12 @@ namespace Bilverkstad1.ViewModel
             //Rensar tidigare information för uppdatering
             foreach (var kund in kunder)
             {
-                var antalBokningar = _bokningsService.HämtaBokning(kund).Count;
-                var bilar = _personService.HämtaBilar(kund);
+                int antalBokningar = _bokningsService.HämtaBokning(kund).Count;
+                List<Bil> bilar = _personService.HämtaBilar(kund);
                 string bilarRegNr = string.Join(", ", bilar.Select(b => b.RegNr));
 
                 // Create a new KundDataViewModel instance
-                var kundDataViewModel = new KundDataViewModel
+                KundDataViewModel kundDataViewModel = new KundDataViewModel
                 {
                     Personnummer = kund.Personnummer,
                     Namn = kund.Namn,

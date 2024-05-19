@@ -36,7 +36,7 @@ namespace Affärslager
         //public List<Bokning> HämtaBokning(Kund kund) => _unitOfWork.BokningsRepo.HämtaBokning(kund);
         public List<Bokning> HämtaBokning(Kund kund)
         {
-            var bokningar = _unitOfWork.BokningsRepo.HämtaBokning(kund);
+            List<Bokning> bokningar = _unitOfWork.BokningsRepo.HämtaBokning(kund);
             foreach (var bokning in bokningar)
             {
                 // Hämta kundnamn för varje bokning
