@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Datalager;
 using Entitetslager.Entiteter;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLager
 {
-    public class PersonRepository
+    public class PersonRepository: GenericRepository<Kund>
     {
         private EntityFramework _dbContext;
 
-        public PersonRepository(EntityFramework dbContext)
+        public PersonRepository(EntityFramework dbContext) : base(dbContext)
         {
             this._dbContext = dbContext;
         }
@@ -50,8 +51,7 @@ namespace DataLager
         /// <param name="kund"></param>
         public void SparaKund(Kund kund)
         {
-         
-            _dbContext.Kunder.Add(kund);
+            LäggTill(kund);
         }
 
         /// <summary>
@@ -76,14 +76,14 @@ namespace DataLager
                 existerandeKund.Adress = kund.Adress;
                 existerandeKund.Epost = kund.Epost;
             }
-            _dbContext.Entry(existerandeKund).State = EntityState.Modified;
+            Uppdatera(existerandeKund);
         }
 
         /// <summary>
         /// Hämtar och returnerar alla kunder i databasen
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Kund> HämtaAllaKunder() => _dbContext.Kunder.ToList();
+        public IEnumerable<Kund> HämtaAllaKunder() => Hämta();
         
         /// <summary>
         /// Hämtar och returnerar alla mekaniker i databasen
