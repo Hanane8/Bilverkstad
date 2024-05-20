@@ -12,12 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Affärslager;
 using Bilverkstad1;
-using DataLager;
-using Entitetslager.Entiteter;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Bilverkstad1.ViewModel;
 
 
 namespace Bilverkstad.PresentationLager
@@ -28,8 +24,6 @@ namespace Bilverkstad.PresentationLager
     public partial class Login : Window
     {
         
-        private readonly PersonService _personService;
-        public ServiceProvider serviceProvider; 
         public Login()
         {
             InitializeComponent();
@@ -51,6 +45,11 @@ namespace Bilverkstad.PresentationLager
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext != null)
+            { ((LoginViewModel)DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }

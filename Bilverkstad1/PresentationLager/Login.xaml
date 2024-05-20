@@ -156,7 +156,7 @@
                        VerticalAlignment="Top" 
                        Width="200"/>
 
-                <TextBox x:Name="textPass"
+                <PasswordBox x:Name="textPass"
                          FontSize="13"
                          Foreground="White"
                          CaretBrush="LightGray"
@@ -169,15 +169,15 @@
                          VerticalAlignment="Top" 
                          Width="214"
                          Padding="20,0,0,0"
-                         Text="{Binding Password}"
+                         PasswordChanged="PasswordBox_PasswordChanged"
                          >
 
-                    <TextBox.Background>
+                    <PasswordBox.Background>
                         <ImageBrush ImageSource="/Images/key_icon.png"
                                     Stretch="Uniform" 
                                     AlignmentX="Left"/>
-                    </TextBox.Background>
-                </TextBox>
+                    </PasswordBox.Background>
+                </PasswordBox>
                 <Button Content="Logga in" 
                         HorizontalAlignment="Left" 
                         Margin="283,231,0,0" 

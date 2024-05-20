@@ -75,7 +75,7 @@ namespace Bilverkstad1.ViewModel
             //Kontrollerar om informationen är giltig eller inte
             //if (_personService.VerifieraInloggning(_username, Marshal.PtrToStringUni(valuePtr)))
             //{
-                
+
             //    menuWindow.ShowDialog();
             //}
             if (_personService.VerifieraInloggning(_username, _password))
