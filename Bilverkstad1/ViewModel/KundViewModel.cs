@@ -20,8 +20,6 @@ using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Bilverkstad1.ViewModel
 {
-    //TODO
-    //1. Personnummer textchanged ändra färg
 
     public class KundViewModel : INotifyPropertyChanged
     {

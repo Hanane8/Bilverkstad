@@ -2783,19 +2783,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\noelstark\\.nuget\\packages\\": {}
+    "C:\\Users\\noelk\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\noelstark\\source\\repos\\BilverkstadGit\\Affärslager\\Affärslager.csproj",
+      "projectUniqueName": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
       "projectName": "Affärslager",
-      "projectPath": "C:\\Users\\noelstark\\source\\repos\\BilverkstadGit\\Affärslager\\Affärslager.csproj",
-      "packagesPath": "C:\\Users\\noelstark\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\noelstark\\source\\repos\\BilverkstadGit\\Affärslager\\obj\\",
+      "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\Affärslager.csproj",
+      "packagesPath": "C:\\Users\\noelk\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Affärslager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\noelstark\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\noelk\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2809,8 +2809,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\noelstark\\source\\repos\\BilverkstadGit\\Datalager\\Datalager.csproj": {
-              "projectPath": "C:\\Users\\noelstark\\source\\repos\\BilverkstadGit\\Datalager\\Datalager.csproj"
+            "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj": {
+              "projectPath": "C:\\Users\\noelk\\source\\repos\\Bilverkstad\\Datalager\\Datalager.csproj"
             }
           }
         }
@@ -2845,7 +2845,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

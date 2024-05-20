@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bilverkstad.PresentationLager"
+        xmlns:vm="clr-namespace:Bilverkstad1.ViewModel"
         mc:Ignorable="d"
         Title="Login" Height="550" Width="700"
         WindowStyle="None"
@@ -12,7 +13,9 @@
         Background="Transparent"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
-
+    <Window.DataContext>
+        <vm:LoginViewModel />
+    </Window.DataContext>
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
@@ -132,6 +135,7 @@
                          VerticalAlignment="Top" 
                          Width="214"
                          Padding="20,0,0,0"
+                         Text="{Binding UserName}"
                         >
 
                     <TextBox.Background>
@@ -152,7 +156,7 @@
                        VerticalAlignment="Top" 
                        Width="200"/>
 
-                <PasswordBox x:Name="textPass"
+                <TextBox x:Name="textPass"
                          FontSize="13"
                          Foreground="White"
                          CaretBrush="LightGray"
@@ -164,21 +168,23 @@
                          Grid.Row="2" 
                          VerticalAlignment="Top" 
                          Width="214"
-                         Padding="20,0,0,0" >
+                         Padding="20,0,0,0"
+                         Text="{Binding Password}"
+                         >
 
-                    <PasswordBox.Background>
+                    <TextBox.Background>
                         <ImageBrush ImageSource="/Images/key_icon.png"
                                     Stretch="Uniform" 
                                     AlignmentX="Left"/>
-                    </PasswordBox.Background>
-                </PasswordBox>
+                    </TextBox.Background>
+                </TextBox>
                 <Button Content="Logga in" 
                         HorizontalAlignment="Left" 
                         Margin="283,231,0,0" 
                         Cursor="Hand"
                         Grid.Row="2" 
                         VerticalAlignment="Top" 
-                        Click="Btnlogin_Click" IsDefault="True">
+                        Command="{Binding LoginCommand }" IsDefault="True">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="150" Height="40"

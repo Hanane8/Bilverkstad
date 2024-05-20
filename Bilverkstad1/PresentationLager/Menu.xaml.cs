@@ -26,7 +26,7 @@ namespace Bilverkstad.PresentationLager
     {
         private IServiceProvider _serviceProvider;
       
-        public Menu(string användarnamn, PasswordBox lösenord, IServiceProvider serviceProvider)
+        public Menu(IServiceProvider serviceProvider)
         {
             InitializeComponent();
             _serviceProvider = serviceProvider;

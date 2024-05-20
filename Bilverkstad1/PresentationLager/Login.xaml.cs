@@ -32,18 +32,6 @@ namespace Bilverkstad.PresentationLager
         public ServiceProvider serviceProvider; 
         public Login()
         {
-            serviceProvider = new ServiceCollection()
-                .AddScoped<UnitOfWork>()
-                .AddScoped<PersonService>()
-                .AddScoped<EntityFramework>()
-                .AddScoped<ReservDelService>()
-                .AddScoped<BokningsService>()
-                .AddScoped<JournalService>()
-                .BuildServiceProvider();
-           
-
-            _personService = serviceProvider.GetRequiredService<PersonService>();
-
             InitializeComponent();
         }
 
@@ -64,30 +52,5 @@ namespace Bilverkstad.PresentationLager
         {
             Application.Current.Shutdown();
         }
-
-        private void Btnlogin_Click(object sender, RoutedEventArgs e)
-        {
-           
-
-            PresentationLager.Menu menuWindow = new PresentationLager.Menu(textUser.Text,textPass, serviceProvider);
-
-            IntPtr valuePtr = Marshal.SecureStringToGlobalAllocUnicode(textPass.SecurePassword);
-           
-            //Kontrollerar om informationen är giltig eller inte
-            if (_personService.VerifieraInloggning(textUser.Text, Marshal.PtrToStringUni(valuePtr)))
-            {
-                GetWindow(this)?.Close();
-                menuWindow.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Inkorrekt information");
-            }
-
-        }
-
-
-            
-        
     }
 }
