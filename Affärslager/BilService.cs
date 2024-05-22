@@ -33,6 +33,7 @@ namespace Affärslager
         }
         public List<Bil> HämtaBilar(Kund kund) => _unitOfWork.BilRepo.HämtaBilar(kund);
 
+
         public void SkapaBil(Bil bil)
         {
             _unitOfWork.BilRepo.SkapaBil(bil);

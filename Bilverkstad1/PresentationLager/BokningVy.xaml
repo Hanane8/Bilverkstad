@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bilverkstad.PresentationLager"
+         xmlns:vm="clr-namespace:Bilverkstad1.ViewModel"
         mc:Ignorable="d"
         Title="BokningVy" Height="450" Width="800"
          WindowStyle="None"
@@ -13,6 +14,10 @@
         
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
+    <Window.DataContext>
+        <vm:BokningViewModel />
+    </Window.DataContext>
+
     <Border CornerRadius="50">
         <Border.Background>
             <ImageBrush ImageSource="/Images/background_bilverkstad.jpg" 
@@ -109,20 +114,26 @@
                     <Border Grid.Row="2" CornerRadius="0 50 0 0">
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Top">
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,40,30,0"
-                                  Content="Ny Tid" Click="BtnNyTid_Click"  FontSize="12" >
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
+                  Content="Save"  Command="{Binding SaveCommand }" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect Opacity="0.2" Direction="270" ShadowDepth="1" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
-                                 Content="Uppdatera Tid" Click="BtnUppdatera_Click"  FontSize="12" >
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
+                 Content="Uppdate" Command="{Binding UpdateCommand}"  FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
-                                <Button Style="{StaticResource ButtonMenu}" Margin="30,20,30,0"
-                                 Content="Spara" Click="BtnSpara_Click"  FontSize="12" >
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
+                 Content="Delete" Command="{Binding DeleteCommand}" FontSize="12" >
+                                    <Button.Effect>
+                                        <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
+                                    </Button.Effect>
+                                </Button>
+                                <Button Style="{StaticResource ButtonMenu}" Margin="30,30,30,0"
+                 Content="Add" Command="{Binding AddCommand}" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
@@ -155,7 +166,7 @@
 
                         <TextBox  Style="{StaticResource TextBoxSearch}"
                           x:Name="txtSearch" Height="20" 
-                          Margin="470,0,10,141" VerticalAlignment="Bottom" TextChanged="txtSearch_TextChanged"  />
+                          Margin="470,0,10,141" VerticalAlignment="Bottom"  />
                         <Label Content="InlämningsDatum" 
                         HorizontalAlignment="Left" 
                         Height="24" Margin="309,97,0,0" 
@@ -163,21 +174,21 @@
                         Width="112" 
                         Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                         
+                          Text="{Binding InlämningsDatum, Mode=TwoWay}" 
                           x:Name="InlämningsDatum"
                           HorizontalAlignment="Left" 
                           Margin="439,97,0,0" 
-                          VerticalAlignment="Top" TextChanged="InlämningsDatum_TextChanged" 
+                          VerticalAlignment="Top"  
                          />
                         <Label Content="AnställningsNr"
                         Foreground="#FFEAC4EE" FontWeight="Bold" FontStyle="Italic"
                         HorizontalAlignment="Left" Height="27" Margin="10,0,0,0" VerticalAlignment="Center" Width="105"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                        
+                          Text="{Binding UtlämningsDatum, Mode=TwoWay}" 
                           x:Name="UtlämningsDatum"
                           HorizontalAlignment="Left" 
                           Margin="439,61,0,0" 
-                          VerticalAlignment="Top" TextChanged="UtlämningsDatum_TextChanged" />
+                          VerticalAlignment="Top" />
                         <Label Content="UtlämningsDatum" 
                         HorizontalAlignment="Left" 
                         Height="34" 
@@ -204,16 +215,18 @@
                                VerticalAlignment="Top" 
                                Width="105"/>
 
-                        <ComboBox 
+                        <ComboBox ItemsSource="{Binding ReservDelar}" 
+                                  DisplayMemberPath="Namn"
+                                  SelectedItem="{Binding SelectedReservdel}"
                              x:Name="cmbReservdel" HorizontalAlignment="Left" Height="22" 
                             Margin="122,30,0,0" VerticalAlignment="Top" 
-                            Width="123" SelectionChanged="cmbreservdel_SelectionChanged"/>
+                            Width="123" />
                         <TextBox Style="{StaticResource TextBoxInput}" 
-                         
+                            Text="{Binding Åtgärder, Mode=TwoWay}"
                             x:Name="Åtgärder"
                             HorizontalAlignment="Left" 
                             Margin="439,133,0,0" 
-                            VerticalAlignment="Top" TextChanged="InlämningsDatum_TextChanged" 
+                            VerticalAlignment="Top"  
                          />
                         <Label Content="Åtgärder" 
                             HorizontalAlignment="Left" 
@@ -225,13 +238,16 @@
 
 
                     </Grid>
-                    <DataGrid x:Name="BokningsDataGrid"
+                    <DataGrid 
+                        ItemsSource="{Binding Boknings }"         
+                        SelectedItem="{Binding SelectedBokning }"
+                        x:Name="BokningsDataGrid"
                        Style="{DynamicResource DataGridStyle1}" 
                        CellStyle="{DynamicResource DataGridCellStyle1}" 
                        ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                        RowStyle="{DynamicResource DataGridRowStyle1}" 
                        Grid.Row="2" ColumnWidth ="auto"
-                              Margin="0,0,10,0" SelectionChanged="BokningsDataGrid_SelectionChanged" >
+                              Margin="0,0,10,0" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="" Width="auto" Binding="{Binding Name}" />
 
@@ -242,10 +258,17 @@
 
 
                 </Grid>
-                <ComboBox  x:Name="cmbKund"
-                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="123,154,0,0" VerticalAlignment="Top" Width="124" SelectionChanged="cmbKund_SelectionChanged "/>
-                <ComboBox  x:Name="cmbMekaniker"
-                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="123,109,0,0" VerticalAlignment="Top" Width="124" SelectionChanged="cmbMekaniker_SelectionChanged"/>
+                <ComboBox  
+                    ItemsSource="{Binding Kunder}"
+                    DisplayMemberPath="Namn" 
+                    SelectedItem="{Binding SelectedKund}"
+                    x:Name="cmbKund"
+                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="123,154,0,0" VerticalAlignment="Top" Width="124" />
+                <ComboBox ItemsSource="{Binding Mekaniker}" 
+                          DisplayMemberPath="Namn" 
+                          SelectedItem="{Binding SelectedMekaniker}"
+                    x:Name="cmbMekaniker"
+                    Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="123,109,0,0" VerticalAlignment="Top" Width="124"/>
 
 
 

@@ -39,16 +39,17 @@ namespace Affärslager
             List<Bokning> bokningar = _unitOfWork.BokningsRepo.HämtaBokning(kund);
             foreach (var bokning in bokningar)
             {
-                // Hämta kundnamn för varje bokning
                 bokning.Namn = kund.Namn;
             }
             return bokningar;
         }
 
+        public IEnumerable<Bokning> HämtaAllaBokningar() => _unitOfWork.BokningsRepo.HämtaAllaBokningar();
 
-
-
-        public IEnumerable<Bokning> HämtaAllaBokningar() =>_unitOfWork.BokningsRepo.HämtaAllaBokningar();
-        
+        public void DeleteBokning(Bokning selectedBokning)
+        {
+            _unitOfWork.BokningsRepo.DeleteBokning(selectedBokning);
+            _unitOfWork.SaveChanges();
+        }
     }
 }

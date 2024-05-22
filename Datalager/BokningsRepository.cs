@@ -14,10 +14,10 @@ namespace DataLager
 
         public BokningsRepository(EntityFramework dbContext)
         {
-            _dbContext = dbContext;
+            this._dbContext = dbContext;
         }
 
-        public List<Bokning> HämtaBokning(Bokning bokning) =>_dbContext.Bokningar.Where(b => b.BokningsNr == bokning.BokningsNr).ToList();
+        public List<Bokning> HämtaBokning(Bokning bokning) => _dbContext.Bokningar.Where(b => b.BokningsNr == bokning.BokningsNr).ToList();
 
         public List<Bokning> HämtaBokning(Kund kund) => _dbContext.Bokningar.Where(c => c.KundNr == kund.KundNr).ToList();
 
@@ -30,10 +30,14 @@ namespace DataLager
         public void SparaBokning(Bokning bokning)
         {
             _dbContext.Bokningar.Add(bokning);
-            
+
         }
-        
+
         public IEnumerable<Bokning> HämtaAllaBokningar() => _dbContext.Bokningar.ToList();
-        
+
+        public void DeleteBokning(Bokning selectedBokning)
+        {
+            _dbContext.Bokningar.Remove(selectedBokning);
+        }
     }
 }
