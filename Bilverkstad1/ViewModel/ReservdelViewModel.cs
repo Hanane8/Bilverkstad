@@ -27,6 +27,7 @@ namespace Bilverkstad1.ViewModel
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand AddCommand { get; }
+        public ICommand SearchCommand { get; }
         public ReservdelViewModel()
         {
             IServiceProvider serviceProvider = ReservDelVy._serviceProvider;
@@ -39,10 +40,24 @@ namespace Bilverkstad1.ViewModel
             SaveCommand = new RelayCommand(SaveReservDel);
             DeleteCommand = new RelayCommand(DeleteReservDel);
             AddCommand = new RelayCommand(AddReservDel);
+            SearchCommand = new RelayCommand(Search);
             UppdateraReservdelar();
 
         }
-
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged(nameof(SearchText));
+                    ApplyFilter();
+                }
+            }
+        }
         public string Namn
         {
             get { return _reservDel.Namn; }
@@ -111,6 +126,21 @@ namespace Bilverkstad1.ViewModel
                 Pris = _selectedReservDel.Pris;
                 Kvantitet = _selectedReservDel.Kvantitet;
             }
+        }
+        private void Search(object parameter)
+        {
+            ApplyFilter();
+        }
+
+        private void ApplyFilter()
+        {
+            var allaReservdelar = _reservDelService.HämtaAllaReservdel();
+
+            var matchandeReservdel = allaReservdelar.Where(reservDel =>
+                reservDel.Namn.ToString().Contains(SearchText.ToLower())
+            ).ToList();
+
+            ReservDels = new ObservableCollection<ReservDel>(matchandeReservdel);
         }
 
         private void UpdateReservDel(object parameter)
