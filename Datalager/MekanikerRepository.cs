@@ -30,9 +30,7 @@ namespace Datalager
             return användare.Lösenord == lösenord;
         }
 
-        public Mekaniker HämtaMekanikerNr(int anställningsNr)
-        {
-            return SingleOrDefault(m => m.AnställningsNr == anställningsNr);
-        }
+        public Mekaniker HämtaMekanikerNr(int anställningsNr) => SingleOrDefault(m => m.AnställningsNr == anställningsNr);
+        
     }
 }

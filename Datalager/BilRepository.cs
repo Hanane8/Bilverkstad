@@ -14,19 +14,15 @@ namespace Datalager
         public BilRepository(EntityFramework dbContext) : base(dbContext)
         {
         }
-        public List<Bil> HämtaBilar(Kund kund)
-        {
-            return HämtaLista(b => b.KundNr == kund.KundNr);
-        }
+        public List<Bil> HämtaBilar(Kund kund) => HämtaLista(b => b.KundNr == kund.KundNr);
+        
         /// <summary>
         /// Söker och returnerar en specific bil och dess egenskaper
         /// </summary>
         /// <param name="regnr"></param>
         /// <returns></returns>
-        public Bil SökBil(string regnr)
-        {
-            return SingleOrDefault(b => b.RegNr == regnr);
-        }
+        public Bil SökBil(string regnr) => SingleOrDefault(b => b.RegNr == regnr);
+        
 
         /// <summary>
         /// Sparar en ny bil till databasen

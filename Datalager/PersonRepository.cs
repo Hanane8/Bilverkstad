@@ -43,10 +43,8 @@ namespace DataLager
         /// </summary>
         /// <param name="sökTerm"></param>
         /// <returns></returns>
-        public List<Kund> SökKund(string sökTerm)
-        {
-            return HämtaLista(k => k.Namn.Contains(sökTerm));
-        }
+        public List<Kund> SökKund(string sökTerm) => HämtaLista(k => k.Namn.Contains(sökTerm));
+        
 
         /// <summary>
         /// Metod som uppdaterar en kunds information
@@ -77,13 +75,7 @@ namespace DataLager
         /// </summary>
         /// <param name="kundNr"></param>
         /// <returns></returns>
-        public Kund HämtaKundNr(int kundNr)
-        {
-            return SingleOrDefault(k => k.KundNr == kundNr);
-        }
-
-      
-
+        public Kund HämtaKundNr(int kundNr) => SingleOrDefault(k => k.KundNr == kundNr);
        
     }
 }

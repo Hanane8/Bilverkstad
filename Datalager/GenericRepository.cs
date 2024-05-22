@@ -31,15 +31,11 @@ namespace Datalager
         //    return _dbContext.Set<TEntity>().FirstOrDefault(k => k.Personnummer);
         //}
 
-        public List<TEntity> HämtaLista(Expression<Func<TEntity, bool>> funcExpression)
-        {
-            return _dbContext.Set<TEntity>().Where(funcExpression).ToList();
-        }
+        public List<TEntity> HämtaLista(Expression<Func<TEntity, bool>> funcExpression) => _dbContext.Set<TEntity>().Where(funcExpression).ToList();
+        
 
-        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> funcExpression)
-        {
-            return _dbContext.Set<TEntity>().SingleOrDefault(funcExpression);
-        }
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> funcExpression) => _dbContext.Set<TEntity>().SingleOrDefault(funcExpression);
+        
 
         public List<TEntity> Hämta() =>_dbContext.Set<TEntity>().ToList();
         

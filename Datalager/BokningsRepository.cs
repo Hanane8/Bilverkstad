@@ -14,7 +14,7 @@ namespace DataLager
 
         public BokningsRepository(EntityFramework dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
         }
 
         public List<Bokning> HämtaBokning(Bokning bokning) =>_dbContext.Bokningar.Where(b => b.BokningsNr == bokning.BokningsNr).ToList();
