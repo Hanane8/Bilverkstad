@@ -40,6 +40,7 @@ namespace Bilverkstad1.ViewModel
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand AddCommand { get; }
+        public ICommand SearchCommand { get; }
 
         public BokningViewModel()
         {
@@ -62,6 +63,7 @@ namespace Bilverkstad1.ViewModel
             SaveCommand = new RelayCommand(SaveBokning);
             DeleteCommand = new RelayCommand(DeleteBokning);
             AddCommand = new RelayCommand(AddBokning);
+            SearchCommand = new RelayCommand(Search);
             UppdateraBokning();
         }
         public int BokningsNr
@@ -241,6 +243,37 @@ namespace Bilverkstad1.ViewModel
                 OnPropertyChanged(nameof(SelectedReservdel));
             }
         }
+        private string _searchText;
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged(nameof(SearchText));
+                    ApplyFilter(); 
+                }
+            }
+        }
+        private void Search(object parameter)
+        {
+            ApplyFilter();
+        }
+
+        private void ApplyFilter()
+        {
+            var allaBokningar = _bokningService.HämtaAllaBokningar();
+
+            var matchandeBokningar = allaBokningar.Where(bokning =>
+                bokning.BokningsNr.ToString().Contains(SearchText.ToLower())
+            ).ToList();
+
+            Boknings = new ObservableCollection<Bokning>(matchandeBokningar);
+        }
+    
         private void ClearTextBoxes()
         {
             InlämningsDatum = null;
@@ -309,7 +342,6 @@ namespace Bilverkstad1.ViewModel
 
                 Bokning newBokning = new Bokning
                 {
-                    // BokningsNr ska inte sättas här eftersom det är en identitetskolumn
                     KundNr = SelectedKund.KundNr,
                     Namn = SelectedKund.Namn,
                     AnställningsNr = SelectedMekaniker.AnställningsNr,

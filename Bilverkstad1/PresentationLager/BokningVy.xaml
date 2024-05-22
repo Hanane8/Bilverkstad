@@ -165,6 +165,7 @@
 
 
                         <TextBox  Style="{StaticResource TextBoxSearch}"
+                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                           x:Name="txtSearch" Height="20" 
                           Margin="470,0,10,141" VerticalAlignment="Bottom"  />
                         <Label Content="InlämningsDatum" 
