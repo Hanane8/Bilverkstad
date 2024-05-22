@@ -25,6 +25,7 @@ namespace Bilverkstad.PresentationLager
         private PersonService _personService;
         private ReservDelService _reservDelService;
         private JournalService _journalService;
+        private BilService _bilService;
 
         public BokningVy(IServiceProvider serviceProvider)
         {
@@ -34,6 +35,7 @@ namespace Bilverkstad.PresentationLager
             _personService = (PersonService)serviceProvider.GetService(typeof(PersonService));
             _reservDelService = (ReservDelService)serviceProvider.GetService(typeof(ReservDelService));
             _journalService = (JournalService)serviceProvider.GetService(typeof(JournalService));
+            _bilService = (BilService)serviceProvider.GetService(typeof(BilService));
             UppdateraBokningDelGrid();
             FillComboBoxes();
         }
@@ -156,7 +158,7 @@ namespace Bilverkstad.PresentationLager
                     };
 
                     _bokningsService.SkapaBokning(nyBokning);
-                     List<Bil> bilar = _personService.HämtaBilar(valdKund);
+                     List<Bil> bilar = _bilService.HämtaBilar(valdKund);
 
                     var nyJournal = new Journal
                     {

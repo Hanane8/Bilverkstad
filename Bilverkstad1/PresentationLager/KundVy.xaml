@@ -114,19 +114,19 @@
                         <DockPanel>
                             <StackPanel DockPanel.Dock="Top">
                                 <Button Style="{StaticResource ButtonMenu}" Margin="10,70,10,0" Name="BtnNykund"
-                                     Content="Ny Kund" Background="#FF6067F1" FontSize="12" IsEnabled="True" Command="{Binding NyKundCommand}">
+                                     Content="Ny Kund" Background="#FF6067F1" FontSize="12" IsEnabled="True" Command="{Binding Commands.NyKundCommand}">
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}"  Margin="10,20,10,0" Name="BtnUppdatera" 
-                                    Content="Uppdatera" Background="#FF6067F1" FontSize="12" IsEnabled="True" Command="{Binding UppdateraCommand}">
+                                    Content="Uppdatera" Background="#FF6067F1" FontSize="12" IsEnabled="True" Command="{Binding Commands.UppdateraCommand}">
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
                                 </Button>
                                 <Button Style="{StaticResource ButtonMenu}" Margin="10,20,10,0" x:Name="BtnÅterställ"
-                                Content="Återställ" Command="{Binding ÅterställCommand, UpdateSourceTrigger=PropertyChanged}" Background="#FF6067F1" FontSize="12" >
+                                Content="Återställ" Command="{Binding Commands.ÅterställCommand, UpdateSourceTrigger=PropertyChanged}" Background="#FF6067F1" FontSize="12" >
                                     <Button.Effect>
                                         <DropShadowEffect BlurRadius="15" Opacity="0.5" Direction="270" ShadowDepth="3" Color="#FF272727"/>
                                     </Button.Effect>
@@ -162,7 +162,7 @@
                              >
                             <b:Interaction.Triggers>
                                 <b:EventTrigger EventName="TextChanged">
-                                    <b:InvokeCommandAction Command="{Binding SökCommand}" />
+                                    <b:InvokeCommandAction Command="{Binding Commands.SökCommand}" />
                                 </b:EventTrigger>
                             </b:Interaction.Triggers>
                         </TextBox>
@@ -200,6 +200,7 @@
                              VerticalAlignment="Top" 
                              Width="96"
                              Text ="{Binding Personnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="{Binding IsTextBoxEnabled}"
                             >
                         </TextBox>
                         <TextBox Style="{StaticResource TextBoxInput}" 
@@ -256,13 +257,15 @@
                             HorizontalAlignment="Left" 
                             Margin="491,79,0,0" 
                             VerticalAlignment="Top" Width="86"
-                            Text ="{Binding Märke, Mode=TwoWay}"/>
+                            Text ="{Binding Märke, Mode=TwoWay}"
+                            />
                         <TextBox Style="{StaticResource TextBoxInput}" 
                             x:Name="RegNr"
                             HorizontalAlignment="Left" 
                             Margin="491,46,0,0" 
                             VerticalAlignment="Top" Width="86"
-                            Text ="{Binding RegNr, Mode=TwoWay}"/>
+                            Text ="{Binding RegNr, Mode=TwoWay}"
+                            IsEnabled="{Binding IsTextBoxEnabled}"/>
                         <TextBox Style="{StaticResource TextBoxInput}" 
                             x:Name="Årsmodell"
                             HorizontalAlignment="Left" 
@@ -285,7 +288,7 @@
                         </DataGrid.Columns>
                         <b:Interaction.Triggers>
                             <b:EventTrigger EventName="SelectionChanged">
-                                <b:InvokeCommandAction Command="{Binding ClickCommand}" CommandParameter="{Binding SelectedItem, ElementName=KunderDataGrid}"></b:InvokeCommandAction>
+                                <b:InvokeCommandAction Command="{Binding Commands.ClickCommand}" CommandParameter="{Binding SelectedItem, ElementName=KunderDataGrid}"></b:InvokeCommandAction>
                             </b:EventTrigger>
                         </b:Interaction.Triggers>
 

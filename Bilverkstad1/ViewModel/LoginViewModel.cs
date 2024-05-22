@@ -57,6 +57,7 @@ namespace Bilverkstad1.ViewModel
                 .AddScoped<ReservDelService>()
                 .AddScoped<BokningsService>()
                 .AddScoped<JournalService>()
+                .AddScoped<BilService>()
                 .BuildServiceProvider();
 
 

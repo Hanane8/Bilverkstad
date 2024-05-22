@@ -9,6 +9,8 @@ namespace DataLager
         private BokningsRepository _bokningsRepository;
         private ReservDelRepository _servDelRepository;
         private JournalRepository _journalRepository;
+        private BilRepository _bilRepository;
+        private MekanikerRepository _mekanikerRepository;
         public UnitOfWork(EntityFramework dbContext)
         {
             this._dbContext = dbContext;
@@ -73,6 +75,25 @@ namespace DataLager
 
         }
 
+        public BilRepository BilRepo
+        {
+            get
+            {
+                if (_bilRepository == null)
+                    _bilRepository = new BilRepository(_dbContext);
+                return _bilRepository;
+            }
+        }
+
+        public MekanikerRepository MekanikerRepo
+        {
+            get
+            {
+                if (_mekanikerRepository == null)
+                    _mekanikerRepository = new MekanikerRepository(_dbContext);
+                return _mekanikerRepository;
+            }
+        }
 
         /// <summary>
         /// Metod som ser till att all ny information skriven

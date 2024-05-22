@@ -11,31 +11,11 @@ namespace DataLager
 {
     public class PersonRepository: GenericRepository<Kund>
     {
-        private EntityFramework _dbContext;
+
 
         public PersonRepository(EntityFramework dbContext) : base(dbContext)
         {
-            this._dbContext = dbContext;
-        }
 
-        /// <summary>
-        /// Den metod som har hand om verifiering av inlogg
-        /// </summary>
-        /// <param name="användarnman"></param>
-        /// <param name="lösenord"></param>
-        /// <returns></returns>
-        public bool VerifieraInloggning(string användarnman, string lösenord)
-        {
-
-            Mekaniker? användare = _dbContext.Mekaniker.FirstOrDefault(x => x.Namn == användarnman);
-
-            //Om användaren inte finns
-            if (användare == null)
-            {
-                return false;
-            }
-
-            return användare.Lösenord == lösenord;
         }
 
         /// <summary>
@@ -43,7 +23,10 @@ namespace DataLager
         /// </summary>
         /// <param name="personnummer"></param>
         /// <returns></returns>
-        public Kund HämtaKund(string personnummer) => _dbContext.Kunder.FirstOrDefault(k => k.Personnummer == personnummer);
+        public Kund HämtaKund(string personnummer)
+        {
+            return SingleOrDefault(k => k.Personnummer == personnummer);
+        }
         
         /// <summary>
         /// Sparar önskad kund i databasen
@@ -60,8 +43,11 @@ namespace DataLager
         /// </summary>
         /// <param name="sökTerm"></param>
         /// <returns></returns>
-        public List<Kund> SökKund(string sökTerm) => _dbContext.Kunder.Where(k => k.Namn.Contains(sökTerm)).ToList();
-        
+        public List<Kund> SökKund(string sökTerm)
+        {
+            return HämtaLista(k => k.Namn.Contains(sökTerm));
+        }
+
         /// <summary>
         /// Metod som uppdaterar en kunds information
         /// </summary>
@@ -85,47 +71,19 @@ namespace DataLager
         /// <returns></returns>
         public IEnumerable<Kund> HämtaAllaKunder() => Hämta();
         
-        /// <summary>
-        /// Hämtar och returnerar alla mekaniker i databasen
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Mekaniker> HämtaAllaMekaniker() =>_dbContext.Mekaniker.ToList();
-        
-        /// <summary>
-        /// Hämtar och returnerar en mekaniker baserat på anställnings nummer
-        /// </summary>
-        /// <param name="anställningsNr"></param>
-        /// <returns></returns>
-        public Mekaniker HämtaMekanikerNr(int anställningsNr) =>_dbContext.Mekaniker.FirstOrDefault(m => m.AnställningsNr == anställningsNr);
         
         /// <summary>
         /// Hämtar och returnerar Kund baserat på kund nummer
         /// </summary>
         /// <param name="kundNr"></param>
         /// <returns></returns>
-        public Kund HämtaKundNr(int kundNr) => _dbContext.Kunder.FirstOrDefault(k => k.KundNr == kundNr);
-        
-        /// <summary>
-        /// Hämtar alla bilar som tilhör en specifik kund
-        /// </summary>
-        /// <param name="kund"></param>
-        /// <returns></returns>
-        public List<Bil> HämtaBilar(Kund kund) => _dbContext.Bilar.Where( b => b.KundNr == kund.KundNr).ToList();
-
-        /// <summary>
-        /// Söker och returnerar en specific bil och dess egenskaper
-        /// </summary>
-        /// <param name="regnr"></param>
-        /// <returns></returns>
-        public Bil SökBil(string regnr) => _dbContext.Bilar.FirstOrDefault(b => b.RegNr == regnr);
-
-        /// <summary>
-        /// Sparar en ny bil till databasen
-        /// </summary>
-        /// <param name="bil"></param>
-        public void SkapaBil(Bil bil)
+        public Kund HämtaKundNr(int kundNr)
         {
-            _dbContext.Bilar.Add(bil);
+            return SingleOrDefault(k => k.KundNr == kundNr);
         }
+
+      
+
+       
     }
 }

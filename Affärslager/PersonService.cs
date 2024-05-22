@@ -12,7 +12,7 @@ namespace Affärslager
             _unitOfWork = unitofWork;
         }
 
-        public bool VerifieraInloggning(string användarnman, string lösenord) =>_unitOfWork.PersonRepo.VerifieraInloggning(användarnman, lösenord);
+        public bool VerifieraInloggning(string användarnman, string lösenord) =>_unitOfWork.MekanikerRepo.VerifieraInloggning(användarnman, lösenord);
         
         public Kund HämtaKund(string personnummer) =>_unitOfWork.PersonRepo.HämtaKund(personnummer);
 
@@ -20,11 +20,11 @@ namespace Affärslager
         
         public IEnumerable<Kund> HämtaAllaKunder() => _unitOfWork.PersonRepo.HämtaAllaKunder();
         
-        public IEnumerable<Mekaniker> HämtaAllaMekaniker() => _unitOfWork.PersonRepo.HämtaAllaMekaniker();
+        public IEnumerable<Mekaniker> HämtaAllaMekaniker() => _unitOfWork.MekanikerRepo.HämtaAllaMekaniker();
         
         public Kund HämtaKundNr(int kundNr) => _unitOfWork.PersonRepo.HämtaKundNr(kundNr);
         
-        public Mekaniker HämtaMekanikerNr(int anställningsNr) => _unitOfWork.PersonRepo.HämtaMekanikerNr(anställningsNr);
+        public Mekaniker HämtaMekanikerNr(int anställningsNr) => _unitOfWork.MekanikerRepo.HämtaMekanikerNr(anställningsNr);
 
         public void SkapaKund(Kund kund)
         {
@@ -37,15 +37,7 @@ namespace Affärslager
             _unitOfWork.PersonRepo.UppdateraKund(kund); 
             _unitOfWork.SaveChanges();
         }
-        public List<Bil> HämtaBilar(Kund kund) => _unitOfWork.PersonRepo.HämtaBilar(kund);
-
-        public void SkapaBil(Bil bil)
-        {
-            _unitOfWork.PersonRepo.SkapaBil(bil);
-            _unitOfWork.SaveChanges();
-        }
-
-        public Bil SökBil(string regNr) => _unitOfWork.PersonRepo.SökBil(regNr);
+       
 
     }
 }

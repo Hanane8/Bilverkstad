@@ -9,7 +9,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using Affärslager;
 using Bilverkstad.PresentationLager;
@@ -20,52 +19,43 @@ using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Bilverkstad1.ViewModel
 {
-
     public class KundViewModel : INotifyPropertyChanged
     {
-        #region ICommands
-
-        public ICommand ClickCommand { get; }
-        public ICommand NyKundCommand { get; }
-        public ICommand UppdateraCommand { get; }
-        public ICommand ÅterställCommand { get; }
-        public ICommand SökCommand { get; }
-        public ICommand TextKontrollCommand { get; }
-
-        #endregion
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private PersonService _personService;
         private BokningsService _bokningsService;
+        private BilService _bilService;
 
 
-        private Dictionary<string, string> kontaktInfo = new Dictionary<string, string>();
-        private string _märke, _regnr, _årsmodell, _sök;
-        private bool korrektInput = false;
+        private Dictionary<string, string> kontaktInfo = new();
+        private SolidColorBrush _labelColor = new(Color.FromRgb(255, 170, 238));
+        public Commands Commands { get; }
+        public ObservableCollection<KundDataViewModel> KundData { get; set; } = new();
+        private KundDataViewModel _selectedItem;
 
-        public ObservableCollection<KundDataViewModel> KundData { get; set; } =
-            new ObservableCollection<KundDataViewModel>();
+        private string _sök;
+        private bool korrektInput, gammalKund, _isTextBoxEnabled;
         public KundViewModel()
         {
             IServiceProvider serviceProvider = KundVy._serviceProvider;
             _personService = serviceProvider.GetRequiredService<PersonService>();
             _bokningsService = serviceProvider.GetRequiredService<BokningsService>();
+            _bilService = serviceProvider.GetRequiredService<BilService >();
 
-            NyKundCommand = new RelayCommand(BtnNyKund);
-            UppdateraCommand = new RelayCommand(BtnUppdatera);
-            ÅterställCommand = new RelayCommand(BtnÅterställ);
-            SökCommand = new RelayCommand(SökKund);
-            ClickCommand = new RelayCommand(KolumnClick);
+            Commands = new Commands(this);
 
             LaddaAllaKunder();
         }
-
-        private string HämtaAttribut(string key)
+        public void ToggleTextBoxEnabled(object x)
         {
-            kontaktInfo.TryGetValue(key, out string value);
-            return value;
+            if (gammalKund)
+                IsTextBoxEnabled = false;
+            else
+                IsTextBoxEnabled = true;
+
         }
+        private string HämtaAttribut(string key) => kontaktInfo.TryGetValue(key, out var value) ? value : string.Empty;
 
         private void SättAttribut(string key, string value)
         {
@@ -92,7 +82,7 @@ namespace Bilverkstad1.ViewModel
         }
 
 
-        private void KolumnClick(object x)
+        public void KolumnClick(object x)
         {
             if(x != null)
             {
@@ -102,19 +92,20 @@ namespace Bilverkstad1.ViewModel
                 SättAttribut("Namn", kundDataViewModel.Namn);
                 SättAttribut("Epost", kundDataViewModel.Epost);
                 SättAttribut("TelefonNr", kundDataViewModel.TelefonNr);
-                SättAttribut("Personnummer", kundDataViewModel.Personnummer);
+                SättAttribut("Personnummer", kundDataViewModel.Personnummer.ToString());
                 SättAttribut("Adress", kundDataViewModel.Adress);
                 SättAttribut("RegNr", bil.RegNr);
                 SättAttribut("Årsmodell", bil.Årsmodell.ToString());
                 SättAttribut("Märke", bil.Märke);
                 korrektInput = true;
+                gammalKund = true;
             }
             
             
         }
 
       
-        private KundDataViewModel _selectedItem;
+
 
         public KundDataViewModel SelectedItem
         {
@@ -128,38 +119,35 @@ namespace Bilverkstad1.ViewModel
                 }
             }
         }
-        private Bil SökBil(string regNr) => _personService.SökBil(regNr);
+        private Bil SökBil(string regNr) => _bilService.SökBil(regNr);
 
 
-        private Kund NyKund()
+        private Kund NyKund() => new()
         {
-            Kund kund = new Kund
-            {
-                Namn = HämtaAttribut("Namn"),
-                Adress = HämtaAttribut("Adress"),
-                TelefonNr = Convert.ToInt64(HämtaAttribut("TelefonNr")),
-                Personnummer = HämtaAttribut("Personnummer"),
-                Epost = HämtaAttribut("Epost")
-            };
-            return kund;
-        }
-        private void LaddaAllaKunder()
+            Namn = HämtaAttribut("Namn"),
+            Adress = HämtaAttribut("Adress"),
+            TelefonNr = Convert.ToInt64(HämtaAttribut("TelefonNr")),
+            Personnummer = HämtaAttribut("Personnummer"),
+            Epost = HämtaAttribut("Epost")
+        };
+
+        private Bil NyBil() => new()
         {
-            IEnumerable<Kund> kunder = _personService.HämtaAllaKunder();
-            FylliFält(kunder.ToList());
-        }
+            Årsmodell = Convert.ToInt16(HämtaAttribut("Årsmodell")),
+            KundNr = _personService.HämtaKund(NyKund().Personnummer).KundNr,
+            Märke = HämtaAttribut("Märke"),
+            RegNr = HämtaAttribut("RegNr")
+        };
+        private void LaddaAllaKunder() => FylliFält(_personService.HämtaAllaKunder().ToList());
         private void FylliFält(List<Kund> kunder)
         {
             KundData.Clear();
-            //Rensar tidigare information för uppdatering
             foreach (var kund in kunder)
             {
-                int antalBokningar = _bokningsService.HämtaBokning(kund).Count;
-                List<Bil> bilar = _personService.HämtaBilar(kund);
-                string bilarRegNr = string.Join(", ", bilar.Select(b => b.RegNr));
-
-                // Create a new KundDataViewModel instance
-                KundDataViewModel kundDataViewModel = new KundDataViewModel
+                var antalBokningar = _bokningsService.HämtaBokning(kund).Count;
+                var bilar = _bilService.HämtaBilar(kund);
+                var bilarRegNr = string.Join(", ", bilar.Select(b => b.RegNr));
+                KundData.Add(new KundDataViewModel
                 {
                     Personnummer = kund.Personnummer,
                     Namn = kund.Namn,
@@ -168,10 +156,7 @@ namespace Bilverkstad1.ViewModel
                     Epost = kund.Epost,
                     Bokingar = antalBokningar,
                     Bilar = bilarRegNr
-                };
-                
-                // Add the KundDataViewModel to KundData collection
-                KundData.Add(kundDataViewModel);
+                });
             }
 
         }
@@ -179,7 +164,7 @@ namespace Bilverkstad1.ViewModel
         private List<Kund> SökResultatFrånDb(string sökTerm) => _personService.SökKund(sökTerm);
 
 
-        private void SökKund(object x)
+        public void SökKund(object x)
         {
             //Alla kunder som matchar input skickas in i FylliFält och skrivs ut till användaren
             List<Kund> sökResultat = SökResultatFrånDb(_sök);
@@ -188,52 +173,25 @@ namespace Bilverkstad1.ViewModel
         
         private bool IFylldaFällt()
         {
-            try
-            {
-                string[] textboxar = [
-                    kontaktInfo["Namn"], kontaktInfo["Personnummer"], kontaktInfo["TelefonNr"],
-                    kontaktInfo["Epost"], kontaktInfo["Adress"], kontaktInfo["Märke"], kontaktInfo["RegNr"],
-                    kontaktInfo["Årsmodell"]
-                ];
-
-                return textboxar.All(x => !string.IsNullOrEmpty(x));
-            }
-            catch(Exception ex)
-            {
-                return false;
-            }
+            string[] requiredFields = { "Namn", "Personnummer", "TelefonNr", "Epost", "Adress", "Märke", "RegNr", "Årsmodell" };
+            return requiredFields.All(key => !string.IsNullOrEmpty(HämtaAttribut(key)));
         }
         public void BtnNyKund(object x)
         {
-            if (IFylldaFällt() && korrektInput == true)
+            if (IFylldaFällt() && korrektInput)
             {
-                Kund? kund = _personService.HämtaKund(NyKund().Personnummer);
+                var kund = _personService.HämtaKund(NyKund().Personnummer);
                 if (kund != null)
                 {
                     MessageBox.Show("Kund finns");
                 }
                 else
                 {
-                    //Om kund inte finns så sparas kunden in i databasen
                     _personService.SkapaKund(NyKund());
-
-                    //Om bilen inte redan tillhör någon
-                    if (SökBil(_regnr) == null)
+                    if (SökBil(HämtaAttribut("RegNr")) == null)
                     {
-                        //Skapar en ny bil
-                        Bil bil = new Bil()
-                        {
-                            Årsmodell = Convert.ToInt16(_årsmodell),
-                            KundNr = _personService.HämtaKund(NyKund().Personnummer).KundNr,
-                            Märke = _märke,
-                            RegNr = _regnr
-                        };
-                        _personService.SkapaBil(bil);
-
-                        //Efter skapad och sparad bil nollställs fält och kunder laddas in igen
+                        _bilService.SkapaBil(NyBil());
                         MessageBox.Show("Kund skapad");
-                        //TODO 
-                        //Ful lösning
                         BtnÅterställ(x);
                         LaddaAllaKunder();
                     }
@@ -248,7 +206,31 @@ namespace Bilverkstad1.ViewModel
                 MessageBox.Show("Fält ej korrekt ifyllda");
             }
         }
+        public void BtnUppdatera(object x)
+        {
+            if (IFylldaFällt() && korrektInput)
+            {
+                var kund = _personService.HämtaKund(NyKund().Personnummer);
+                var bilar = _bilService.HämtaBilar(kund);
+                var bilarRegNr = string.Join(", ", bilar.Select(b => b.RegNr));
+                if (!_bilService.UppdateraBil(bilarRegNr, NyBil()))
+                {
+                    MessageBox.Show("Du kan inte uppdatera RegNr");
+                }
+                else
+                {
+                    _personService.UppdateraKund(NyKund());
+                    MessageBox.Show("Kund uppdaterad");
+                    BtnÅterställ(x);
+                    LaddaAllaKunder();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Inkorrekta fält");
+            }
 
+        }
 
         private bool InputNumerisk(string x)
         {
@@ -258,10 +240,10 @@ namespace Bilverkstad1.ViewModel
 
         private void KontrolleraInputModell()
         {
-            if (kontaktInfo.ContainsKey("Årsmodell"))
+            if (kontaktInfo.TryGetValue("Årsmodell", out string? value))
             {
 
-                if (kontaktInfo["Årsmodell"].Length != 4)
+                if (value.Length != 4)
                 {
                     LabelColorModell = Brushes.Red;
                     korrektInput = false;
@@ -276,10 +258,10 @@ namespace Bilverkstad1.ViewModel
         }
         private void KontrolleraInputPerson()
         {
-            if (kontaktInfo.ContainsKey("Personnummer"))
+            if (kontaktInfo.TryGetValue("Personnummer", out string? value))
             {
 
-                if (kontaktInfo["Personnummer"].Length != 12)
+                if (value.Length != 12)
                 {
                     LabelColorPersonNr = Brushes.Red;
                     korrektInput = false;
@@ -308,39 +290,37 @@ namespace Bilverkstad1.ViewModel
             }
             
         }
+        public void BtnÅterställ(object x)
+        {
+            foreach (var key in kontaktInfo.Keys.ToList())
+            {
+                kontaktInfo[key] = "";
+                OnPropertyChanged(key);
+            }
+
+            gammalKund = false;
+            ToggleTextBoxEnabled(x);
+        }
 
         #region Attribut
 
 
-        private SolidColorBrush _labelColor = new(Color.FromRgb(255, 170, 238));
 
         public SolidColorBrush LabelColorModell
         {
             get { return _labelColor; }
-            set
-            {
-                _labelColor = value;
-                OnPropertyChanged();
-            }
+            set { _labelColor = value; OnPropertyChanged(); }
         }
         public SolidColorBrush LabelColorPersonNr
         {
             get { return _labelColor; }
-            set
-            {
-                _labelColor = value;
-                OnPropertyChanged();
-            }
+            set { _labelColor = value; OnPropertyChanged(); }
         }
 
         public SolidColorBrush LabelColorTelefonNr
         {
             get { return _labelColor; }
-            set
-            {
-                _labelColor = value;
-                OnPropertyChanged();
-            }
+            set { _labelColor = value; OnPropertyChanged(); }
         }
       
       
@@ -396,6 +376,12 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
+        public bool IsTextBoxEnabled
+        {
+            get { return _isTextBoxEnabled; }
+            set { _isTextBoxEnabled = value; OnPropertyChanged(); }
+        }
+
         public string Epost
         {
             get { return HämtaAttribut(nameof(Epost)); }
@@ -426,34 +412,7 @@ namespace Bilverkstad1.ViewModel
         }
 
         #endregion
-        public void BtnUppdatera(object x)
-        {
-            if (IFylldaFällt() && korrektInput == true)
-            {
-                _personService.UppdateraKund(NyKund());
-                MessageBox.Show("Kund uppdaterad");
-                //TODO 
-                //Ful lösning
-                BtnÅterställ(x);
-                LaddaAllaKunder();
-            }
-            else
-            {
-                MessageBox.Show("Inkorrekta fält");
-            }
-
-        }
-
-        
-        public void BtnÅterställ(object x)
-        {
-            foreach (var key in kontaktInfo.Keys.ToList())
-            {
-                kontaktInfo[key] = "";
-                OnPropertyChanged(key);
-            }
-
-        }
+       
 
     }   
 }
