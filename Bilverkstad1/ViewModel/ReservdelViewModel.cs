@@ -24,11 +24,14 @@ namespace Bilverkstad1.ViewModel
         private ReservDel _reservDel;
         private ReservDel _selectedReservDel;
         private ObservableCollection<ReservDel> _reservDels;
+
         public ICommand UpdateCommand { get; }
-        public ICommand SaveCommand { get; }
-        public ICommand DeleteCommand { get; }
-        public ICommand AddCommand { get; }
+        public ICommand SaveCommand { get; }        
+        public ICommand DeleteCommand { get; }      
+        public ICommand AddCommand { get; }        
         public ICommand SearchCommand { get; }
+
+        // Konstruktor
         public ReservdelViewModel()
         {
             IServiceProvider serviceProvider = ReservDelVy._serviceProvider;
@@ -42,10 +45,13 @@ namespace Bilverkstad1.ViewModel
             DeleteCommand = new RelayCommand(DeleteReservDel);
             AddCommand = new RelayCommand(AddReservDel);
             SearchCommand = new RelayCommand(Search);
-            UppdateraReservdelar();
 
+            UppdateraReservdelar();
         }
+
         private string _searchText;
+
+        // Egenskap för söktext
         public string SearchText
         {
             get { return _searchText; }
@@ -59,6 +65,8 @@ namespace Bilverkstad1.ViewModel
                 }
             }
         }
+
+        // Egenskap för reservdelens namn
         public string Namn
         {
             get { return _reservDel.Namn; }
@@ -70,6 +78,7 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
+        // Egenskap för reservdelens pris
         public double Pris
         {
             get { return _reservDel.Pris; }
@@ -81,6 +90,7 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
+        // Egenskap för reservdelens kvantitet
         public int Kvantitet
         {
             get { return _reservDel.Kvantitet; }
@@ -92,6 +102,7 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
+        // Egenskap för vald reservdel
         public ReservDel SelectedReservDel
         {
             get { return _selectedReservDel; }
@@ -99,11 +110,11 @@ namespace Bilverkstad1.ViewModel
             {
                 _selectedReservDel = value;
                 OnPropertyChanged(nameof(SelectedReservDel));
-
                 SetData();
             }
         }
 
+        // Egenskap för listan av reservdelar
         public ObservableCollection<ReservDel> ReservDels
         {
             get { return _reservDels; }
@@ -114,11 +125,13 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
+        // Metod för att lägga till en ny reservdel
         private void AddReservDel(object parameter)
         {
             ClearTextBoxes();
         }
 
+        // Metod för att sätta data från vald reservdel till egenskaper
         private void SetData()
         {
             if (_selectedReservDel != null)
@@ -128,22 +141,26 @@ namespace Bilverkstad1.ViewModel
                 Kvantitet = _selectedReservDel.Kvantitet;
             }
         }
+
+        // Metod för att söka efter reservdelar
         private void Search(object parameter)
         {
             ApplyFilter();
         }
 
+        // Metod för att filtrera reservdelar baserat på söktext
         private void ApplyFilter()
         {
             var allaReservdelar = _reservDelService.HämtaAllaReservdel();
 
             var matchandeReservdel = allaReservdelar.Where(reservDel =>
-                reservDel.Namn.ToString().Contains(SearchText.ToLower())
+                reservDel.Namn.ToString().ToLower().Contains(SearchText.ToLower())
             ).ToList();
 
             ReservDels = new ObservableCollection<ReservDel>(matchandeReservdel);
         }
 
+        // Metod för att uppdatera en reservdel
         private void UpdateReservDel(object parameter)
         {
             if (SelectedReservDel != null)
@@ -160,13 +177,14 @@ namespace Bilverkstad1.ViewModel
                 }
                 catch (Exception ex)
                 {
-                   
+                    MessageBox.Show($"Ett fel inträffade vid uppdatering av reservdel: {ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
             ClearTextBoxes();
         }
 
+        // Metod för att uppdatera listan av reservdelar
         private void UppdateraReservdelar()
         {
             ReservDels.Clear();
@@ -175,11 +193,9 @@ namespace Bilverkstad1.ViewModel
             {
                 ReservDels.Add(reservdel);
             }
-
         }
 
-
-
+        // Metod för att rensa textfälten
         private void ClearTextBoxes()
         {
             Namn = "";
@@ -187,6 +203,7 @@ namespace Bilverkstad1.ViewModel
             Kvantitet = 0;
         }
 
+        // Metod för att ta bort en reservdel
         private void DeleteReservDel(object parameter)
         {
             try
@@ -210,7 +227,7 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
-
+        // Metod för att spara en ny reservdel
         private void SaveReservDel(object parameter)
         {
             try
@@ -223,7 +240,8 @@ namespace Bilverkstad1.ViewModel
                 };
 
                 // Kontrollera om reservdelen redan finns
-                var befintligReservDel = _reservDelService.HämtaAllaReservdel();
+                var befintligReservDel = _reservDelService.HämtaAllaReservdel()
+                    .FirstOrDefault(rd => rd.Namn == nyReservDel.Namn);
                 if (befintligReservDel != null)
                 {
                     // Hantera fallet där reservdelen redan finns, t.ex. visa ett meddelande
@@ -238,16 +256,14 @@ namespace Bilverkstad1.ViewModel
             }
             catch (Exception ex)
             {
-                // Hantera undantag, t.ex. logga felet eller visa ett meddelande till användaren
                 MessageBox.Show($"Ett fel inträffade: {ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-
-
-
+        // Händelse för egenskapsändring
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Metod för att anropa händelsen när en egenskap ändras
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

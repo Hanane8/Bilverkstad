@@ -44,6 +44,7 @@ namespace Bilverkstad1.ViewModel
 
         public BokningViewModel()
         {
+            // Skapa tjänster med dependency injection
             IServiceProvider serviceProvider = BokningVy._serviceProvider;
             _bokningService = serviceProvider.GetRequiredService<BokningsService>();
             _personService = serviceProvider.GetRequiredService<PersonService>();
@@ -53,6 +54,7 @@ namespace Bilverkstad1.ViewModel
 
             _bokning = new Bokning();
 
+            // Initiera listor och kommandon
             Boknings = new ObservableCollection<Bokning>();
             Kunder = new ObservableCollection<Kund>();
             Mekaniker = new ObservableCollection<Mekaniker>();
@@ -66,6 +68,8 @@ namespace Bilverkstad1.ViewModel
             SearchCommand = new RelayCommand(Search);
             UppdateraBokning();
         }
+
+        // Egenskaper med notifiering
         public int BokningsNr
         {
             get { return _bokning.BokningsNr; }
@@ -254,15 +258,18 @@ namespace Bilverkstad1.ViewModel
                 {
                     _searchText = value;
                     OnPropertyChanged(nameof(SearchText));
-                    ApplyFilter(); 
+                    ApplyFilter();
                 }
             }
         }
+
+        // Sökmetod för att filtrera bokningar baserat på söktext
         private void Search(object parameter)
         {
             ApplyFilter();
         }
 
+        // Filtrerar bokningar baserat på söktext
         private void ApplyFilter()
         {
             var allaBokningar = _bokningService.HämtaAllaBokningar();
@@ -273,7 +280,8 @@ namespace Bilverkstad1.ViewModel
 
             Boknings = new ObservableCollection<Bokning>(matchandeBokningar);
         }
-    
+
+        // Rensar alla textfält
         private void ClearTextBoxes()
         {
             InlämningsDatum = null;
@@ -284,8 +292,9 @@ namespace Bilverkstad1.ViewModel
             BokningsNr = 0;
             Namn = string.Empty;
             AnställningsNr = 0;
-
         }
+
+        // Ställer in data från vald bokning
         private void SetData()
         {
             if (SelectedBokning != null)
@@ -298,11 +307,13 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
+        // Lägger till en ny bokning
         private void AddBokning(object obj)
         {
             ClearTextBoxes();
         }
 
+        // Raderar vald bokning
         private void DeleteBokning(object obj)
         {
             if (SelectedBokning != null)
@@ -324,6 +335,7 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
+        // Sparar en ny bokning och skapar journal
         private void SaveBokning(object obj)
         {
             if (SelectedKund != null && SelectedMekaniker != null)
@@ -376,8 +388,7 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
-
-
+        // Uppdaterar en existerande bokning
         private void UpdateBokning(object obj)
         {
             if (SelectedBokning != null)
@@ -427,9 +438,7 @@ namespace Bilverkstad1.ViewModel
             }
         }
 
-
-
-
+        // Uppdaterar listan av bokningar, kunder, mekaniker och reservdelar
         private void UppdateraBokning()
         {
             Boknings = new ObservableCollection<Bokning>(_bokningService.HämtaAllaBokningar());
@@ -438,6 +447,7 @@ namespace Bilverkstad1.ViewModel
             ReservDelar = new ObservableCollection<ReservDel>(_reservDelService.HämtaAllaReservdel());
         }
 
+        // Event och metod för property changed notifiering
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
