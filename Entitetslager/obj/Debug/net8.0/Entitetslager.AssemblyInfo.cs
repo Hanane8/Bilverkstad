@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Entitetslager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44e4f9fda188fa27c44e72c18bc77b1db3f52ade")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+244c3ee868fc48b532e12ca66d263c6fca269d45")]
 [assembly: System.Reflection.AssemblyProductAttribute("Entitetslager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Entitetslager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

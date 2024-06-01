@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using Affärslager;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace Bilverkstad1.ViewModel
 {
@@ -221,18 +222,27 @@ namespace Bilverkstad1.ViewModel
                     Kvantitet = Kvantitet
                 };
 
+                // Kontrollera om reservdelen redan finns
+                var befintligReservDel = _reservDelService.HämtaAllaReservdel();
+                if (befintligReservDel != null)
+                {
+                    // Hantera fallet där reservdelen redan finns, t.ex. visa ett meddelande
+                    MessageBox.Show("En reservdel med detta namn finns redan.", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 _reservDelService.SkapaReservDel(nyReservDel);
-
 
                 UppdateraReservdelar();
                 ClearTextBoxes();
             }
             catch (Exception ex)
             {
-
+                // Hantera undantag, t.ex. logga felet eller visa ett meddelande till användaren
+                MessageBox.Show($"Ett fel inträffade: {ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
 
 
