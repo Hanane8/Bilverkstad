@@ -47,6 +47,11 @@ namespace Bilverkstad1.ViewModel
 
             LaddaAllaKunder();
         }
+        /// <summary>
+        /// Metod som bestämmer om Personnummer och Telefonnummer fält 
+        /// är aktiva eller inte
+        /// </summary>
+        /// <param name="x"></param>
         public void ToggleTextBoxEnabled(object x)
         {
             if (gammalKund)
@@ -56,7 +61,11 @@ namespace Bilverkstad1.ViewModel
 
         }
         private string HämtaAttribut(string key) => kontaktInfo.TryGetValue(key, out var value) ? value : string.Empty;
-
+        /// <summary>
+        /// Metod som skapar nya/uppdaterar key value pairs i dictionary
+        /// </summary>
+        /// <param name="key">nyckeln t.ex 'Namn'</param>
+        /// <param name="value">värdet t.ex 'Jöns'</param>
         private void SättAttribut(string key, string value)
         {
             if (kontaktInfo.ContainsKey(key))
@@ -81,7 +90,10 @@ namespace Bilverkstad1.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        /// <summary>
+        /// Hanterar vad som händer när man trycker på 
+        /// en rad
+        /// </summary>
         public void KolumnClick(object x)
         {
             if(x != null)

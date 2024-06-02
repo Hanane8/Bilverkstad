@@ -26,11 +26,7 @@ namespace Datalager
             _dbContext.Set<TEntity>().Update(entity);
         }
 
-        //public TEntity HämtaPerson(string personnummer)
-        //{
-        //    return _dbContext.Set<TEntity>().FirstOrDefault(k => k.Personnummer);
-        //}
-
+    
         public List<TEntity> HämtaLista(Expression<Func<TEntity, bool>> funcExpression) => _dbContext.Set<TEntity>().Where(funcExpression).ToList();
         
 
